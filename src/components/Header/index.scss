@@ -1,0 +1,31 @@
+.header {
+  margin-right: 40px;
+  .btn {
+    padding: 0 $padding-md;
+    height: 48px;
+    line-height: 48px;
+    background: rgba(63, 140, 255, 0.39);
+    box-shadow: 0px 6px 58px rgba(196, 203, 214, 0.1);
+    border-radius: 14px;
+    float: right;
+    color: $primary-color;
+    text-align: center;
+    cursor: pointer;
+    padding: 0 $padding-md;
+
+    .acc-img {
+      display: inline-block;
+      margin-right: $margin-sm;
+    }
+  }
+
+  .connected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $white;
+    font-size: 16px;
+    color: #0a1629;
+    box-shadow: 0px 6px 58px rgba(196, 203, 214, 0.1);
+  }
+}

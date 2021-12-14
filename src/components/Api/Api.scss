@@ -1,0 +1,12 @@
+.loading {
+  width: 100vw;
+  height: 100vh;
+
+  .connecting {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    z-index: 99999;
+  }
+}

@@ -1,0 +1,127 @@
+.proof-cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .cards-menu {
+    display: flex;
+    margin-bottom: $margin-lg;
+    width: 609px;
+    height: 48px;
+    padding: $padding-xss;
+    background: #e6edf5;
+    border-radius: 24px;
+
+    > li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 150px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .active {
+      background: $primary-color;
+      font-weight: bold;
+      color: $white;
+    }
+  }
+
+  .cards-main {
+    display: flex;
+    width: 1170px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+
+    .card-item {
+      width: 368px;
+      background: $white;
+      box-shadow: 0px 2px 6px rgba(29, 34, 38, 0.1);
+      border-radius: 10px;
+      padding: $padding-lg $padding-lg 0;
+      font-size: 14px;
+      color: #000000;
+      flex-shrink: 0;
+      margin: 0 10px 32px 10px;
+      align-self: baseline;
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+
+        .card-img {
+          width: 44px;
+          height: 44px;
+        }
+
+        .card-header-label {
+          font-size: 12px;
+          font-weight: 300;
+          color: #646464;
+        }
+
+        .card-name {
+          font-size: 18px;
+          font-weight: 500;
+          color: #1e47a5;
+          line-height: 1.5;
+          max-width: 200px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+
+      .card-detail {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .card-divider {
+        color: $primary-color;
+        margin-top: 22px;
+        padding-top: $padding-xs;
+        padding-bottom: $padding-md;
+        text-align: center;
+        border-top: 1px solid #d9d9d9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .card-divider-img {
+        width: 24px;
+        height: 24px;
+      }
+
+      .down {
+        transform: rotate(180deg);
+      }
+
+      .card-label {
+        font-weight: 300;
+        color: #6f6f6f;
+      }
+
+      .bottom {
+        margin-bottom: $margin-lg;
+      }
+
+      .fold {
+        display: none;
+      }
+
+      .unfold {
+        display: block;
+      }
+    }
+
+    .card-item:hover {
+      border: 1px solid $primary-color;
+    }
+  }
+}

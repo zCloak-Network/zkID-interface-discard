@@ -1,0 +1,12 @@
+{
+  "name": "starks_proofgen",
+  "version": "0.1.0",
+  "files": [
+    "starks_proofgen_bg.wasm",
+    "starks_proofgen.js",
+    "starks_proofgen.d.ts"
+  ],
+  "module": "starks_proofgen.js",
+  "types": "starks_proofgen.d.ts",
+  "sideEffects": false
+}

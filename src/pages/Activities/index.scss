@@ -1,0 +1,50 @@
+.activities {
+  > li {
+    display: flex;
+    align-items: center;
+    width: 1134px;
+    height: 88px;
+    background: $white;
+    box-shadow: 0px 6px 58px rgba(196, 203, 214, 0.1);
+    border-radius: 14px;
+    margin-top: $margin-lg;
+    font-size: 16px;
+    color: #0a1629;
+    padding-left: 30px;
+    padding-right: 50px;
+    justify-content: space-between;
+    line-height: 1.5;
+    cursor: pointer;
+
+    .program {
+      max-width: 250px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .label {
+      font-size: 14px;
+      color: #91929e;
+    }
+
+    .token {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      font-weight: 500;
+      color: #0a1629;
+      width: 288px;
+
+      > img {
+        width: 40px;
+        height: 40px;
+        margin-right: $margin-lg;
+      }
+    }
+  }
+
+  > li:hover {
+    background: $item-hover-bg;
+  }
+}

@@ -1,0 +1,98 @@
+.zk {
+  height: calc(100% - $margin-lg);
+  margin-bottom: $margin-lg;
+  overflow: auto;
+
+  .zk-main {
+    display: flex;
+    flex-direction: column;
+    width: 774px;
+    margin: 0 auto;
+  }
+
+  .zk-detail {
+    margin-top: 52px;
+    margin-bottom: 24px;
+    width: 744px;
+    height: 208px;
+    background: $white;
+    box-shadow: 0px 6px 58px rgba(196, 203, 214, 0.1);
+    border-radius: 14px;
+    flex-shrink: 0;
+  }
+
+  .zk-title {
+    font-size: 22px;
+    font-weight: 500;
+    color: #000000;
+  }
+
+  .zk-entities {
+    li {
+      width: 744px;
+      height: 80px;
+      background: $white;
+      box-shadow: 0px 6px 58px rgba(196, 203, 214, 0.1);
+      border-radius: 14px;
+      margin-top: $margin-md;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: $padding-lg;
+      padding-right: $padding-md;
+      box-sizing: border-box;
+      .index {
+        font-size: 16px;
+        color: #727272;
+      }
+
+      .detail {
+        font-size: 16px;
+        font-weight: 500;
+        width: 160px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: inline-block;
+        margin-left: 24px;
+        margin-right: 45px;
+        line-height: 2;
+      }
+
+      .ctype,
+      .data {
+        font-size: 12px;
+        line-height: 24px;
+        color: #0a1629;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .ctype {
+        width: 150px;
+        margin-right: 12px;
+      }
+
+      .btn {
+        width: 160px;
+        height: 48px;
+        line-height: 48px;
+        text-align: center;
+        background: $primary-color;
+        box-shadow: 0px 6px 12px rgba(63, 140, 255, 0.26);
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 16px;
+        color: $white;
+        cursor: pointer;
+      }
+
+      .zk-row-title {
+        font-size: 12px;
+        line-height: 24px;
+        color: #7c7c7c;
+      }
+    }
+  }
+}
