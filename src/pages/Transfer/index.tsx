@@ -2,10 +2,10 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2021-12-12 17:36:40
+ * @LastEditTime: 2021-12-16 11:32:59
  */
-import React, { useState } from "react";
-import { useNavigate, Outlet } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate, Outlet } from "react-router-dom";
 
 import "./index.scss";
 
@@ -24,12 +24,20 @@ const MENU = [
 
 export default function Transfer() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [module, setModule] = useState(MENU[0].key);
 
   const handleClick = (e) => {
     setModule(e.target?.dataset.id);
     navigate(e.target?.dataset.url);
   };
+
+  useEffect(() => {
+    if (location.pathname) {
+      const module = MENU.find((it) => location.pathname === it.url)?.key;
+      if (module) setModule(module);
+    }
+  }, [location]);
 
   return (
     <div className="transfer">

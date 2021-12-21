@@ -2,18 +2,18 @@
  * @Description: 
  * @Author: lixin
  * @Date: 2021-08-27 11:52:05
- * @LastEditTime: 2021-12-14 14:41:11
+ * @LastEditTime: 2021-12-16 19:22:16
  * 
  */
-import iconCorrect from './images/icon_correct.png'
-import iconError from './images/icon_error.png'
-import iconwait from './images/icon_wait.png'
+import iconCorrect from '../images/icon_correct.png'
+import iconError from '../images/icon_error.png'
+import iconwait from '../images/icon_wait.png'
 
 
 export const  NETWORKID = 1287
 
 // export const HOSTPREFIX = 'http://192.168.31.47:8080'
-export const HOSTPREFIX = 'http://127.0.0.1:8080'
+export const HOSTPREFIX = 'https://api.app.zcloak.network'
 
 export const STATUSTRUE = 'Verified True'
 export const STATUSFALSE = 'Verified False'
@@ -50,3 +50,6 @@ export const STATUS = [
     }
 
 ]
+export const IS_IN_IFRAME = window.parent !== window
+
+export const NetworkContextName = 'NETWORK'

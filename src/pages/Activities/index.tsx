@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2021-12-14 02:00:20
+ * @LastEditTime: 2021-12-16 14:09:18
  */
 import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
@@ -14,7 +14,7 @@ import { isAddress, shortenAddress } from "../../utils";
 import useSymbol from "../../hooks/useSymbol";
 import noExistImg from "../../images/icon_not_exist.png";
 
-import { timeFormat } from "../../constant";
+import { timeFormat } from "../../constants";
 
 import "./index.scss";
 

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2021-12-14 01:36:06
+ * @LastEditTime: 2021-12-16 14:09:27
  */
 import React, { useState, useMemo, useEffect } from "react";
 import dayjs from "dayjs";
@@ -17,7 +17,7 @@ import btnListActive from "../../images/btn_list_active.png";
 import btnCard from "../../images/btn_card.png";
 import btnCardActive from "../../images/btn_card_active.png";
 
-import { timeFormat, STATUSING } from "../../constant";
+import { timeFormat, STATUSING } from "../../constants";
 import { queryProofsByAddr } from "../../services/api";
 import { getStatus } from "../../utils";
 
@@ -43,6 +43,8 @@ export default function Proof({ account }: Props) {
       index: index + 1,
       time: dayjs(it.date).format(timeFormat.dateTime),
       statusCode: it.status,
+      //TODO
+      claimAlias: "zCloak Primary Access",
       // statusCode: getStatus(it.status?.ifFinishVerify, it.status?.verifyResult),
     }));
   };

@@ -2,14 +2,14 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-03 16:34:58
- * @LastEditTime: 2021-12-13 22:10:50
+ * @LastEditTime: 2021-12-17 17:01:33
  */
 import React, { useState, useMemo } from "react";
 import { Image } from "@davatar/react";
 
 import dropdownImg from "../../images/icon_dropdown.png";
 
-import { STATUS } from "../../constant";
+import { STATUS } from "../../constants";
 import { shortenHash } from "../../utils";
 
 import "./Cards.scss";
@@ -19,7 +19,7 @@ interface Props {
 }
 
 interface CardProps {
-  //TODO
+  // TODO
   dataItem: {
     programDetails: {
       programHashName: string;

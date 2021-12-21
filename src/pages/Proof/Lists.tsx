@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-03 16:35:07
- * @LastEditTime: 2021-12-13 22:07:28
+ * @LastEditTime: 2021-12-17 17:05:54
  */
 import React, { useState } from "react";
 import { Table } from "antd";
@@ -10,9 +10,9 @@ import { Table } from "antd";
 import dropdownImg from "../../images/icon_dropdown.png";
 import upImg from "../../images/icon_up.png";
 
-import { STATUS } from "../../constant";
+import { STATUS } from "../../constants";
 import { shortenHash } from "../../utils";
-import { STATUSTRUE, STATUSFALSE, STATUSING } from "../../constant";
+import { STATUSTRUE, STATUSFALSE, STATUSING } from "../../constants";
 
 import "./Lists.scss";
 

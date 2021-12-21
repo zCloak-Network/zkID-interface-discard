@@ -2,16 +2,22 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2021-12-14 14:39:28
+ * @LastEditTime: 2021-12-21 19:16:40
  */
 import React, { useState, useEffect, useMemo, useContext } from "react";
 import { notification } from "antd";
+import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
 import Submit from "../Submit";
 import InputAddress from "./InputAddress";
 import InputBalance from "./InputBalance";
 import SelectToken from "../SelectToken";
 import TransferBtn from "./transferBtn";
 import TokenItem from "../SelectToken/TokenItem";
+
+import {
+  useModalOpen,
+  useToggleSelectTokenModal,
+} from "../../state/application/hooks";
 
 import useBalance from "../../hooks/useBalance";
 // import useApprove from "../../hooks/useApprove";
@@ -34,7 +40,7 @@ import {
 } from "../../services/api";
 
 import { getStatus, shortenAddress } from "../../utils";
-import { STATUSTRUE, STATUSFALSE, STATUSING } from "../../constant";
+import { STATUSTRUE, STATUSFALSE, STATUSING } from "../../constants";
 
 import iconCorrect from "../../images/icon_correct.png";
 import arrowImg from "../../images/icon_arrow.png";
@@ -42,16 +48,13 @@ import arrowDownImg from "../../images/icon_arrow_down.png";
 import arrowDownInactiveImg from "../../images/icon_arrow_inactive.png";
 
 import "./RegulatedTransfer.scss";
-interface Props {
-  account: string;
-  isErrorNetwork: boolean;
-}
 
 type contextProps = {
   web3: any;
 };
 
-export default function RegulatedTransfer({ account, isErrorNetwork }: Props) {
+export default function RegulatedTransfer() {
+  const { error, account } = useWeb3React();
   const [submitVisible, setSubmitVisible] = useState(false);
   const [amount, setAmount] = useState("0");
   const [allTokens, setAllTokens] = useState([]);
@@ -78,10 +81,12 @@ export default function RegulatedTransfer({ account, isErrorNetwork }: Props) {
   const symbol = useSymbol(token.tokenAddress);
   const decimals = useDecimals(token.tokenAddress);
 
+  const toggleSelectTokenModal = useToggleSelectTokenModal();
+
   const { web3 } = useContext(MyContext) as contextProps;
 
   const handleOpenToken = () => {
-    setVisible(true);
+    toggleSelectTokenModal();
   };
 
   const handleCancel = () => {
@@ -181,15 +186,6 @@ export default function RegulatedTransfer({ account, isErrorNetwork }: Props) {
           )} successfully.`
         );
       });
-
-    // myContract.methods
-    //   .transfer(
-    //     "0x7B627b7991D7364b332e8B48a99178CDe5e3Be2C",
-    //     "1000000000000000000"
-    //   )
-    //   .send({
-    //     from: "0x6f56C250992655f9ca83E3246dcBDC9555A6771F",
-    //   });
   };
 
   const handleApprove = () => {
@@ -300,29 +296,18 @@ export default function RegulatedTransfer({ account, isErrorNetwork }: Props) {
           handleChange={handleAmountChange}
         />
       </div>
-      {account && approveStatus && ruleStatus === STATUSFALSE && (
-        <div className="btn no-proof-btn" onClick={handleSubmit}>
-          Sorry, found no proof. Submit your proof.
-        </div>
-      )}
-      {account && approveStatus && ruleStatus === STATUSING && (
-        <div className="btn">
-          Sorry, your proof is being verified, please wait.
-        </div>
-      )}
-      {account && !approveStatus && token.tokenAddress && (
-        <div className="btn" onClick={handleApprove}>
-          Allow zkPass to use your {token.tokenName}.
-        </div>
-      )}
       <TransferBtn
-        isErrorNetwork={isErrorNetwork}
+        ruleStatus={ruleStatus}
+        approveStatus={approveStatus}
+        error={error}
         account={account}
-        token={token.tokenAddress}
+        token={token}
         amount={amount}
         receivierAddr={receivierAddr}
         disabled={isNotTrue}
         onClick={handleTransfer}
+        handleApprove={handleApprove}
+        handleSubmitProof={handleSubmit}
       />
       <SelectToken
         allTokens={allTokens}

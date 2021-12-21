@@ -2,10 +2,9 @@
  * @Description: submit modal
  * @Author: lixin
  * @Date: 2021-12-02 17:23:15
- * @LastEditTime: 2021-12-14 14:40:47
+ * @LastEditTime: 2021-12-20 14:15:34
  */
 import React, { useContext, useState } from "react";
-import web3 from "web3";
 import { notification } from "antd";
 import { Modal } from "antd";
 import MyContext from "../../components/Context";
@@ -108,24 +107,6 @@ export default function Submit({
           "You have submited successfully."
         );
       });
-
-    // contract.methods
-    //   .addProof(
-    //     "0xf85edd58bd7de60dac41894c508a1522f86d4b1066e3a4cbea3ab0353e659d11",
-    //     "0x5ff696698bdbb6415d30e328c2a030b3ddd0c1d2dee8c4d58da4d7ef5a34adc1",
-    //     "age",
-    //     "0xdb70dbc46d57bb7ecb3aa2ceb657592b2c1ab6b427fe1dcd7532d1dcacd24998",
-    //     "QmNRe7jAHu2MXad4f6jDePPCRrpnaRSLGG2fEtHZUoekpD",
-    //     "0xbdf1fd3c489dbf96aa6c7507d3a56957ea1cd5f0bddd1b0222e0a90032d7b0e1",
-    //     true
-    //   )
-    //   .send({
-    //     from: account,
-    //   })
-    //   .then(function (receipt) {
-    //     console.log(444444666, receipt);
-    //     handleCancel();
-    //   });
   };
 
   return (

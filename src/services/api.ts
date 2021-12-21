@@ -2,10 +2,10 @@
  * @Description: 
  * @Author: lixin
  * @Date: 2021-12-08 19:47:31
- * @LastEditTime: 2021-12-13 21:08:49
+ * @LastEditTime: 2021-12-16 14:09:12
  */
 import axios from 'axios'
-import { HOSTPREFIX } from '../constant'
+import { HOSTPREFIX } from '../constants'
 
 
 /** 获取所有token */

@@ -2,14 +2,14 @@
  * @Description: 
  * @Author: lixin
  * @Date: 2021-12-06 16:32:12
- * @LastEditTime: 2021-12-13 19:24:28
+ * @LastEditTime: 2021-12-16 14:09:11
  */
 import React from "react";
 import { getAddress } from '@ethersproject/address'
 import { AddressZero } from '@ethersproject/constants'
 import { Contract } from '@ethersproject/contracts'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
-import { STATUSTRUE, STATUSFALSE, STATUSING } from "../constant";
+import { STATUSTRUE, STATUSFALSE, STATUSING } from "../constants";
 
 // returns the checksummed address if the address is valid, otherwise returns false
 export function isAddress(value: any): string | false {

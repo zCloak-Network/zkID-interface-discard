@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: lixin
  * @Date: 2021-08-11 13:50:41
- * @LastEditTime: 2021-12-12 14:07:31
+ * @LastEditTime: 2021-12-20 16:22:05
  */
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -95,12 +95,14 @@ const commonConfig = {
             'react/jsx-runtime': require.resolve('react/jsx-runtime'),
         },
         fallback: {
+            fs: false,
+            module: false,
             os: require.resolve("os-browserify/browser"),
             http: require.resolve("stream-http"),
             https: require.resolve("https-browserify"),
             assert: require.resolve("assert/"),
             crypto: require.resolve('crypto-browserify'),
-            // path: require.resolve('path-browserify'),
+            path: require.resolve('path-browserify'),
             //   url: require.resolve('url'),
             // buffer: require.resolve('buffer/'),
             //   util: require.resolve('util/'),

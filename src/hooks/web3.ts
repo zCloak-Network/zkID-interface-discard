@@ -2,51 +2,121 @@
  * @Description: 
  * @Author: lixin
  * @Date: 2021-12-14 13:35:16
- * @LastEditTime: 2021-12-14 14:01:16
+ * @LastEditTime: 2021-12-20 11:16:08
  */
-// import { Web3Provider } from '@ethersproject/providers'
-// import { useWeb3React } from '@web3-react/core'
-// import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { Web3Provider } from '@ethersproject/providers'
+import { useWeb3React } from '@web3-react/core'
+import { gnosisSafe, injected } from '../connectors'
+import { IS_IN_IFRAME, NetworkContextName } from '../constants'
+import { isMobile } from '../utils/userAgent'
 
-// import { gnosisSafe, injected } from '../connectors'
+export function useActiveWeb3React() {
+    const context = useWeb3React<Web3Provider>()
+    const contextNetwork = useWeb3React<Web3Provider>(NetworkContextName)
+
+    return context.active ? context : contextNetwork
+  }
+  
+  export function useEagerConnect() {
+    const { activate, active } = useWeb3React()
+    const [tried, setTried] = useState(false)
+  
+    // gnosisSafe.isSafeApp() races a timeout against postMessage, so it delays pageload if we are not in a safe app;
+    // if we are not embedded in an iframe, it is not worth checking
+    const [triedSafe, setTriedSafe] = useState(!IS_IN_IFRAME)
+  
+    // first, try connecting to a gnosis safe
+    useEffect(() => {
+      if (!triedSafe) {
+        gnosisSafe.isSafeApp().then((loadedInSafe) => {
+          if (loadedInSafe) {
+            activate(gnosisSafe, undefined, true).catch(() => {
+              setTriedSafe(true)
+            })
+          } else {
+            setTriedSafe(true)
+          }
+        })
+      }
+    }, [activate, setTriedSafe, triedSafe])
+  
+    // then, if that fails, try connecting to an injected connector
+    useEffect(() => {
+
+      if (!active && triedSafe) {
+        console.log(13333, injected, injected.isAuthorized() )
+        injected.isAuthorized().then((isAuthorized) => {
+           
+          if (isAuthorized) {
+            activate(injected, undefined, true).catch(() => {
+            console.log(13333000,isAuthorized, activate, injected)
+              setTried(true)
+            })
+
+          } else {
+            if (isMobile && window.ethereum) {
+              activate(injected, undefined, true).catch(() => {
+                setTried(true)
+              })
+            } else {
+              setTried(true)
+            }
+          }
+        })
+      }
+    }, [activate, active, triedSafe])
+  
+    // wait until we get confirmation of a connection to flip the flag
+    useEffect(() => {
+      if (active) {
+        setTried(true)
+      }
+    }, [active])
+  
+    return tried
+  }
+  
 
 /**
  * Use for network and injected - logs user in
  * and out after checking what network theyre on
  */
-// export function useInactiveListener(suppress = false) {
-//   const { active, error, activate } = useWeb3React()
+export function useInactiveListener(suppress = false) {
+  const { active, error, activate } = useWeb3React()
 
-//   useEffect(() => {
-//     const { ethereum } = window
+  useEffect(() => {
+    const { ethereum } = window
 
-//     if (ethereum && ethereum.on && !active && !error && !suppress) {
-//       const handleChainChanged = () => {
-//         // eat errors
-//         activate(injected, undefined, true).catch((error) => {
-//           console.error('Failed to activate after chain changed', error)
-//         })
-//       }
+    if (ethereum && ethereum.on && !active && !error && !suppress) {
+        console.log(13332222, error )
+      const handleChainChanged = () => {
+        // eat errors
+        activate(injected, undefined, true).catch((error) => {
+          console.error('Failed to activate after chain changed', error)
+        })
+      }
 
-//       const handleAccountsChanged = (accounts: string[]) => {
-//         if (accounts.length > 0) {
-//           // eat errors
-//           activate(injected, undefined, true).catch((error) => {
-//             console.error('Failed to activate after accounts changed', error)
-//           })
-//         }
-//       }
+      const handleAccountsChanged = (accounts: string[]) => {
+        if (accounts.length > 0) {
+          // eat errors
+          activate(injected, undefined, true).catch((error) => {
+            console.error('Failed to activate after accounts changed', error)
+          })
+        }
+      }
 
-//       ethereum.on('chainChanged', handleChainChanged)
-//       ethereum.on('accountsChanged', handleAccountsChanged)
+      ethereum.on('chainChanged', handleChainChanged)
+      ethereum.on('accountsChanged', handleAccountsChanged)
 
-//       return () => {
-//         if (ethereum.removeListener) {
-//           ethereum.removeListener('chainChanged', handleChainChanged)
-//           ethereum.removeListener('accountsChanged', handleAccountsChanged)
-//         }
-//       }
-//     }
-//     return undefined
-//   }, [active, error, suppress, activate])
-// }
+      return () => {
+        // TODO 
+        // if (ethereum.removeListener) {
+        //   ethereum.removeListener('chainChanged', handleChainChanged)
+        //   ethereum.removeListener('accountsChanged', handleAccountsChanged)
+        // }
+      }
+    }
+    return undefined
+  }, [active, error, suppress, activate])
+}
