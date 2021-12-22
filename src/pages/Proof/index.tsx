@@ -2,10 +2,11 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2021-12-16 14:09:27
+ * @LastEditTime: 2021-12-22 16:48:51
  */
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, ReactElement } from "react";
 import dayjs from "dayjs";
+import { useWeb3React } from "@web3-react/core";
 import { useInterval } from "ahooks";
 
 import Cards from "./Cards";
@@ -19,19 +20,16 @@ import btnCardActive from "../../images/btn_card_active.png";
 
 import { timeFormat, STATUSING } from "../../constants";
 import { queryProofsByAddr } from "../../services/api";
-import { getStatus } from "../../utils";
 
 import "./index.scss";
 
-interface Props {
-  account: string;
-}
-
-export default function Proof({ account }: Props) {
+export default function Proof(): ReactElement {
   const [allProofs, setAllProofs] = useState([]);
   const [verifingProof, setVerifingProof] = useState([]);
   const [showType, setShowType] = useState("card");
   const [interval, setInterval] = useState(12000);
+
+  const { account } = useWeb3React();
 
   const handleShowType = (type) => {
     setShowType(type);
@@ -45,7 +43,6 @@ export default function Proof({ account }: Props) {
       statusCode: it.status,
       //TODO
       claimAlias: "zCloak Primary Access",
-      // statusCode: getStatus(it.status?.ifFinishVerify, it.status?.verifyResult),
     }));
   };
 

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-08-30 16:38:02
- * @LastEditTime: 2021-12-22 10:28:26
+ * @LastEditTime: 2021-12-22 16:49:20
  */
 import React, { useState, useEffect } from "react";
 import {
@@ -12,7 +12,7 @@ import {
   useNavigate,
   Navigate,
 } from "react-router-dom";
-import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
+import { useWeb3React } from "@web3-react/core";
 import ErrorModal from "../../components/ErrorModal";
 import Header from "../../components/Header";
 import Transfer from "../Transfer";
@@ -65,7 +65,7 @@ function HomePage() {
   const navigate = useNavigate();
   const location = useLocation();
   const [module, setModule] = useState(MODOLE[0].key);
-  const { error, account } = useWeb3React();
+  const { error } = useWeb3React();
 
   const toggleErrorModal = useToggleErrorModal();
   const toggleConnectWalletModal = useToggleConnectWalletModal();
@@ -124,13 +124,10 @@ function HomePage() {
           <Route path="/" element={<Navigate replace to="/transfer" />} />
           <Route path="/transfer" element={<Transfer />}>
             <Route index element={<RegulatedTransfer />} />
-            <Route
-              path="/transfer/activities"
-              element={<Activities account={account} />}
-            />
+            <Route path="/transfer/activities" element={<Activities />} />
           </Route>
           <Route path="/zk" element={<Zk />} />
-          <Route path="/zkPASS" element={<Proof account={account} />} />
+          <Route path="/zkPASS" element={<Proof />} />
         </Routes>
       </div>
       <Connect />

@@ -2,30 +2,26 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2021-12-16 14:09:18
+ * @LastEditTime: 2021-12-22 16:46:55
  */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, ReactElement } from "react";
+import { useWeb3React } from "@web3-react/core";
 import dayjs from "dayjs";
 import Search from "../../components/Search";
 
 import { queryActivities } from "../../services/api";
-import { isAddress, shortenAddress } from "../../utils";
+import { shortenAddress } from "../../utils";
 
-import useSymbol from "../../hooks/useSymbol";
 import noExistImg from "../../images/icon_not_exist.png";
 
 import { timeFormat } from "../../constants";
 
 import "./index.scss";
 
-interface Props {
-  account: string;
-}
-
-export default function Activities({ account }: Props) {
+export default function Activities(): ReactElement {
   const [activities, setActivities] = useState([]);
 
-  // const symbol = useSymbol(token.tokenAddress);
+  const { account } = useWeb3React();
 
   useEffect(() => {
     queryActivities({ dataOwner: account }).then((res) => {
@@ -34,6 +30,7 @@ export default function Activities({ account }: Props) {
       }
     });
   }, [account]);
+
   return (
     <div>
       <Search />
