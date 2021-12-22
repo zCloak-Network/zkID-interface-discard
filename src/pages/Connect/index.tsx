@@ -2,9 +2,9 @@
  * @Description: submit modal
  * @Author: lixin
  * @Date: 2021-12-02 17:23:15
- * @LastEditTime: 2021-12-22 11:10:05
+ * @LastEditTime: 2021-12-22 14:52:12
  */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactElement } from "react";
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
 import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
 import { AbstractConnector } from "@web3-react/abstract-connector";
@@ -16,7 +16,6 @@ import {
 } from "../../state/application/hooks";
 import { ApplicationModal } from "../../state/application/reducer";
 import { SUPPORTED_WALLETS } from "../../constants/wallet";
-import closeImg from "../../images/close.png";
 
 import "./index.scss";
 
@@ -28,7 +27,7 @@ const WALLET_VIEWS = {
   LEGAL: "legal",
 };
 
-export default function Connect() {
+export default function Connect(): ReactElement {
   const { active, account, connector, activate, error } = useWeb3React();
   const [walletView, setWalletView] = useState(WALLET_VIEWS.ACCOUNT);
   const [pendingWallet, setPendingWallet] = useState<

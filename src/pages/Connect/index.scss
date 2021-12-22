@@ -1,31 +1,6 @@
 .walletModal {
   .ant-modal-content {
     width: 424px;
-    background: $white;
-    box-shadow: 0px 6px 58px rgba(121, 145, 173, 0.2);
-    border-radius: 24px;
-
-    .title {
-      font-size: 18px;
-      font-weight: 600;
-      color: #0a1629;
-      margin-top: 10px;
-      margin-bottom: 12 px;
-    }
-
-    .close-btn {
-      width: 44px;
-      height: 44px;
-      background: #f4f9fd;
-      border-radius: 14px;
-      display: inline-block;
-      margin-top: $margin-lg;
-      margin-left: -40px;
-      > img {
-        width: 24px;
-        height: 24px;
-      }
-    }
 
     .wallets {
       margin-top: $margin-lg;
@@ -35,14 +10,14 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        height: 48px;
+        height: $height-xl;
         .wallet-img {
           width: 32px;
           height: 30px;
         }
 
         .wallet-name {
-          font-size: 14px;
+          font-size: $font-size-base;
           color: #0a1629;
           display: inline-block;
           margin-left: $margin-md;

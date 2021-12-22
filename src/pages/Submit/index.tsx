@@ -2,11 +2,11 @@
  * @Description: submit modal
  * @Author: lixin
  * @Date: 2021-12-02 17:23:15
- * @LastEditTime: 2021-12-22 11:24:29
+ * @LastEditTime: 2021-12-22 14:46:46
  */
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, ReactElement } from "react";
 import { notification } from "antd";
-import { Modal } from "antd";
+import Modal from "../../components/Modal";
 import MyContext from "../../components/Context";
 import {
   useModalOpen,
@@ -18,7 +18,6 @@ import abi from "../../constants/contract/contractAbi/KiltProofs";
 import { shortenHash } from "../../utils";
 import { KiltProofsAdddress as contractAddress } from "../../constants/contract/address";
 
-import closeImg from "../../images/close.png";
 import iconCorrect from "../../images/icon_correct.png";
 
 import "./index.scss";
@@ -43,7 +42,7 @@ export default function Submit({
   proHash,
   proName,
   programDetail,
-}: Props) {
+}: Props): ReactElement {
   const { web3 } = useContext(MyContext) as contextProps;
   const [generationInfo, setGenerationInfo] = useState({
     proofCid: "",
@@ -115,19 +114,12 @@ export default function Submit({
 
   return (
     <Modal
-      footer={null}
+      title="Submit Your Proof"
       visible={submitProofModalOpen}
       onCancel={toggleSubmitProofModal}
-      destroyOnClose={true}
       wrapClassName="submitModal"
-      closeIcon={
-        <span className="close-btn">
-          <img src={closeImg} />
-        </span>
-      }
     >
       <div>
-        <div className="title">Submit Your Proof</div>
         <div>
           <div className="label">program name </div>
           <div className="value">
