@@ -2,9 +2,9 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-02 15:06:01
- * @LastEditTime: 2021-12-09 17:36:20
+ * @LastEditTime: 2021-12-22 16:37:30
  */
-import React from "react";
+import React, { ReactElement } from "react";
 
 import "./InputBalance.scss";
 
@@ -15,7 +15,11 @@ interface Props {
   handleChange: (e) => void;
 }
 
-export default function InputAddress({ value, label, handleChange }: Props) {
+export default function InputAddress({
+  value,
+  label,
+  handleChange,
+}: Props): ReactElement {
   const handleInputChange = (e) => {
     const { value } = e.target;
     const reg = /^-?\d*(\.\d*)?$/;

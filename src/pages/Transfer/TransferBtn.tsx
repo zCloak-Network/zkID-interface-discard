@@ -2,13 +2,18 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-10 13:51:08
- * @LastEditTime: 2021-12-22 13:53:17
+ * @LastEditTime: 2021-12-22 16:15:58
  */
-import React from "react";
+import React, { ReactElement } from "react";
 import { UnsupportedChainIdError } from "@web3-react/core";
 import classnames from "classnames";
 
-import { STATUSTRUE, STATUSFALSE, STATUSING } from "../../constants";
+import {
+  useToggleErrorModal,
+  useToggleConnectWalletModal,
+} from "../../state/application/hooks";
+
+import { STATUSFALSE, STATUSING } from "../../constants";
 interface Props {
   token: {
     tokenName: string;
@@ -20,7 +25,7 @@ interface Props {
   amount: string;
   receivierAddr: string;
   disabled: boolean;
-  error: any;
+  error: Error;
   onClick: () => void;
   handleApprove: () => void;
   handleSubmitProof: () => void;
@@ -38,18 +43,35 @@ export default function transferBtn({
   onClick,
   handleApprove,
   handleSubmitProof,
-}: Props): React.ReactElement {
+}: Props): ReactElement {
+  const toggleErrorModal = useToggleErrorModal();
+  const toggleConnectWalletModal = useToggleConnectWalletModal();
+
+  const handleOpenConnect = () => {
+    if (error) {
+      toggleErrorModal();
+    } else {
+      toggleConnectWalletModal();
+    }
+  };
+
   if (error) {
     return (
       <div className="btn">
-        {error instanceof UnsupportedChainIdError
-          ? "You are on the wrong network"
-          : "Error"}
+        {error instanceof UnsupportedChainIdError ? (
+          <span onClick={toggleErrorModal}>You are on the wrong network</span>
+        ) : (
+          "Error"
+        )}
       </div>
     );
   }
   if (!account) {
-    return <div className="btn">Connect wallet</div>;
+    return (
+      <div className="btn" onClick={handleOpenConnect}>
+        Connect wallet
+      </div>
+    );
   }
   if (account && approveStatus && ruleStatus === STATUSFALSE) {
     return (

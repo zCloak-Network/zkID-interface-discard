@@ -2,10 +2,10 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2021-12-22 11:25:11
+ * @LastEditTime: 2021-12-22 15:15:17
  */
 import React, { useState, useEffect, useMemo, useContext } from "react";
-import { notification } from "antd";
+import { message, notification } from "antd";
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
 import Submit from "../Submit";
 import InputAddress from "./InputAddress";
@@ -57,7 +57,6 @@ type contextProps = {
 
 export default function RegulatedTransfer() {
   const { error, account } = useWeb3React();
-  const [submitVisible, setSubmitVisible] = useState(false);
   const [amount, setAmount] = useState("0");
   const [allTokens, setAllTokens] = useState([]);
   // TODO 改成enum
@@ -89,6 +88,10 @@ export default function RegulatedTransfer() {
   const { web3 } = useContext(MyContext) as contextProps;
 
   const handleOpenToken = () => {
+    if (!account) {
+      message.info("Please connect your wallet first.");
+      return;
+    }
     if (error) {
       toggleErrorModal();
     } else {
