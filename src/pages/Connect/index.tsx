@@ -2,22 +2,23 @@
  * @Description: submit modal
  * @Author: lixin
  * @Date: 2021-12-02 17:23:15
- * @LastEditTime: 2021-12-20 14:48:33
+ * @LastEditTime: 2021-12-22 11:10:05
  */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
 import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
 import { AbstractConnector } from "@web3-react/abstract-connector";
-import { Modal } from "antd";
+import Modal from "../../components/Modal";
+import {
+  useModalOpen,
+  useToggleErrorModal,
+  useToggleConnectWalletModal,
+} from "../../state/application/hooks";
+import { ApplicationModal } from "../../state/application/reducer";
 import { SUPPORTED_WALLETS } from "../../constants/wallet";
 import closeImg from "../../images/close.png";
 
 import "./index.scss";
-
-interface Props {
-  visible: boolean;
-  handleCancel: () => void;
-}
 
 const WALLET_VIEWS = {
   OPTIONS: "options",
@@ -27,13 +28,17 @@ const WALLET_VIEWS = {
   LEGAL: "legal",
 };
 
-export default function Connect({ visible, handleCancel }: Props) {
+export default function Connect() {
   const { active, account, connector, activate, error } = useWeb3React();
   const [walletView, setWalletView] = useState(WALLET_VIEWS.ACCOUNT);
   const [pendingWallet, setPendingWallet] = useState<
     AbstractConnector | undefined
   >();
   const [pendingError, setPendingError] = useState<boolean>();
+
+  const connectWalletModalOpen = useModalOpen(ApplicationModal.CONNECT_WALLET);
+  const toggleConnectWalletModal = useToggleConnectWalletModal();
+  const toggleErrorModal = useToggleErrorModal();
 
   const tryActivation = async (connector: AbstractConnector | undefined) => {
     let name = "";
@@ -43,7 +48,7 @@ export default function Connect({ visible, handleCancel }: Props) {
       }
       return true;
     });
-    console.log(909090, connector, activate(connector, undefined, true));
+
     setPendingWallet(connector); // set wallet for pending view
     setWalletView(WALLET_VIEWS.PENDING);
 
@@ -66,40 +71,41 @@ export default function Connect({ visible, handleCancel }: Props) {
         });
   };
 
+  const handleSelect = (option) => {
+    option.connector === connector
+      ? setWalletView(WALLET_VIEWS.ACCOUNT)
+      : !option.href && tryActivation(option.connector);
+  };
+
+  useEffect(() => {
+    if (error) {
+      toggleErrorModal();
+    }
+  }, [error]);
+
   return (
     <Modal
-      footer={null}
-      visible={visible}
-      onCancel={handleCancel}
-      destroyOnClose={true}
+      title="Connect a wallet"
+      visible={connectWalletModalOpen}
+      onCancel={toggleConnectWalletModal}
       wrapClassName="walletModal"
-      closeIcon={
-        <span className="close-btn">
-          <img src={closeImg} />
-        </span>
-      }
     >
-      <div>
-        <div className="title">Connect a wallet</div>
-        <ul className="wallets">
-          {Object.keys(SUPPORTED_WALLETS).map((key) => {
-            const option = SUPPORTED_WALLETS[key];
-            return (
-              <li
-                key={key}
-                onClick={() => {
-                  option.connector === connector
-                    ? setWalletView(WALLET_VIEWS.ACCOUNT)
-                    : !option.href && tryActivation(option.connector);
-                }}
-              >
-                <img src={option.iconURL} className="wallet-img" />
-                <span className="wallet-name">{option.name}</span>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <ul className="wallets">
+        {Object.keys(SUPPORTED_WALLETS).map((key) => {
+          const option = SUPPORTED_WALLETS[key];
+          return (
+            <li
+              key={key}
+              onClick={() => {
+                handleSelect(option);
+              }}
+            >
+              <img src={option.iconURL} className="wallet-img" />
+              <span className="wallet-name">{option.name}</span>
+            </li>
+          );
+        })}
+      </ul>
     </Modal>
   );
 }

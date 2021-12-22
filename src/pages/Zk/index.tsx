@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2021-12-13 15:47:52
+ * @LastEditTime: 2021-12-22 11:26:09
  */
 import React, { useState, useEffect } from "react";
 
@@ -29,10 +29,6 @@ export default function Zk() {
       proHash: data.programHash,
       proName: data.programHashName,
     });
-  };
-
-  const handleCancel = () => {
-    setVisible(false);
   };
 
   useEffect(() => {
@@ -74,12 +70,10 @@ export default function Zk() {
         // TODO
         account=""
         programDetail=""
-        visible={visible}
         cTypeHash={info.cTypeHash}
         fieldName={info.fieldName}
         proHash={info.proHash}
         proName={info.proName}
-        handleCancel={handleCancel}
       />
     </div>
   );

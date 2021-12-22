@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-08-30 16:38:02
- * @LastEditTime: 2021-12-17 15:17:11
+ * @LastEditTime: 2021-12-22 10:28:26
  */
 import React, { useState, useEffect } from "react";
 import {
@@ -13,6 +13,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
+import ErrorModal from "../../components/ErrorModal";
 import Header from "../../components/Header";
 import Transfer from "../Transfer";
 import Proof from "../Proof";
@@ -20,6 +21,12 @@ import Zk from "../Zk";
 import Activities from "../Activities";
 import RegulatedTransfer from "../Transfer/RegulatedTransfer";
 import Connect from "../Connect";
+
+import {
+  useToggleErrorModal,
+  useToggleConnectWalletModal,
+} from "../../state/application/hooks";
+
 import logo from "../../images/logo.png";
 import transferImg from "../../images/transfer.png";
 import transferActiveImg from "../../images/transfer_active.png";
@@ -57,25 +64,27 @@ const MODOLE = [
 function HomePage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [visible, setVisible] = useState(false);
   const [module, setModule] = useState(MODOLE[0].key);
   const { error, account } = useWeb3React();
+
+  const toggleErrorModal = useToggleErrorModal();
+  const toggleConnectWalletModal = useToggleConnectWalletModal();
 
   const handleClick = (e) => {
     setModule(e.target?.dataset.id);
     navigate(e.target?.dataset.url);
   };
 
-  const handleOpenConnect = () => {
-    setVisible(true);
-  };
-
-  const handleCancel = () => {
-    setVisible(false);
-  };
-
   const handleGoHome = () => {
     navigate("/");
+  };
+
+  const handleOpenConnect = () => {
+    if (error) {
+      toggleErrorModal();
+    } else {
+      toggleConnectWalletModal();
+    }
   };
 
   useEffect(() => {
@@ -124,11 +133,8 @@ function HomePage() {
           <Route path="/zkPASS" element={<Proof account={account} />} />
         </Routes>
       </div>
-      <Connect
-        visible={visible}
-        handleCancel={handleCancel}
-        // handleConnect={handleConnect}
-      />
+      <Connect />
+      <ErrorModal />
     </div>
   );
 }

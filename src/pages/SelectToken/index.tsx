@@ -2,7 +2,7 @@
  * @Description: submit modal
  * @Author: lixin
  * @Date: 2021-12-02 17:23:15
- * @LastEditTime: 2021-12-21 19:24:19
+ * @LastEditTime: 2021-12-22 11:22:39
  */
 import React from "react";
 import {
@@ -16,16 +16,13 @@ import TokenItem from "./TokenItem";
 import "./index.scss";
 
 interface Props {
-  visible: boolean;
   // TODO
   allTokens: any;
-  handleCancel: () => void;
   handleSelectToken: (token) => void;
 }
 
 export default function Submit({ allTokens, handleSelectToken }: Props) {
   const toggleSelectTokenModal = useToggleSelectTokenModal();
-
   const selectTokenModalOpen = useModalOpen(ApplicationModal.SELECT_TOKEN);
 
   // useEffect(() => {

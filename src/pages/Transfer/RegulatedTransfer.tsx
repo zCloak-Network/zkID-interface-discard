@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2021-12-21 19:16:40
+ * @LastEditTime: 2021-12-22 11:25:11
  */
 import React, { useState, useEffect, useMemo, useContext } from "react";
 import { notification } from "antd";
@@ -16,7 +16,9 @@ import TokenItem from "../SelectToken/TokenItem";
 
 import {
   useModalOpen,
+  useToggleErrorModal,
   useToggleSelectTokenModal,
+  useToggleSubmitProofModal,
 } from "../../state/application/hooks";
 
 import useBalance from "../../hooks/useBalance";
@@ -39,8 +41,8 @@ import {
   queryQualification,
 } from "../../services/api";
 
-import { getStatus, shortenAddress } from "../../utils";
-import { STATUSTRUE, STATUSFALSE, STATUSING } from "../../constants";
+import { shortenAddress } from "../../utils";
+import { STATUSTRUE, STATUSFALSE } from "../../constants";
 
 import iconCorrect from "../../images/icon_correct.png";
 import arrowImg from "../../images/icon_arrow.png";
@@ -70,7 +72,6 @@ export default function RegulatedTransfer() {
       programFieldName: "",
     },
   });
-  const [visible, setVisible] = useState(false);
   const [token, setToken] = useState({
     tokenName: "",
     tokenAddress: "",
@@ -81,16 +82,18 @@ export default function RegulatedTransfer() {
   const symbol = useSymbol(token.tokenAddress);
   const decimals = useDecimals(token.tokenAddress);
 
+  const toggleErrorModal = useToggleErrorModal();
+  const toggleSubmitProofModal = useToggleSubmitProofModal();
   const toggleSelectTokenModal = useToggleSelectTokenModal();
 
   const { web3 } = useContext(MyContext) as contextProps;
 
   const handleOpenToken = () => {
-    toggleSelectTokenModal();
-  };
-
-  const handleCancel = () => {
-    setVisible(false);
+    if (error) {
+      toggleErrorModal();
+    } else {
+      toggleSelectTokenModal();
+    }
   };
 
   const handleSelectToken = (data) => {
@@ -113,7 +116,7 @@ export default function RegulatedTransfer() {
         });
       }
     });
-    handleCancel();
+    toggleSelectTokenModal();
   };
 
   const handleReceivierAddr = (e) => {
@@ -213,14 +216,6 @@ export default function RegulatedTransfer() {
     setAmount(value);
   };
 
-  const handleSubmit = () => {
-    setSubmitVisible(true);
-  };
-
-  const handleCancelSubmit = () => {
-    setSubmitVisible(false);
-  };
-
   const getApproveStatus = async () => {
     if (account) {
       const contract = new web3.eth.Contract(
@@ -307,23 +302,19 @@ export default function RegulatedTransfer() {
         disabled={isNotTrue}
         onClick={handleTransfer}
         handleApprove={handleApprove}
-        handleSubmitProof={handleSubmit}
+        handleSubmitProof={toggleSubmitProofModal}
       />
       <SelectToken
         allTokens={allTokens}
-        visible={visible}
-        handleCancel={handleCancel}
         handleSelectToken={handleSelectToken}
       />
       <Submit
         account={account}
-        visible={submitVisible}
         cTypeHash={currRule.cTypeHash}
         fieldName={currRule.programDetails.programFieldName}
         proHash={currRule.programHash}
         programDetail={currRule.programDetails.programDetail}
         proName={currRule.programDetails.programHashName}
-        handleCancel={handleCancelSubmit}
       />
     </div>
   );

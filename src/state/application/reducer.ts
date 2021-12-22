@@ -2,12 +2,13 @@
  * @Description: 
  * @Author: lixin
  * @Date: 2021-12-21 17:09:59
- * @LastEditTime: 2021-12-21 18:28:42
+ * @LastEditTime: 2021-12-21 19:52:20
  */
 import { createSlice } from '@reduxjs/toolkit'
 
 export enum ApplicationModal {
     WALLET,
+    CONNECT_WALLET,
     SELECT_TOKEN,
     ERROR,
     SUBMIT_PROOF

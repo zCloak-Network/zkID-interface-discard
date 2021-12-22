@@ -2,12 +2,18 @@
  * @Description: submit modal
  * @Author: lixin
  * @Date: 2021-12-02 17:23:15
- * @LastEditTime: 2021-12-20 14:15:34
+ * @LastEditTime: 2021-12-22 11:24:29
  */
 import React, { useContext, useState } from "react";
 import { notification } from "antd";
 import { Modal } from "antd";
 import MyContext from "../../components/Context";
+import {
+  useModalOpen,
+  useToggleSubmitProofModal,
+} from "../../state/application/hooks";
+import { ApplicationModal } from "../../state/application/reducer";
+
 import abi from "../../constants/contract/contractAbi/KiltProofs";
 import { shortenHash } from "../../utils";
 import { KiltProofsAdddress as contractAddress } from "../../constants/contract/address";
@@ -21,11 +27,9 @@ interface Props {
   account: string;
   proName: string;
   cTypeHash: string;
-  visible: boolean;
   proHash: string;
   fieldName: string;
   programDetail: string;
-  handleCancel: () => void;
 }
 
 type contextProps = {
@@ -38,9 +42,7 @@ export default function Submit({
   fieldName,
   proHash,
   proName,
-  visible,
   programDetail,
-  handleCancel,
 }: Props) {
   const { web3 } = useContext(MyContext) as contextProps;
   const [generationInfo, setGenerationInfo] = useState({
@@ -48,6 +50,8 @@ export default function Submit({
     rootHash: "",
     expectResult: "",
   });
+  const toggleSubmitProofModal = useToggleSubmitProofModal();
+  const submitProofModalOpen = useModalOpen(ApplicationModal.SUBMIT_PROOF);
 
   const handleData = (event) => {
     if (event.data.type === "PROOF_DETAILS") {
@@ -98,7 +102,7 @@ export default function Submit({
       })
       .then(function (receipt) {
         console.log(444444666, receipt);
-        handleCancel();
+        toggleSubmitProofModal();
         openNotification(
           <span>
             <img src={iconCorrect} className="status-img" />
@@ -112,8 +116,8 @@ export default function Submit({
   return (
     <Modal
       footer={null}
-      visible={visible}
-      onCancel={handleCancel}
+      visible={submitProofModalOpen}
+      onCancel={toggleSubmitProofModal}
       destroyOnClose={true}
       wrapClassName="submitModal"
       closeIcon={
