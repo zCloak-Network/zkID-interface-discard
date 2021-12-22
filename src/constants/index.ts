@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: lixin
  * @Date: 2021-08-27 11:52:05
- * @LastEditTime: 2021-12-16 19:22:16
+ * @LastEditTime: 2021-12-22 17:52:02
  * 
  */
 import iconCorrect from '../images/icon_correct.png'
@@ -50,6 +50,5 @@ export const STATUS = [
     }
 
 ]
-export const IS_IN_IFRAME = window.parent !== window
 
 export const NetworkContextName = 'NETWORK'

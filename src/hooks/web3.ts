@@ -2,13 +2,13 @@
  * @Description: 
  * @Author: lixin
  * @Date: 2021-12-14 13:35:16
- * @LastEditTime: 2021-12-20 11:16:08
+ * @LastEditTime: 2021-12-22 17:53:15
  */
 import { useEffect, useState } from 'react'
 import { Web3Provider } from '@ethersproject/providers'
 import { useWeb3React } from '@web3-react/core'
-import { gnosisSafe, injected } from '../connectors'
-import { IS_IN_IFRAME, NetworkContextName } from '../constants'
+import {  injected } from '../connectors'
+import {  NetworkContextName } from '../constants'
 import { isMobile } from '../utils/userAgent'
 
 export function useActiveWeb3React() {
@@ -22,35 +22,13 @@ export function useActiveWeb3React() {
     const { activate, active } = useWeb3React()
     const [tried, setTried] = useState(false)
   
-    // gnosisSafe.isSafeApp() races a timeout against postMessage, so it delays pageload if we are not in a safe app;
-    // if we are not embedded in an iframe, it is not worth checking
-    const [triedSafe, setTriedSafe] = useState(!IS_IN_IFRAME)
-  
-    // first, try connecting to a gnosis safe
-    useEffect(() => {
-      if (!triedSafe) {
-        gnosisSafe.isSafeApp().then((loadedInSafe) => {
-          if (loadedInSafe) {
-            activate(gnosisSafe, undefined, true).catch(() => {
-              setTriedSafe(true)
-            })
-          } else {
-            setTriedSafe(true)
-          }
-        })
-      }
-    }, [activate, setTriedSafe, triedSafe])
-  
-    // then, if that fails, try connecting to an injected connector
     useEffect(() => {
 
-      if (!active && triedSafe) {
-        console.log(13333, injected, injected.isAuthorized() )
+      if (!active) {
         injected.isAuthorized().then((isAuthorized) => {
            
           if (isAuthorized) {
             activate(injected, undefined, true).catch(() => {
-            console.log(13333000,isAuthorized, activate, injected)
               setTried(true)
             })
 
@@ -65,7 +43,7 @@ export function useActiveWeb3React() {
           }
         })
       }
-    }, [activate, active, triedSafe])
+    }, [activate, active])
   
     // wait until we get confirmation of a connection to flip the flag
     useEffect(() => {
@@ -89,7 +67,6 @@ export function useInactiveListener(suppress = false) {
     const { ethereum } = window
 
     if (ethereum && ethereum.on && !active && !error && !suppress) {
-        console.log(13332222, error )
       const handleChainChanged = () => {
         // eat errors
         activate(injected, undefined, true).catch((error) => {
