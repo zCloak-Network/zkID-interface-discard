@@ -2,7 +2,7 @@
  * @Description: submit modal
  * @Author: lixin
  * @Date: 2021-12-02 17:23:15
- * @LastEditTime: 2021-12-22 14:46:46
+ * @LastEditTime: 2021-12-22 16:24:37
  */
 import React, { useContext, useState, ReactElement } from "react";
 import { notification } from "antd";
@@ -107,7 +107,7 @@ export default function Submit({
             <img src={iconCorrect} className="status-img" />
             Submit Success
           </span>,
-          "You have submited successfully."
+          "You have submitted successfully."
         );
       });
   };
