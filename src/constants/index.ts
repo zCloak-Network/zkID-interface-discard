@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: lixin
  * @Date: 2021-08-27 11:52:05
- * @LastEditTime: 2021-12-22 17:52:02
+ * @LastEditTime: 2021-12-23 17:39:56
  * 
  */
 import iconCorrect from '../images/icon_correct.png'
@@ -52,3 +52,5 @@ export const STATUS = [
 ]
 
 export const NetworkContextName = 'NETWORK'
+
+export const DEFAULT_TXN_DISMISS_MS = 25000

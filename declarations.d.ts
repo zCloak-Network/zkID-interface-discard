@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: lixin
  * @Date: 2021-08-16 19:01:12
- * @LastEditTime: 2021-12-06 15:38:34
+ * @LastEditTime: 2021-12-27 22:41:09
  */
 declare module "*.jpg";
 declare module "*.png";
@@ -13,6 +13,7 @@ declare module "*.svg";
 declare interface Window {
     ethereum: {
         on: (a: string, b:(accounts: any) => void) => void,
-        request: ( {method: string} )=> any
+        isMetaMask: boolean,
+        request: (request: { method: string, params?: Array<any> }) => Promise<any>
     }
 }

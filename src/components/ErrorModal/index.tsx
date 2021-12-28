@@ -2,11 +2,12 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-20 14:49:32
- * @LastEditTime: 2021-12-21 19:39:01
+ * @LastEditTime: 2021-12-27 23:27:42
  */
 import React from "react";
 import Modal from "../Modal";
 
+import { SupportedChainId, CHAIN_INFO } from "../../constants/chains";
 import {
   useModalOpen,
   useToggleErrorModal,
@@ -17,6 +18,38 @@ export default function ErrorModal() {
   const toggleErrorModal = useToggleErrorModal();
   const errorModalOpen = useModalOpen(ApplicationModal.ERROR);
 
+  const handleSwitch = async () => {
+    const { ethereum } = window;
+    if (ethereum && ethereum.isMetaMask) {
+      try {
+        await ethereum.request({
+          method: "wallet_switchEthereumChain",
+          params: [
+            { chainId: CHAIN_INFO[SupportedChainId.MOONBASEALPHA].chainId },
+          ],
+        });
+      } catch (switchError) {
+        // This error code indicates that the chain has not been added to MetaMask.
+        if (switchError.code === 4902) {
+          try {
+            await ethereum.request({
+              method: "wallet_addEthereumChain",
+              params: [
+                {
+                  ...CHAIN_INFO[SupportedChainId.MOONBASEALPHA],
+                },
+              ],
+            });
+          } catch (addError) {
+            // handle "add" error
+          }
+        }
+      }
+
+      await toggleErrorModal();
+    }
+  };
+
   return (
     <Modal
       visible={errorModalOpen}
@@ -25,7 +58,7 @@ export default function ErrorModal() {
       wrapClassName="error-modal"
     >
       Please connect to Mooriver Network.
-      <div>Switch to Moonriver Network</div>
+      <div onClick={handleSwitch}>Switch to Moonriver Network</div>
     </Modal>
   );
 }

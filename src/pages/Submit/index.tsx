@@ -2,10 +2,9 @@
  * @Description: submit modal
  * @Author: lixin
  * @Date: 2021-12-02 17:23:15
- * @LastEditTime: 2021-12-22 16:24:37
+ * @LastEditTime: 2021-12-28 13:28:18
  */
 import React, { useContext, useState, ReactElement } from "react";
-import { notification } from "antd";
 import Modal from "../../components/Modal";
 import MyContext from "../../components/Context";
 import {
@@ -13,12 +12,11 @@ import {
   useToggleSubmitProofModal,
 } from "../../state/application/hooks";
 import { ApplicationModal } from "../../state/application/reducer";
+import { useAddPopup } from "../../state/application/hooks";
 
 import abi from "../../constants/contract/contractAbi/KiltProofs";
 import { shortenHash } from "../../utils";
 import { KiltProofsAdddress as contractAddress } from "../../constants/contract/address";
-
-import iconCorrect from "../../images/icon_correct.png";
 
 import "./index.scss";
 
@@ -49,6 +47,7 @@ export default function Submit({
     rootHash: "",
     expectResult: "",
   });
+  const addPopup = useAddPopup();
   const toggleSubmitProofModal = useToggleSubmitProofModal();
   const submitProofModalOpen = useModalOpen(ApplicationModal.SUBMIT_PROOF);
 
@@ -77,13 +76,6 @@ export default function Submit({
       "*"
     );
   };
-  const openNotification = (title, description) => {
-    notification.open({
-      message: title,
-      description: description,
-    });
-  };
-
   const handleSumbit = () => {
     const contract = new web3.eth.Contract(abi, contractAddress);
     contract.methods
@@ -100,15 +92,22 @@ export default function Submit({
         from: account,
       })
       .then(function (receipt) {
-        console.log(444444666, receipt);
-        toggleSubmitProofModal();
-        openNotification(
-          <span>
-            <img src={iconCorrect} className="status-img" />
-            Submit Success
-          </span>,
-          "You have submitted successfully."
-        );
+        if (receipt) {
+          console.log(444444666, receipt);
+          toggleSubmitProofModal();
+
+          addPopup(
+            {
+              txn: {
+                hash: receipt.transactionHash,
+                success: true,
+                title: "Submit Success",
+                summary: "You have submitted successfully.",
+              },
+            },
+            receipt.transactionHash
+          );
+        }
       });
   };
 

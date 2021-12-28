@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-08-30 16:38:02
- * @LastEditTime: 2021-12-22 16:49:20
+ * @LastEditTime: 2021-12-24 18:01:15
  */
 import React, { useState, useEffect } from "react";
 import {
@@ -13,6 +13,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
+import Popups from "../../components/Popups";
 import ErrorModal from "../../components/ErrorModal";
 import Header from "../../components/Header";
 import Transfer from "../Transfer";
@@ -119,6 +120,7 @@ function HomePage() {
         </ul>
       </div>
       <div className="main">
+        <Popups />
         <Header handleOpenConnect={handleOpenConnect} />
         <Routes>
           <Route path="/" element={<Navigate replace to="/transfer" />} />

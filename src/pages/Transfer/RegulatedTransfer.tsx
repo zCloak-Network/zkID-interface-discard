@@ -2,11 +2,11 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2021-12-22 15:15:17
+ * @LastEditTime: 2021-12-28 13:30:30
  */
 import React, { useState, useEffect, useMemo, useContext } from "react";
-import { message, notification } from "antd";
-import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
+import { message } from "antd";
+import { useWeb3React } from "@web3-react/core";
 import Submit from "../Submit";
 import InputAddress from "./InputAddress";
 import InputBalance from "./InputBalance";
@@ -15,11 +15,11 @@ import TransferBtn from "./transferBtn";
 import TokenItem from "../SelectToken/TokenItem";
 
 import {
-  useModalOpen,
   useToggleErrorModal,
   useToggleSelectTokenModal,
   useToggleSubmitProofModal,
 } from "../../state/application/hooks";
+import { useAddPopup } from "../../state/application/hooks";
 
 import useBalance from "../../hooks/useBalance";
 // import useApprove from "../../hooks/useApprove";
@@ -44,7 +44,6 @@ import {
 import { shortenAddress } from "../../utils";
 import { STATUSTRUE, STATUSFALSE } from "../../constants";
 
-import iconCorrect from "../../images/icon_correct.png";
 import arrowImg from "../../images/icon_arrow.png";
 import arrowDownImg from "../../images/icon_arrow_down.png";
 import arrowDownInactiveImg from "../../images/icon_arrow_inactive.png";
@@ -81,6 +80,7 @@ export default function RegulatedTransfer() {
   const symbol = useSymbol(token.tokenAddress);
   const decimals = useDecimals(token.tokenAddress);
 
+  const addPopup = useAddPopup();
   const toggleErrorModal = useToggleErrorModal();
   const toggleSubmitProofModal = useToggleSubmitProofModal();
   const toggleSelectTokenModal = useToggleSelectTokenModal();
@@ -131,43 +131,13 @@ export default function RegulatedTransfer() {
     [ruleStatus]
   );
 
-  const openNotification = (title, description) => {
-    notification.open({
-      message: title,
-      description: description,
-    });
-  };
-
   const handleTransfer = () => {
     if (isNotTrue) return;
-
-    console.log(
-      11222223344,
-      account,
-      KiltProofsAdddress,
-      token.tokenAddress,
-      receivierAddr,
-      amount,
-      decimals,
-      String(Number(amount) * Math.pow(10, decimals)),
-      currRule.cTypeHash,
-      currRule.programHash
-      // String(Number(amount) * Math.pow(10, decimals))
-    );
 
     const myContract = new web3.eth.Contract(abi, RegulatedTransferAdddress, {
       from: account,
     });
 
-    // const myContract = new web3.eth.Contract(
-    //   sampleTokenAbi,
-    //   SampleTokenAdddress,
-    //   {
-    //     from: "0x6f56C250992655f9ca83E3246dcBDC9555A6771F",
-    //   }
-    // );
-
-    // console.log(111, myContract.methods);
     myContract.methods
       .rTransfer(
         KiltProofsAdddress,
@@ -181,20 +151,26 @@ export default function RegulatedTransfer() {
         from: account,
       })
       .then(function (receipt) {
-        console.log("444444666Approve", receipt);
-        openNotification(
-          <span>
-            <img src={iconCorrect} className="status-img" />
-            Transfer Success
-          </span>,
-          `You have transferred ${Number(amount)} ${symbol} to ${shortenAddress(
-            receivierAddr
-          )} successfully.`
+        console.log("444444666Transfer", receipt);
+
+        addPopup(
+          {
+            txn: {
+              hash: receipt.transactionHash,
+              success: true,
+              title: "Transfer Success",
+              summary: `You have transferred ${Number(
+                amount
+              )} ${symbol} to ${shortenAddress(receivierAddr)} successfully.`,
+            },
+          },
+          receipt.transactionHash
         );
       });
   };
 
   const handleApprove = () => {
+    console.log(9988877666);
     const contract = new web3.eth.Contract(sampleTokenAbi, token.tokenAddress, {
       from: account,
     });
@@ -204,12 +180,16 @@ export default function RegulatedTransfer() {
         from: account,
       })
       .then(function (receipt) {
-        openNotification(
-          <span>
-            <img src={iconCorrect} className="status-img" />
-            Approve Success
-          </span>,
-          `Approve zkPass to use your ${token.tokenName} successfully.`
+        addPopup(
+          {
+            txn: {
+              hash: receipt.transactionHash,
+              success: true,
+              title: "Approve Success",
+              summary: `Approve zkPass to use your ${token.tokenName} successfully.`,
+            },
+          },
+          receipt.transactionHash
         );
         getApproveStatus();
       });

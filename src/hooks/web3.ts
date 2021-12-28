@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: lixin
  * @Date: 2021-12-14 13:35:16
- * @LastEditTime: 2021-12-22 17:53:15
+ * @LastEditTime: 2021-12-28 13:28:59
  */
 import { useEffect, useState } from 'react'
 import { Web3Provider } from '@ethersproject/providers'
@@ -14,7 +14,6 @@ import { isMobile } from '../utils/userAgent'
 export function useActiveWeb3React() {
     const context = useWeb3React<Web3Provider>()
     const contextNetwork = useWeb3React<Web3Provider>(NetworkContextName)
-
     return context.active ? context : contextNetwork
   }
   

@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: lixin
  * @Date: 2021-12-16 14:08:05
- * @LastEditTime: 2021-12-22 17:52:17
+ * @LastEditTime: 2021-12-27 18:18:51
  */
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { SupportedChainId, ALL_SUPPORTED_CHAIN_IDS } from '../constants/chains'
