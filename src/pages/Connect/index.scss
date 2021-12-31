@@ -23,6 +23,11 @@
           margin-left: $margin-md;
         }
       }
+
+      > li:hover {
+        border-radius: 10px;
+        background: $item-hover-bg;
+      }
     }
   }
 }

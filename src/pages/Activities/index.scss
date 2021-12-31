@@ -2,49 +2,64 @@
   > li {
     display: flex;
     align-items: center;
-    width: 1134px;
-    height: 88px;
+    width: 640px;
+    height: 60px;
     background: $white;
-    box-shadow: 0px 6px 58px rgba(196, 203, 214, 0.1);
-    border-radius: 14px;
+    border-radius: 10px;
     margin-top: $margin-lg;
     font-size: 16px;
     color: #0a1629;
-    padding-left: 30px;
-    padding-right: 50px;
-    justify-content: space-between;
+    padding-left: 46px;
+    padding-right: 44px;
     line-height: 1.5;
     cursor: pointer;
+
+    .from {
+      color: #535353;
+    }
+
+    .arrow-icon {
+      transform: rotate(-90deg);
+      width: 20px;
+      height: 20px;
+      background: #f7f8fa;
+      opacity: 1;
+      border-radius: 5px;
+      margin-left: 24px;
+      margin-right: 24px;
+    }
+
+    .to {
+      color: #0a1629;
+    }
 
     .program {
       max-width: 250px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-    }
-
-    .label {
-      font-size: 14px;
-      color: #91929e;
-    }
-
-    .token {
-      display: flex;
-      align-items: center;
-      font-size: 16px;
-      font-weight: 500;
       color: #0a1629;
-      width: 288px;
+      margin-left: auto;
+      margin-right: 24px;
+    }
 
-      > img {
-        width: 40px;
-        height: 40px;
-        margin-right: $margin-lg;
-      }
+    .amount {
+      font-size: 16px;
+      line-height: 24px;
+      color: #76af92;
+      float: right;
+    }
+
+    .time {
+      font-size: 12px;
+      font-family: Kanit;
+      font-weight: 300;
+      line-height: 24px;
+      color: #7c7c7c;
     }
   }
 
   > li:hover {
-    background: $item-hover-bg;
+    background: #eaecf2;
   }
 }

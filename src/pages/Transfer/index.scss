@@ -13,8 +13,8 @@
     margin-top: 56px;
     margin-bottom: 36px;
     border-radius: 20px;
-    color: #0a1629;
-    background: #e6edf5;
+    color: #505050;
+    background: $white;
     display: flex;
     height: 48px;
     line-height: 48px;
@@ -38,13 +38,9 @@
     }
 
     > li.active {
-      font-weight: bold;
-      color: $white;
+      color: #000000;
       border-radius: 20px;
-      background: $primary-color;
+      background: #edeef2;
     }
-  }
-
-  .tx-main {
   }
 }

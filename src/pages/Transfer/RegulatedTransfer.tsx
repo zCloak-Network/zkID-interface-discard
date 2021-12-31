@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2021-12-28 13:30:30
+ * @LastEditTime: 2021-12-29 19:08:09
  */
 import React, { useState, useEffect, useMemo, useContext } from "react";
 import { message } from "antd";
@@ -12,7 +12,6 @@ import InputAddress from "./InputAddress";
 import InputBalance from "./InputBalance";
 import SelectToken from "../SelectToken";
 import TransferBtn from "./transferBtn";
-import TokenItem from "../SelectToken/TokenItem";
 
 import {
   useToggleErrorModal,
@@ -27,6 +26,7 @@ import useSymbol from "../../hooks/useSymbol";
 import useDecimals from "../../hooks/useDecimals";
 
 import MyContext from "../../components/Context";
+
 import abi from "../../constants/contract/contractAbi/RegulatedTransfer";
 import sampleTokenAbi from "../../constants/contract/contractAbi/SampleToken";
 import {
@@ -44,9 +44,7 @@ import {
 import { shortenAddress } from "../../utils";
 import { STATUSTRUE, STATUSFALSE } from "../../constants";
 
-import arrowImg from "../../images/icon_arrow.png";
-import arrowDownImg from "../../images/icon_arrow_down.png";
-import arrowDownInactiveImg from "../../images/icon_arrow_inactive.png";
+import arrowDownImg from "../../images/icon_arrow_down.svg";
 
 import "./RegulatedTransfer.scss";
 
@@ -56,7 +54,7 @@ type contextProps = {
 
 export default function RegulatedTransfer() {
   const { error, account } = useWeb3React();
-  const [amount, setAmount] = useState("0");
+  const [amount, setAmount] = useState(undefined);
   const [allTokens, setAllTokens] = useState([]);
   // TODO 改成enum
   const [ruleStatus, setRuleStatus] = useState("");
@@ -75,6 +73,7 @@ export default function RegulatedTransfer() {
     tokenAddress: "",
   });
   const [approveStatus, setApproveStatus] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   // const approveStatus = useApprove(account);
   const balance = useBalance(account, token.tokenAddress);
   const symbol = useSymbol(token.tokenAddress);
@@ -101,6 +100,7 @@ export default function RegulatedTransfer() {
 
   const handleSelectToken = (data) => {
     setToken(data);
+    setIsLoading(true);
     queryDetailByToken({ tokenAddress: data.tokenAddress }).then((res) => {
       if (res.data.code === 200 && res.data.data.programHash) {
         setCurrtRule(res.data.data);
@@ -129,6 +129,11 @@ export default function RegulatedTransfer() {
   const isNotTrue = useMemo(
     () => ruleStatus && ruleStatus !== STATUSTRUE,
     [ruleStatus]
+  );
+
+  const isInsufficient = useMemo(
+    () => balance && amount && balance < Number(amount),
+    [balance, amount]
   );
 
   const handleTransfer = () => {
@@ -170,7 +175,6 @@ export default function RegulatedTransfer() {
   };
 
   const handleApprove = () => {
-    console.log(9988877666);
     const contract = new web3.eth.Contract(sampleTokenAbi, token.tokenAddress, {
       from: account,
     });
@@ -196,6 +200,7 @@ export default function RegulatedTransfer() {
   };
 
   const handleAmountChange = (value) => {
+    console.log(909090, value);
     setAmount(value);
   };
 
@@ -209,7 +214,8 @@ export default function RegulatedTransfer() {
         .allowance(account, RegulatedTransferAdddress)
         .call();
 
-      setApproveStatus(Boolean(Number(statusData)));
+      await setApproveStatus(Boolean(Number(statusData)));
+      await setIsLoading(false);
     }
   };
 
@@ -228,29 +234,10 @@ export default function RegulatedTransfer() {
 
   return (
     <div className="regulatedTransfer">
-      <div
-        className={`select-btn ${token.tokenAddress ? "selected" : ""}`}
-        onClick={handleOpenToken}
-      >
-        {token.tokenAddress ? (
-          <>
-            <TokenItem data={token} classNames="token-item" />
-            <img src={arrowDownInactiveImg} />
-          </>
-        ) : (
-          <>
-            Select a token
-            <img src={arrowImg} />
-          </>
-        )}
-      </div>
       <div className="sender-input">
         <InputAddress
           showRule
           ellipsis
-          symbol={symbol}
-          balance={balance}
-          showBalance={!!token.tokenAddress}
           showError={isNotTrue}
           value={account}
           label="From"
@@ -269,24 +256,31 @@ export default function RegulatedTransfer() {
       </div>
       <div className="amount-input">
         <InputBalance
-          label="Amount"
           value={amount}
+          token={token}
+          symbol={symbol}
+          balance={balance}
+          error={isInsufficient}
+          handleOpenToken={handleOpenToken}
           handleChange={handleAmountChange}
         />
       </div>
       <TransferBtn
+        loading={isLoading}
         ruleStatus={ruleStatus}
         approveStatus={approveStatus}
         error={error}
         account={account}
         token={token}
         amount={amount}
+        symbol={symbol}
+        isInsufficient={isInsufficient}
         receivierAddr={receivierAddr}
-        disabled={isNotTrue}
         onClick={handleTransfer}
         handleApprove={handleApprove}
         handleSubmitProof={toggleSubmitProofModal}
       />
+
       <SelectToken
         allTokens={allTokens}
         handleSelectToken={handleSelectToken}

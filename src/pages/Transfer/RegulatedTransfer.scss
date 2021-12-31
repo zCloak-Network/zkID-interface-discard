@@ -1,91 +1,56 @@
 .regulatedTransfer {
-  width: 552px;
+  width: 518px;
   background: $white;
   box-shadow: 0px 6px 58px rgba(121, 145, 173, 0.2);
-  border-radius: 24px;
-  padding: $padding-lg;
+  border-radius: 20px;
+  padding: 12px;
   position: relative;
 
-  .select-btn {
-    width: 176px;
-    height: 48px;
-    background: $primary-color;
-    box-shadow: 0px 3px 6px rgba(196, 203, 214, 0.1);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 16px;
-    font-weight: 500;
-    color: $white;
-    cursor: pointer;
-    padding-left: $padding-lg;
-    padding-right: $padding-xs;
-
-    > img {
-      width: 24px;
-      height: 24px;
-    }
-  }
-
-  .select-btn.selected {
-    background: #dfe1e5;
-    font-size: 16px;
-    font-weight: 500;
-    color: #0a1629;
-
-    .token-item {
-      > img {
-        margin-right: 20px;
-      }
-    }
-  }
-
   .exchange-icon {
-    width: 56px;
-    height: 56px;
-    background: #f4f9fd;
+    width: 30px;
+    height: 30px;
+    background: #f7f8fa;
     border: 3px solid #ffffff;
-    opacity: 1;
-    border-radius: 14px;
+    border-radius: 9px;
     position: absolute;
     left: calc(50% - 28px);
-    top: 158px;
+    top: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
 
     > img {
-      width: 24px;
-      height: 24px;
+      width: 18px;
+      height: 18px;
     }
   }
 
   .sender-input,
   .receivier-input,
   .amount-input {
-    margin-top: $margin-lg;
+    margin-top: $margin-xs;
   }
 
   .btn {
-    width: 504px;
-    height: 72px;
-    background: rgba(63, 140, 255, 0.3);
-    border-radius: 14px;
+    width: 494px;
+    height: 60px;
+    border-radius: 20px;
+    background: $primary-color;
     font-size: 20px;
     font-weight: bold;
-    color: $primary-color;
+    color: $white;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: $margin-lg;
+    margin-top: $margin-xs;
     cursor: pointer;
   }
   .btn.disabled {
     cursor: not-allowed;
-    color: #7c7c7c;
-    background: rgba(187, 196, 211, 0.3);
+    color: #909090;
+    background: #eaecf2;
   }
+
   .btn-transfer {
     background: $primary-color;
     color: $white;

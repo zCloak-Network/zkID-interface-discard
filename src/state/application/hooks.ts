@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: lixin
  * @Date: 2021-12-21 17:03:58
- * @LastEditTime: 2021-12-24 18:41:14
+ * @LastEditTime: 2021-12-28 18:00:35
  */
 import { useMemo, useCallback } from 'react'
 import { AppState } from '../index'
@@ -38,6 +38,10 @@ export function useToggleConnectWalletModal(): () => void {
   
 export function useToggleSubmitProofModal(): () => void {
     return useToggleModal(ApplicationModal.SUBMIT_PROOF)
+}
+
+export function useToggleAccountDetailsModal(): () => void {
+    return useToggleModal(ApplicationModal.ACCOUNT_DETAILS)
 }
 
 // returns a function that allows adding a popup

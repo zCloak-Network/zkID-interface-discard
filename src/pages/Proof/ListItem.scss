@@ -1,0 +1,128 @@
+.proof-list-item {
+  width: 966px;
+  background: $white;
+  border-radius: 10px;
+  padding: 18px 20px;
+
+  &.open {
+    .proof-list-detail {
+      display: grid;
+    }
+
+    .btn {
+      transform: rotate(-180deg);
+    }
+  }
+
+  .proof-list-main {
+    display: grid;
+    gap: 1em;
+    -webkit-box-align: center;
+    align-items: center;
+    grid-template-columns: 20px 2fr 2fr 1fr repeat(3, 2fr) 20px;
+    cursor: pointer;
+
+    > div {
+      display: flex;
+      font-size: 14px;
+      font-weight: 400;
+      color: #000000;
+      //   -webkit-box-pack: start;
+      justify-content: flex-start;
+      //   -webkit-box-align: center;
+      align-items: center;
+      // font-variant-numeric: tabular-nums;
+    }
+  }
+
+  .proof-list-detail {
+    display: none;
+    gap: 1em;
+    -webkit-box-align: center;
+    align-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    font-size: 12px;
+    font-weight: 300;
+    color: #000000;
+    margin-top: 24px;
+
+    .label {
+      color: #7c7c7c;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .output {
+      padding-left: 40px;
+    }
+  }
+
+  .progress-outer {
+    width: 90px;
+
+    font-size: 13px;
+    border-radius: 4px;
+
+    .progress-inner {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      height: 25px;
+
+      > span::after {
+        display: inline-block;
+        animation: ellipsis 1.25s infinite;
+        content: ".";
+        width: 1em;
+        text-align: left;
+      }
+      @keyframes ellipsis {
+        0% {
+          content: ".";
+        }
+        33% {
+          content: "..";
+        }
+        66% {
+          content: "...";
+        }
+      }
+    }
+
+    .progress-bg {
+      position: absolute;
+      left: 0;
+      z-index: -1;
+    }
+
+    &.progress-success {
+      color: #76af92;
+
+      .progress-bg {
+        background: #eff6f3;
+        border: 1px solid #eff6f3;
+      }
+    }
+
+    &.progress-fail {
+      color: #d56386;
+
+      .progress-bg {
+        background: #faedf1;
+        border: 1px solid #faedf1;
+      }
+    }
+
+    &.progress-ing {
+      border: 1px solid #fdf1e5;
+      color: #ecae71;
+
+      .progress-bg {
+        height: 100%;
+        background: #fdf1e5;
+      }
+    }
+  }
+}

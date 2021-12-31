@@ -2,64 +2,9 @@
   display: flex;
   height: 100%;
   width: 100%;
-  background: #f4f9fd;
-
-  .sider {
-    width: 200px;
-    margin: $padding-lg;
-    background: $white;
-    border-radius: 20px;
-    text-align: center;
-    padding: 0 $padding-sm;
-    box-shadow: 0px 6px 58px rgba(196, 203, 214, 0.1);
-
-    .logo {
-      height: 48px;
-      margin: 42px 0;
-      display: inline-block;
-      cursor: pointer;
-    }
-
-    .menu {
-      color: $primary-color;
-      > li {
-        height: 44px;
-        line-height: 44px;
-        font-size: 16px;
-        color: #7d8592;
-        position: relative;
-        cursor: pointer;
-        display: flex;
-        padding-left: 14px;
-        align-items: center;
-
-        .menu-icon {
-          width: 20px;
-          height: 20px;
-          margin-right: $margin-md;
-        }
-      }
-
-      li.active {
-        background: $main-color-active-bg;
-        border-radius: 10px;
-        color: $primary-color;
-      }
-
-      li.active::after {
-        content: "";
-        position: absolute;
-        height: 44px;
-        width: 4px;
-        background: $primary-color;
-        right: -$padding-sm;
-        border-radius: 2px;
-      }
-    }
-  }
+  background: linear-gradient(180deg, #f4f5fc 0%, #fbfcfd 76%, #ffffff 100%);
 
   .main {
-    margin-top: $padding-lg;
     flex: 1;
     display: flex;
     flex-direction: column;

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2021-12-22 16:46:55
+ * @LastEditTime: 2021-12-28 17:21:35
  */
 import React, { useEffect, useState, ReactElement } from "react";
 import { useWeb3React } from "@web3-react/core";
@@ -12,7 +12,7 @@ import Search from "../../components/Search";
 import { queryActivities } from "../../services/api";
 import { shortenAddress } from "../../utils";
 
-import noExistImg from "../../images/icon_not_exist.png";
+import arrowDownImg from "../../images/icon_arrow_down.svg";
 
 import { timeFormat } from "../../constants";
 
@@ -37,42 +37,20 @@ export default function Activities(): ReactElement {
       <ul className="activities">
         {activities.map((it, index) => (
           <li key={index}>
-            <span className="token">
-              <img
-                src={
-                  it.tokenDetails.tokenImageUrl
-                    ? it.tokenDetails.tokenImageUrl
-                    : noExistImg
-                }
-                alt={it.tokenDetails.tokenName}
-              />
-              {it.tokenDetails.tokenName}
-            </span>
+            <span className="from">{shortenAddress(it.from)}</span>
+            <img src={arrowDownImg} alt="" className="arrow-icon" />
+            <span className="to">{shortenAddress(it.to)}</span>
+            <span className="program">{it.programDetails.programHashName}</span>
             <span>
-              <span className="label">Sender</span>
+              {/* TODO */}
+              <span className="amount">
+                -{it.amount / Math.pow(10, Number(18))}
+                {it.tokenDetails.tokenName}
+              </span>
               <br />
-              {shortenAddress(it.from)}
-            </span>
-            <span>
-              <span className="label">Receivier</span>
-              <br />
-              {shortenAddress(it.to)}
-            </span>
-            <span>
-              <span className="label">Amount</span>
-              <br />
-              {/* //TODO */}
-              {it.amount / Math.pow(10, Number(18))}
-            </span>
-            <span className="program">
-              <span className="label">Program</span>
-              <br />
-              {it.programDetails.programHashName}
-            </span>
-            <span>
-              <span className="label">Time</span>
-              <br />
-              {dayjs(it.transferTime).format(timeFormat.dateTime)}
+              <span className="time">
+                {dayjs(it.transferTime).format(timeFormat.dateTime)}{" "}
+              </span>
             </span>
           </li>
         ))}

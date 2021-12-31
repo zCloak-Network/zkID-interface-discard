@@ -2,11 +2,11 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-10 13:51:08
- * @LastEditTime: 2021-12-22 16:15:58
+ * @LastEditTime: 2021-12-29 19:04:17
  */
 import React, { ReactElement } from "react";
 import { UnsupportedChainIdError } from "@web3-react/core";
-import classnames from "classnames";
+import Button from "../../components/Button";
 
 import {
   useToggleErrorModal,
@@ -19,12 +19,14 @@ interface Props {
     tokenName: string;
     tokenAddress: string;
   };
+  loading: boolean;
   approveStatus: boolean;
   ruleStatus: string;
   account: string;
   amount: string;
+  symbol?: string;
+  isInsufficient?: boolean;
   receivierAddr: string;
-  disabled: boolean;
   error: Error;
   onClick: () => void;
   handleApprove: () => void;
@@ -38,9 +40,11 @@ export default function transferBtn({
   receivierAddr,
   amount,
   token,
-  disabled,
   error,
+  symbol,
+  isInsufficient = false,
   onClick,
+  loading,
   handleApprove,
   handleSubmitProof,
 }: Props): ReactElement {
@@ -57,62 +61,79 @@ export default function transferBtn({
 
   if (error) {
     return (
-      <div className="btn">
+      <Button loading={loading} type="primary">
         {error instanceof UnsupportedChainIdError ? (
           <span onClick={toggleErrorModal}>You are on the wrong network</span>
         ) : (
           "Error"
         )}
-      </div>
+      </Button>
     );
   }
   if (!account) {
     return (
-      <div className="btn" onClick={handleOpenConnect}>
+      <Button loading={loading} type="primary" onClick={handleOpenConnect}>
         Connect wallet
-      </div>
+      </Button>
     );
   }
   if (account && approveStatus && ruleStatus === STATUSFALSE) {
     return (
-      <div className="btn no-proof-btn" onClick={handleSubmitProof}>
+      <Button loading={loading} type="primary" onClick={handleSubmitProof}>
         Sorry, found no proof. Submit your proof.
-      </div>
+      </Button>
     );
   }
   if (account && approveStatus && ruleStatus === STATUSING) {
     return (
-      <div className="btn">
+      <Button loading={loading} type="primary">
         Sorry, your proof is being verified, please wait.
-      </div>
+      </Button>
     );
   }
   if (account && !approveStatus && token.tokenAddress) {
     return (
-      <div className="btn" onClick={handleApprove}>
+      <Button loading={loading} type="primary" onClick={handleApprove}>
         Allow zkPass to use your {token.tokenName}.
-      </div>
+      </Button>
     );
   }
+
+  if (isInsufficient) {
+    return (
+      <Button disabled={true} loading={loading} type="info">
+        Insufficient {symbol} balance
+      </Button>
+    );
+  }
+
   if (!token.tokenAddress) {
-    return <div className="btn btn-transfer disabled">Select a token</div>;
+    return (
+      <Button disabled={true} loading={loading} type="info">
+        Select a token
+      </Button>
+    );
   }
 
   if (Number(amount) === 0) {
-    return <div className="btn btn-transfer disabled">Enter an amount</div>;
+    return (
+      <Button disabled={true} loading={loading} type="info">
+        Enter an amount
+      </Button>
+    );
   }
 
   if (!receivierAddr) {
-    return <div className="btn btn-transfer disabled">Enter a receivier</div>;
+    return (
+      <Button disabled={true} loading={loading} type="info">
+        Enter a receivier
+      </Button>
+    );
   }
+
   return (
-    <div
-      onClick={onClick}
-      className={classnames("btn btn-transfer", {
-        disabled: disabled,
-      })}
-    >
+    <Button loading type="primary" onClick={onClick}>
       Transfer
-    </div>
+    </Button>
   );
 }

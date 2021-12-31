@@ -2,7 +2,7 @@
  * @Description: submit modal
  * @Author: lixin
  * @Date: 2021-12-02 17:23:15
- * @LastEditTime: 2021-12-22 14:52:12
+ * @LastEditTime: 2021-12-28 15:33:14
  */
 import React, { useState, useEffect, ReactElement } from "react";
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
@@ -60,6 +60,7 @@ export default function Connect(): ReactElement {
       activate(connector, undefined, true)
         .then(async () => {
           const walletAddress = await connector.getAccount();
+          toggleConnectWalletModal();
         })
         .catch((error) => {
           if (error instanceof UnsupportedChainIdError) {
