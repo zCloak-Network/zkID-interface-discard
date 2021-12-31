@@ -9,6 +9,19 @@
   right: 40px;
   top: 88px;
 
+  .close-btn {
+    width: 18px;
+    height: 18px;
+    background: #f4f6fd;
+    border-radius: 4px;
+    float: right;
+    text-align: center;
+    > img {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
   .transaction-popup {
     .message {
       font-size: 14px;
@@ -31,6 +44,7 @@
       font-family: Kanit;
       font-weight: 300;
       color: #000000;
+      padding-left: 32px;
     }
   }
 }

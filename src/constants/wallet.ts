@@ -1,6 +1,6 @@
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
-import METAMASK_ICON_URL from '../images/logo_metamask.png'
+import METAMASK_ICON_URL from '../images/logo_metamask.svg'
 import { injected } from '../connectors'
 
 interface WalletInfo {

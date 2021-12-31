@@ -2,11 +2,12 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-23 16:25:30
- * @LastEditTime: 2021-12-27 11:13:14
+ * @LastEditTime: 2021-12-31 15:27:35
  */
 import React, { FC } from "react";
 import { useActivePopups } from "../../state/application/hooks";
 import PopupItem from "./PopupItem";
+import closeImg from "../../images/close.png";
 
 import "./index.scss";
 
@@ -28,12 +29,13 @@ const Popups: FC = () => {
   //     },
   //   ];
 
-  console.log(97777, activePopups);
-
   if (activePopups.length === 0) return null;
 
   return (
     <div className="popups-component">
+      <span className="close-btn">
+        <img src={closeImg} />
+      </span>
       {activePopups.map((item) => (
         <PopupItem
           key={item.key}

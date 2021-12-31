@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-20 14:49:32
- * @LastEditTime: 2021-12-27 23:27:42
+ * @LastEditTime: 2021-12-28 14:06:02
  */
 import React from "react";
 import Modal from "../Modal";
@@ -13,6 +13,8 @@ import {
   useToggleErrorModal,
 } from "../../state/application/hooks";
 import { ApplicationModal } from "../../state/application/reducer";
+
+import "./index.scss";
 
 export default function ErrorModal() {
   const toggleErrorModal = useToggleErrorModal();
@@ -57,8 +59,10 @@ export default function ErrorModal() {
       onCancel={toggleErrorModal}
       wrapClassName="error-modal"
     >
-      Please connect to Mooriver Network.
-      <div onClick={handleSwitch}>Switch to Moonriver Network</div>
+      <h2 className="sub-title">Please connect to Mooriver Network.</h2>
+      <div onClick={handleSwitch} className="switch-btn">
+        Switch to Moonriver Network
+      </div>
     </Modal>
   );
 }

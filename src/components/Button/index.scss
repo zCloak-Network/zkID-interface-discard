@@ -1,0 +1,34 @@
+.button-components {
+  width: 494px;
+  height: 60px;
+  border-radius: 20px;
+  background: $primary-color;
+  font-size: 20px;
+  font-weight: bold;
+  color: $white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: $margin-xs;
+  cursor: pointer;
+
+  &.disabled {
+    cursor: not-allowed;
+    color: #909090;
+    background: #eaecf2;
+  }
+
+  &.loading {
+    background: #cdd0d9;
+    > img {
+      margin-left: 8px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &.button-components-primary {
+    background: $primary-color;
+    color: $white;
+  }
+}

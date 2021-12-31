@@ -2,12 +2,10 @@
  * @Description: 
  * @Author: lixin
  * @Date: 2021-08-27 11:52:05
- * @LastEditTime: 2021-12-23 17:39:56
+ * @LastEditTime: 2021-12-31 15:17:22
  * 
  */
-import iconCorrect from '../images/icon_correct.png'
-import iconError from '../images/icon_error.png'
-import iconwait from '../images/icon_wait.png'
+
 
 
 export const  NETWORKID = 1287
@@ -35,17 +33,14 @@ export const timeFormat = {
 export const STATUS = [
     {
         title: 'Verified True',
-        img: iconCorrect,
         color: '#51DC8E'
     },
     {
         title: 'Verified False',
-        img: iconError,
         color: '#FF3E6C'
     },
     {
         title: 'Verifing',
-        img: iconwait,
         color: '#FF9E3E '
     }
 

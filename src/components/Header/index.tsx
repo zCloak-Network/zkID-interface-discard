@@ -2,13 +2,16 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-02 11:07:37
- * @LastEditTime: 2021-12-17 15:50:14
+ * @LastEditTime: 2021-12-28 15:04:13
  */
 import React from "react";
 import { useActiveWeb3React } from "../../hooks/web3";
+import { useNavigate } from "react-router-dom";
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
-
 import { Image } from "@davatar/react";
+import Menu from "../Menu";
+
+import Logo from "../../images/logo.svg";
 
 import { shortenAddress } from "../../utils";
 
@@ -21,6 +24,8 @@ interface Props {
 export default function Header({
   handleOpenConnect,
 }: Props): React.ReactElement {
+  const navigate = useNavigate();
+
   let inner;
   const { error, account } = useWeb3React();
   // const { error, account } = useActiveWeb3React();
@@ -51,5 +56,15 @@ export default function Header({
     );
   }
 
-  return <div className="header">{inner}</div>;
+  const handleGoHome = () => {
+    navigate("/");
+  };
+
+  return (
+    <div className="header-component">
+      <img src={Logo} alt="logo" className="logo" onClick={handleGoHome} />
+      <Menu />
+      {inner}
+    </div>
+  );
 }

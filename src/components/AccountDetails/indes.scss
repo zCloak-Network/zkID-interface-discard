@@ -1,0 +1,59 @@
+.account-details {
+  .account-details-header {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    border-top: 1px solid #eaecf2;
+
+    .sub-title {
+      font-size: $font-size-lg;
+      color: #7c7c7c;
+    }
+
+    .change-btn {
+      width: 64px;
+      height: 26px;
+      line-height: 26px;
+      border: 1px solid #6768ac;
+      border-radius: 14px;
+      color: #6768ac;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+  }
+
+  .account {
+    color: #0a1629;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    display: inline-block;
+  }
+
+  .account-details-btns {
+    display: flex;
+
+    .copy-btn,
+    .view-btn {
+      color: #7c7c7c;
+      cursor: pointer;
+    }
+    .copy-btn:hover,
+    .view-btn:hover {
+      color: $primary-color;
+    }
+
+    .view-btn {
+      margin-left: 60px;
+    }
+
+    .icon {
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+  }
+}
