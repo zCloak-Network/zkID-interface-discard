@@ -2,10 +2,10 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-02 15:06:01
- * @LastEditTime: 2021-12-31 15:42:44
+ * @LastEditTime: 2022-01-05 16:03:21
  */
-import React, { ReactElement } from "react";
-import classnames from "classnames";
+import React from "react";
+import classNames from "classnames";
 import TokenItem from "../SelectToken/TokenItem";
 
 import arrowImg from "../../images/icon_arrow.svg";
@@ -64,14 +64,15 @@ export default function InputAddress({
   balance,
   handleChange,
   handleOpenToken,
-}: Props): ReactElement {
-  const classes = classnames("input-balance", {
+}: Props): JSX.Element {
+  const classes = classNames("input-balance", {
     selected: token.tokenAddress,
     error: error,
   });
 
   const handleInputChange = (e) => {
     const { value } = e.target;
+    // TODO;
     const reg = /^-?\d*(\.\d*)?$/;
     if ((!isNaN(value) && reg.test(value)) || value === "" || value === "-") {
       handleChange(value);

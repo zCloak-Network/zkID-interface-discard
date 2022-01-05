@@ -2,10 +2,10 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-29 16:15:23
- * @LastEditTime: 2021-12-29 18:20:44
+ * @LastEditTime: 2022-01-05 15:59:39
  */
 import React from "react";
-import classnames from "classnames";
+import classNames from "classnames";
 
 import Loading from "../../images/loading.gif";
 
@@ -20,6 +20,7 @@ interface Props {
   className?: string;
 }
 
+// TODO
 // const ButtonTypes = tuple('default', 'primary', 'ghost', 'dashed', 'link', 'text');
 
 export default function Button({
@@ -29,8 +30,8 @@ export default function Button({
   onClick,
   className,
   children,
-}: Props) {
-  const classes = classnames(
+}: Props): JSX.Element {
+  const classes = classNames(
     "button-components",
     {
       disabled: disabled,

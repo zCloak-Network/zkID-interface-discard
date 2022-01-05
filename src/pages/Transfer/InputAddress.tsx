@@ -2,12 +2,12 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-02 15:06:01
- * @LastEditTime: 2021-12-31 15:43:52
+ * @LastEditTime: 2022-01-05 16:02:57
  */
 import React from "react";
 import { Tooltip } from "antd";
 import { isAddress, shortenAddress } from "../../utils";
-import classnames from "classnames";
+import classNames from "classnames";
 
 import "./InputAddress.scss";
 
@@ -29,7 +29,7 @@ export default function InputAddress({
   ellipsis = false,
   showRule = false,
   showError = false,
-}: Props) {
+}: Props): JSX.Element {
   const getAddress = () => {
     if (value && isAddress(value) && ellipsis) {
       return shortenAddress(value);
@@ -44,7 +44,7 @@ export default function InputAddress({
 
   return (
     <div
-      className={classnames("input-address", {
+      className={classNames("input-address", {
         error: showError,
         "no-ellipsis": !ellipsis,
       })}

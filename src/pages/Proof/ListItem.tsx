@@ -2,13 +2,14 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-30 16:51:36
- * @LastEditTime: 2021-12-30 18:54:41
+ * @LastEditTime: 2022-01-05 16:04:20
  */
 import React, { useState } from "react";
-import classnames from "classnames";
+import classNames from "classnames";
 import { shortenHash } from "../../utils";
 
 import { STATUSTRUE, STATUSFALSE, STATUSING } from "../../constants";
+import { ProofStatus } from "../../types";
 
 import arrowImg from "../../images/icon_arrow_2.svg";
 
@@ -33,8 +34,7 @@ interface Props {
 }
 
 interface ProgressProps {
-  // TODO 改成enum
-  status: string;
+  status: ProofStatus;
   percent?: number;
 }
 
@@ -43,7 +43,7 @@ function Progress({ status, percent = 0 }: ProgressProps): JSX.Element {
     width: `${percent * 100}%`,
   };
 
-  const classes = classnames("progress-outer", {
+  const classes = classNames("progress-outer", {
     "progress-success": status === STATUSTRUE,
     "progress-fail": status === STATUSFALSE,
     "progress-ing": status === STATUSING,
@@ -72,7 +72,7 @@ function Progress({ status, percent = 0 }: ProgressProps): JSX.Element {
   );
 }
 
-export default function ListItem({ data }: Props) {
+export default function ListItem({ data }: Props): JSX.Element {
   const [open, setOpen] = useState(false);
   const {
     time,
@@ -94,7 +94,7 @@ export default function ListItem({ data }: Props) {
 
   return (
     <div
-      className={classnames("proof-list-item", {
+      className={classNames("proof-list-item", {
         open: open,
       })}
     >
@@ -105,6 +105,7 @@ export default function ListItem({ data }: Props) {
         <div>{fieldName}</div>
         <div>{shortenHash(proofCid)}</div>
         <div>
+          {/* TODO */}
           <Progress status={STATUSING} percent={0.3} />
           {/* <Progress status={statusCode} percent="90" /> */}
         </div>

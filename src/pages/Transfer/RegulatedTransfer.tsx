@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2022-01-05 14:30:15
+ * @LastEditTime: 2022-01-05 15:51:43
  */
 import React, { useState, useEffect, useMemo, useContext } from "react";
 import { message } from "antd";
@@ -42,6 +42,7 @@ import {
 
 import { shortenAddress } from "../../utils";
 import { STATUSTRUE, STATUSFALSE } from "../../constants";
+import { ProofStatus } from "../../types";
 
 import arrowDownImg from "../../images/icon_arrow_down.svg";
 
@@ -51,12 +52,11 @@ type contextProps = {
   web3: any;
 };
 
-export default function RegulatedTransfer() {
+export default function RegulatedTransfer(): JSX.Element {
   const { error, account } = useWeb3React();
   const [amount, setAmount] = useState(undefined);
   const [allTokens, setAllTokens] = useState([]);
-  // TODO 改成enum
-  const [ruleStatus, setRuleStatus] = useState("");
+  const [ruleStatus, setRuleStatus] = useState<ProofStatus>("");
   const [receivierAddr, setReceivierAddr] = useState("");
   const [currRule, setCurrtRule] = useState({
     programHash: "",

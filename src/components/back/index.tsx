@@ -2,10 +2,10 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-08-27 15:47:14
- * @LastEditTime: 2021-12-20 14:31:22
+ * @LastEditTime: 2022-01-05 15:59:14
  */
 import React from "react";
-import classnames from "classnames";
+import classNames from "classnames";
 import backImg from "../../images/back.svg";
 
 import "./index.scss";
@@ -14,8 +14,8 @@ interface Props {
   className?: string;
 }
 
-function Back({ className = "" }: Props): React.ReactElement {
-  const classes = classnames("back-components", className);
+function Back({ className = "" }: Props): JSX.Element {
+  const classes = classNames("back-components", className);
 
   return (
     <div className={classes}>

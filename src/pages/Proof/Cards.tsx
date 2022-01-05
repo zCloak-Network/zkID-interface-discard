@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-03 16:34:58
- * @LastEditTime: 2021-12-17 17:01:33
+ * @LastEditTime: 2022-01-05 16:01:29
  */
 import React, { useState, useMemo } from "react";
 import { Image } from "@davatar/react";
@@ -19,7 +19,6 @@ interface Props {
 }
 
 interface CardProps {
-  // TODO
   dataItem: {
     programDetails: {
       programHashName: string;
@@ -116,7 +115,7 @@ function Card({ dataItem }: CardProps) {
   );
 }
 
-export default function Cards({ data }: Props) {
+export default function Cards({ data }: Props): JSX.Element {
   const [type, setType] = useState(null);
   const handleClick = (e) => {
     setType(e.target?.dataset.type || null);

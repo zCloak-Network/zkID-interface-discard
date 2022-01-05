@@ -2,11 +2,11 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-20 14:13:47
- * @LastEditTime: 2021-12-21 19:23:33
+ * @LastEditTime: 2022-01-05 16:00:16
  */
 import React, { useMemo } from "react";
 import { Modal } from "antd";
-import classnames from "classnames";
+import classNames from "classnames";
 
 import closeImg from "../../images/close.png";
 
@@ -27,9 +27,9 @@ export default function MyModal({
   children,
   wrapClassName,
   ...rest
-}: Props) {
+}: Props): JSX.Element {
   const wrapClassNames = useMemo(
-    () => classnames("my-modal-component", wrapClassName),
+    () => classNames("my-modal-component", wrapClassName),
     [wrapClassName]
   );
 
