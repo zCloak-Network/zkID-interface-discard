@@ -2,9 +2,9 @@
  * @Description: submit modal
  * @Author: lixin
  * @Date: 2021-12-02 17:23:15
- * @LastEditTime: 2021-12-22 11:22:39
+ * @LastEditTime: 2022-01-05 10:53:33
  */
-import React from "react";
+import React, { useState, useMemo } from "react";
 import {
   useModalOpen,
   useToggleSelectTokenModal,
@@ -13,23 +13,42 @@ import { ApplicationModal } from "../../state/application/reducer";
 import Modal from "../../components/Modal";
 import TokenItem from "./TokenItem";
 
+import { TokenProps } from "../../types";
+
 import "./index.scss";
 
 interface Props {
-  // TODO
-  allTokens: any;
+  allTokens: TokenProps[];
   handleSelectToken: (token) => void;
 }
 
-export default function Submit({ allTokens, handleSelectToken }: Props) {
+export default function Submit({
+  allTokens,
+  handleSelectToken,
+}: Props): JSX.Element {
+  const [input, setInput] = useState("");
   const toggleSelectTokenModal = useToggleSelectTokenModal();
   const selectTokenModalOpen = useModalOpen(ApplicationModal.SELECT_TOKEN);
+
+  const handleChange = (e) => {
+    setInput(e.target.value);
+  };
 
   // useEffect(() => {
   //   if (account && !previousAccount && walletModalOpen) {
   //     toggleWalletModal();
   //   }
   // }, [account, previousAccount, toggleWalletModal, walletModalOpen]);
+
+  const currData = useMemo(() => {
+    const inputNew = input.toLocaleLowerCase();
+
+    return allTokens.filter(
+      (it) =>
+        it.tokenName.toLocaleLowerCase().includes(inputNew) ||
+        it.tokenAddress.toLocaleLowerCase().includes(inputNew)
+    );
+  }, [input, allTokens]);
 
   return (
     <Modal
@@ -42,10 +61,11 @@ export default function Submit({ allTokens, handleSelectToken }: Props) {
         type="text"
         placeholder="Search name or paste address"
         className="search-input"
+        onChange={handleChange}
       />
       <div className="sub-title">Token Name</div>
       <ul className="token-list">
-        {allTokens.map((it) => (
+        {currData.map((it) => (
           <li
             key={it.tokenAddress}
             className="token-list-item"

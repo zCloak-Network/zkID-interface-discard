@@ -2,7 +2,7 @@
  * @Description: submit modal
  * @Author: lixin
  * @Date: 2021-12-02 17:23:15
- * @LastEditTime: 2021-12-28 15:33:14
+ * @LastEditTime: 2022-01-05 14:28:13
  */
 import React, { useState, useEffect, ReactElement } from "react";
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
@@ -50,7 +50,6 @@ export default function Connect(): ReactElement {
 
     setPendingWallet(connector); // set wallet for pending view
     setWalletView(WALLET_VIEWS.PENDING);
-
     // if the connector is walletconnect and the user has already tried to connect, manually reset the connector
     if (connector instanceof WalletConnectConnector) {
       connector.walletConnectProvider = undefined;
@@ -73,7 +72,7 @@ export default function Connect(): ReactElement {
 
   const handleSelect = (option) => {
     option.connector === connector
-      ? setWalletView(WALLET_VIEWS.ACCOUNT)
+      ? toggleConnectWalletModal()
       : !option.href && tryActivation(option.connector);
   };
 
@@ -81,7 +80,7 @@ export default function Connect(): ReactElement {
     if (error) {
       toggleErrorModal();
     }
-  }, [error]);
+  }, [error, toggleErrorModal]);
 
   return (
     <Modal

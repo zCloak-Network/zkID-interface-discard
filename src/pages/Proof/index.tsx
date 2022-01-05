@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2021-12-22 16:48:51
+ * @LastEditTime: 2022-01-05 14:28:41
  */
 import React, { useState, useMemo, useEffect, ReactElement } from "react";
 import dayjs from "dayjs";
@@ -14,9 +14,9 @@ import Lists from "./Lists";
 import Search from "../../components/Search";
 
 import btnList from "../../images/btn_list.png";
-import btnListActive from "../../images/btn_list_active.png";
+import btnListActive from "../../images/btn_list_active.svg";
 import btnCard from "../../images/btn_card.png";
-import btnCardActive from "../../images/btn_card_active.png";
+import btnCardActive from "../../images/btn_card_active.svg";
 
 import { timeFormat, STATUSING } from "../../constants";
 import { queryProofsByAddr } from "../../services/api";
@@ -59,7 +59,20 @@ export default function Proof(): ReactElement {
 
         if (allProofs.length === 0) {
           // 首次发送请求时，存下全部proofs
-          setAllProofs(data);
+          setAllProofs([
+            // TOOD
+            ...data,
+            // ...data,
+            // ...data,
+            // ...data,
+            // ...data,
+            // ...data,
+            // ...data,
+            // ...data,
+            // ...data,
+            // ...data,
+            // ...data,
+          ]);
         } else {
           // 后续请求，更新verifing状态的数据
           const allUpdateId = data.map((it) => it.proofCid);
@@ -94,9 +107,7 @@ export default function Proof(): ReactElement {
 
   return (
     <div className="proof">
-      <Search />
       <div className="proof-header">
-        <span className="proof-header-title">My Passes</span>
         <span>
           <img
             src={isShowCard ? btnCardActive : btnCard}
@@ -115,6 +126,7 @@ export default function Proof(): ReactElement {
             }}
           />
         </span>
+        <Search />
       </div>
       <div className="proof-content">
         {isShowCard ? <Cards data={allProofs} /> : <Lists data={allProofs} />}

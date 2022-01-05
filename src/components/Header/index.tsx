@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-02 11:07:37
- * @LastEditTime: 2021-12-28 15:04:13
+ * @LastEditTime: 2021-12-31 16:58:02
  */
 import React from "react";
 import { useActiveWeb3React } from "../../hooks/web3";
@@ -30,7 +30,6 @@ export default function Header({
   const { error, account } = useWeb3React();
   // const { error, account } = useActiveWeb3React();
 
-  console.log(122288, error, account);
   if (error) {
     inner = (
       <div className="btn error" onClick={handleOpenConnect}>

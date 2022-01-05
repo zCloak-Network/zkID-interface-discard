@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2021-12-28 17:21:35
+ * @LastEditTime: 2021-12-31 18:10:33
  */
 import React, { useEffect, useState, ReactElement } from "react";
 import { useWeb3React } from "@web3-react/core";
@@ -33,7 +33,6 @@ export default function Activities(): ReactElement {
 
   return (
     <div>
-      <Search />
       <ul className="activities">
         {activities.map((it, index) => (
           <li key={index}>

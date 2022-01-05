@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2021-12-29 19:08:09
+ * @LastEditTime: 2022-01-05 14:30:15
  */
 import React, { useState, useEffect, useMemo, useContext } from "react";
 import { message } from "antd";
@@ -32,7 +32,6 @@ import sampleTokenAbi from "../../constants/contract/contractAbi/SampleToken";
 import {
   KiltProofsAdddress,
   RegulatedTransferAdddress,
-  // SampleTokenAdddress,
 } from "../../constants/contract/address";
 
 import {
@@ -280,7 +279,6 @@ export default function RegulatedTransfer() {
         handleApprove={handleApprove}
         handleSubmitProof={toggleSubmitProofModal}
       />
-
       <SelectToken
         allTokens={allTokens}
         handleSelectToken={handleSelectToken}

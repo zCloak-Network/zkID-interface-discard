@@ -2,7 +2,7 @@
   .account-details-header {
     display: flex;
     justify-content: space-between;
-    padding-top: 10px;
+    padding-top: 14px;
     margin-top: 20px;
     margin-bottom: 15px;
     border-top: 1px solid #eaecf2;
@@ -16,9 +16,9 @@
       width: 64px;
       height: 26px;
       line-height: 26px;
-      border: 1px solid #6768ac;
+      border: 1px solid $primary-color;
       border-radius: 14px;
-      color: #6768ac;
+      color: $primary-color;
       display: flex;
       align-items: center;
       justify-content: center;

@@ -2,7 +2,7 @@
  * @Description: submit modal
  * @Author: lixin
  * @Date: 2021-12-02 17:23:15
- * @LastEditTime: 2021-12-28 13:28:18
+ * @LastEditTime: 2022-01-04 14:08:52
  */
 import React, { useContext, useState, ReactElement } from "react";
 import Modal from "../../components/Modal";
@@ -119,25 +119,25 @@ export default function Submit({
       wrapClassName="submitModal"
     >
       <div>
-        <div>
+        <div className="item program">
           <div className="label">program name </div>
           <div className="value">
             <span>{proName}</span>
           </div>
         </div>
-        <div>
+        <div className="item">
           <div className="label">program hash</div>
           <div className="value">
             <span>{shortenHash(proHash)}</span>
           </div>
         </div>
-        <div>
+        <div className="item">
           <div className="label">filed name</div>
           <div className="value">
             <span>{fieldName}</span>
           </div>
         </div>
-        <div>
+        <div className="item">
           <div className="label">outputs, rootHash and proof cid</div>
           <div className="value">
             {generationInfo.proofCid && (
