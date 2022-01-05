@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2022-01-05 17:53:01
+ * @LastEditTime: 2022-01-05 23:25:06
  */
 import React, { useState, useEffect, useMemo, useContext } from "react";
 import { message } from "antd";
@@ -41,7 +41,7 @@ import {
 } from "../../services/api";
 
 import { shortenAddress } from "../../utils";
-import { ProofStatus } from "../../types";
+import { ProofStatus } from "../../types/index";
 
 import arrowDownImg from "../../images/icon_arrow_down.svg";
 

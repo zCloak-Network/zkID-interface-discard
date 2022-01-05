@@ -2,14 +2,14 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-06 16:32:12
- * @LastEditTime: 2022-01-05 17:40:57
+ * @LastEditTime: 2022-01-05 23:24:04
  */
 import React from "react";
 import { getAddress } from "@ethersproject/address";
 import { AddressZero } from "@ethersproject/constants";
 import { Contract } from "@ethersproject/contracts";
 import { JsonRpcSigner, Web3Provider } from "@ethersproject/providers";
-import { ProofStatus } from "../types";
+import { ProofStatus } from "../types/index";
 
 const { STATUSTRUE, STATUSFALSE, STATUSING } = ProofStatus;
 

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2022-01-05 17:42:13
+ * @LastEditTime: 2022-01-05 23:27:12
  */
 import React, { useState, useMemo, useEffect, ReactElement } from "react";
 import dayjs from "dayjs";
@@ -18,7 +18,7 @@ import btnListActive from "../../images/btn_list_active.svg";
 import btnCard from "../../images/btn_card.png";
 import btnCardActive from "../../images/btn_card_active.svg";
 
-import { ProofStatus } from "../../types";
+import { ProofStatus } from "../../types/index";
 
 import { timeFormat } from "../../constants";
 import { queryProofsByAddr } from "../../services/api";

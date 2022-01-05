@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-10 13:51:08
- * @LastEditTime: 2022-01-05 17:50:52
+ * @LastEditTime: 2022-01-05 23:24:43
  */
 import React from "react";
 import { UnsupportedChainIdError } from "@web3-react/core";
@@ -13,7 +13,7 @@ import {
   useToggleConnectWalletModal,
 } from "../../state/application/hooks";
 
-import { ProofStatus } from "../../types";
+import { ProofStatus } from "../../types/index";
 
 interface Props {
   token: {

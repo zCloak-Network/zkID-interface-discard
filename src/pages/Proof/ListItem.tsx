@@ -2,13 +2,13 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-30 16:51:36
- * @LastEditTime: 2022-01-05 17:52:14
+ * @LastEditTime: 2022-01-05 23:26:30
  */
 import React, { useState } from "react";
 import classNames from "classnames";
 import { shortenHash } from "../../utils";
 
-import { ProofStatus } from "../../types";
+import { ProofStatus } from "../../types/index";
 
 import arrowImg from "../../images/icon_arrow_2.svg";
 
@@ -75,6 +75,7 @@ function Progress({ status, percent = 0 }: ProgressProps): JSX.Element {
 
 export default function ListItem({ data }: Props): JSX.Element {
   const [open, setOpen] = useState(false);
+
   const {
     time,
     index,

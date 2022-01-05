@@ -2,9 +2,9 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-08-30 16:38:02
- * @LastEditTime: 2021-12-28 18:44:50
+ * @LastEditTime: 2022-01-05 23:29:40
  */
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 import Popups from "../../components/Popups";
