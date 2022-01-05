@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-12 15:23:11
- * @LastEditTime: 2022-01-05 16:05:12
+ * @LastEditTime: 2022-01-05 17:39:34
  */
 
 export interface TokenProps {
@@ -11,4 +11,9 @@ export interface TokenProps {
   tokenAddress: string;
 }
 
-export type ProofStatus = "Verified True" | "Verified False" | "Verifing" | "";
+export enum ProofStatus {
+  STATUSTRUE = "Verified True",
+  STATUSFALSE = "Verified False",
+  STATUSING = "Verifing",
+  STATUSNULL = "",
+}

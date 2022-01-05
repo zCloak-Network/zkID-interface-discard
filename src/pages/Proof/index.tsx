@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2022-01-05 14:28:41
+ * @LastEditTime: 2022-01-05 17:42:13
  */
 import React, { useState, useMemo, useEffect, ReactElement } from "react";
 import dayjs from "dayjs";
@@ -18,10 +18,14 @@ import btnListActive from "../../images/btn_list_active.svg";
 import btnCard from "../../images/btn_card.png";
 import btnCardActive from "../../images/btn_card_active.svg";
 
-import { timeFormat, STATUSING } from "../../constants";
+import { ProofStatus } from "../../types";
+
+import { timeFormat } from "../../constants";
 import { queryProofsByAddr } from "../../services/api";
 
 import "./index.scss";
+
+const { STATUSING } = ProofStatus;
 
 export default function Proof(): ReactElement {
   const [allProofs, setAllProofs] = useState([]);

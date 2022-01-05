@@ -2,13 +2,12 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-30 16:51:36
- * @LastEditTime: 2022-01-05 16:04:20
+ * @LastEditTime: 2022-01-05 17:52:14
  */
 import React, { useState } from "react";
 import classNames from "classnames";
 import { shortenHash } from "../../utils";
 
-import { STATUSTRUE, STATUSFALSE, STATUSING } from "../../constants";
 import { ProofStatus } from "../../types";
 
 import arrowImg from "../../images/icon_arrow_2.svg";
@@ -37,6 +36,8 @@ interface ProgressProps {
   status: ProofStatus;
   percent?: number;
 }
+
+const { STATUSTRUE, STATUSFALSE, STATUSING } = ProofStatus;
 
 function Progress({ status, percent = 0 }: ProgressProps): JSX.Element {
   const innerStyle = {

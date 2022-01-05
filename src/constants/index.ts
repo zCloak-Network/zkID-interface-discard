@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-08-27 11:52:05
- * @LastEditTime: 2022-01-05 14:27:07
+ * @LastEditTime: 2022-01-05 17:41:33
  *
  */
 
@@ -10,10 +10,6 @@ export const NETWORKID = 1287;
 
 // export const HOSTPREFIX = 'http://192.168.31.47:8080'
 export const HOSTPREFIX = "https://api.app.zcloak.network";
-
-export const STATUSTRUE = "Verified True";
-export const STATUSFALSE = "Verified False";
-export const STATUSING = "Verifing";
 
 // 日期格式配置
 export const timeFormat = {

@@ -2,9 +2,9 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-10 13:51:08
- * @LastEditTime: 2021-12-29 19:04:17
+ * @LastEditTime: 2022-01-05 17:50:52
  */
-import React, { ReactElement } from "react";
+import React from "react";
 import { UnsupportedChainIdError } from "@web3-react/core";
 import Button from "../../components/Button";
 
@@ -13,7 +13,8 @@ import {
   useToggleConnectWalletModal,
 } from "../../state/application/hooks";
 
-import { STATUSFALSE, STATUSING } from "../../constants";
+import { ProofStatus } from "../../types";
+
 interface Props {
   token: {
     tokenName: string;
@@ -33,7 +34,9 @@ interface Props {
   handleSubmitProof: () => void;
 }
 
-export default function transferBtn({
+const { STATUSFALSE, STATUSING } = ProofStatus;
+
+export default function TransferBtn({
   ruleStatus,
   approveStatus,
   account,
@@ -47,7 +50,7 @@ export default function transferBtn({
   loading,
   handleApprove,
   handleSubmitProof,
-}: Props): ReactElement {
+}: Props): JSX.Element {
   const toggleErrorModal = useToggleErrorModal();
   const toggleConnectWalletModal = useToggleConnectWalletModal();
 

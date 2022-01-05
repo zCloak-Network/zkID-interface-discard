@@ -1,86 +1,88 @@
 /*
- * @Description: 
+ * @Description:
  * @Author: lixin
  * @Date: 2021-12-21 17:09:59
- * @LastEditTime: 2021-12-28 17:59:52
+ * @LastEditTime: 2022-01-05 17:46:54
  */
-import { createSlice, nanoid } from '@reduxjs/toolkit'
-import { DEFAULT_TXN_DISMISS_MS } from '../../constants'
+import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { DEFAULT_TXN_DISMISS_MS } from "../../constants";
 
-
-export type PopupContent =
-  | {
-      txn: {
-        hash: string
-        success: boolean
-        summary?: string
-        title?: string
-      }
-    }
-  // | {
-  //     listUpdate: {
-  //       listUrl: string
-  //       // oldList: TokenList
-  //       // newList: TokenList
-  //       auto: boolean
-  //     }
-  //   }
+export type PopupContent = {
+  txn: {
+    hash: string;
+    success: boolean;
+    summary?: string;
+    title?: string;
+  };
+};
+// | {
+//     listUpdate: {
+//       listUrl: string
+//       // oldList: TokenList
+//       // newList: TokenList
+//       auto: boolean
+//     }
+//   }
 
 export enum ApplicationModal {
-    WALLET,
-    CONNECT_WALLET,
-    SELECT_TOKEN,
-    ERROR,
-    SUBMIT_PROOF,
-    ACCOUNT_DETAILS
+  WALLET,
+  CONNECT_WALLET,
+  SELECT_TOKEN,
+  ERROR,
+  SUBMIT_PROOF,
+  ACCOUNT_DETAILS,
 }
 
 type PopupList = Array<{
-  key: string
-  show: boolean
-  content: PopupContent
-  removeAfterMs: number | null
-}>
+  key: string;
+  show: boolean;
+  content: PopupContent;
+  removeAfterMs: number | null;
+}>;
 
 export interface ApplicationState {
-  readonly popupList: PopupList,
-  readonly openModal: ApplicationModal | null
+  readonly popupList: PopupList;
+  readonly openModal: ApplicationModal | null;
 }
 
 const initialState: ApplicationState = {
-    openModal: null,
-    popupList: [],
-  }
-  
+  openModal: null,
+  popupList: [],
+};
 
 const applicationSlice = createSlice({
-    name: 'application',
-    initialState,
-    reducers: {
-      setOpenModal(state, action) {
-        state.openModal = action.payload
-      },
-      addPopup(state, { payload: { content, key, removeAfterMs = DEFAULT_TXN_DISMISS_MS } }) {
-        state.popupList = (key ? state.popupList.filter((popup) => popup.key !== key) : state.popupList).concat([
-          {
-            key: key || nanoid(),
-            show: true,
-            content,
-            removeAfterMs,
-          },
-        ])
-      },
-      removePopup(state, { payload: { key } }) {
-        state.popupList.forEach((p) => {
-          if (p.key === key) {
-            p.show = false
-          }
-        })
-      },
+  name: "application",
+  initialState,
+  reducers: {
+    setOpenModal(state, action) {
+      state.openModal = action.payload;
     },
-  })
-  
+    addPopup(
+      state,
+      { payload: { content, key, removeAfterMs = DEFAULT_TXN_DISMISS_MS } }
+    ) {
+      state.popupList = (
+        key
+          ? state.popupList.filter((popup) => popup.key !== key)
+          : state.popupList
+      ).concat([
+        {
+          key: key || nanoid(),
+          show: true,
+          content,
+          removeAfterMs,
+        },
+      ]);
+    },
+    removePopup(state, { payload: { key } }) {
+      state.popupList.forEach((p) => {
+        if (p.key === key) {
+          p.show = false;
+        }
+      });
+    },
+  },
+});
 
-export const { setOpenModal, addPopup, removePopup} = applicationSlice.actions
-export default applicationSlice.reducer
-
+export const { setOpenModal, addPopup, removePopup } = applicationSlice.actions;
+export default applicationSlice.reducer;

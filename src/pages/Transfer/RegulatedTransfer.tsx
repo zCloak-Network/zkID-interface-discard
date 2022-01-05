@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2022-01-05 15:51:43
+ * @LastEditTime: 2022-01-05 17:53:01
  */
 import React, { useState, useEffect, useMemo, useContext } from "react";
 import { message } from "antd";
@@ -41,7 +41,6 @@ import {
 } from "../../services/api";
 
 import { shortenAddress } from "../../utils";
-import { STATUSTRUE, STATUSFALSE } from "../../constants";
 import { ProofStatus } from "../../types";
 
 import arrowDownImg from "../../images/icon_arrow_down.svg";
@@ -52,11 +51,13 @@ type contextProps = {
   web3: any;
 };
 
+const { STATUSTRUE, STATUSFALSE, STATUSNULL } = ProofStatus;
+
 export default function RegulatedTransfer(): JSX.Element {
   const { error, account } = useWeb3React();
   const [amount, setAmount] = useState(undefined);
   const [allTokens, setAllTokens] = useState([]);
-  const [ruleStatus, setRuleStatus] = useState<ProofStatus>("");
+  const [ruleStatus, setRuleStatus] = useState<ProofStatus>(STATUSNULL);
   const [receivierAddr, setReceivierAddr] = useState("");
   const [currRule, setCurrtRule] = useState({
     programHash: "",
@@ -155,7 +156,7 @@ export default function RegulatedTransfer(): JSX.Element {
         from: account,
       })
       .then(function (receipt) {
-        console.log("444444666Transfer", receipt);
+        console.log("Transfer", receipt);
 
         addPopup(
           {
@@ -199,7 +200,6 @@ export default function RegulatedTransfer(): JSX.Element {
   };
 
   const handleAmountChange = (value) => {
-    console.log(909090, value);
     setAmount(value);
   };
 
