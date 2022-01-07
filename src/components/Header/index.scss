@@ -28,7 +28,7 @@
 
     .acc-img {
       display: inline-block;
-      margin-right: $margin-sm;
+      margin-left: 15px;
     }
   }
 
@@ -38,7 +38,6 @@
     align-items: center;
     background: $white;
     font-size: 16px;
-    color: #0a1629;
-    box-shadow: 0px 6px 58px rgba(196, 203, 214, 0.1);
+    color: #000000;
   }
 }

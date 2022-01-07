@@ -1,0 +1,14 @@
+.empty-components {
+  margin-top: 45px;
+  font-size: 16px;
+  font-family: Kanit;
+  font-weight: 300;
+  color: #505050;
+  text-align: center;
+
+  > img {
+    width: 172px;
+    height: 172px;
+    margin-left: -40px;
+  }
+}

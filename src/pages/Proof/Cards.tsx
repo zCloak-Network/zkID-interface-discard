@@ -2,11 +2,12 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-03 16:34:58
- * @LastEditTime: 2022-01-07 10:05:56
+ * @LastEditTime: 2022-01-07 15:06:17
  */
 import React, { useState, useMemo } from "react";
 import classNames from "classnames";
-// import { Image } from "@davatar/react";
+
+import Empty from "../../components/Empty";
 
 import bgImg from "../../images/pic_card3.png";
 import bgImgBack from "../../images/pic_card3_back.png";
@@ -143,20 +144,16 @@ export default function Cards({
 
   return (
     <div className="proof-cards">
-      <ul className="cards-main">
-        {dataSelected.map((it, index) => (
-          <Card key={index} dataItem={it} />
-        ))}
-        {dataSelected.map((it, index) => (
-          <Card key={index} dataItem={it} />
-        ))}
-        {dataSelected.map((it, index) => (
-          <Card key={index} dataItem={it} />
-        ))}
-        {dataSelected.map((it, index) => (
-          <Card key={index} dataItem={it} />
-        ))}
-      </ul>
+      {dataSelected && dataSelected.length > 0 && (
+        <ul className="cards-main">
+          {dataSelected?.map((it, index) => (
+            <Card key={index} dataItem={it} />
+          ))}
+        </ul>
+      )}
+      {dataSelected && dataSelected.length === 0 && (
+        <Empty description="Your zk Pass will appear here." />
+      )}
     </div>
   );
 }

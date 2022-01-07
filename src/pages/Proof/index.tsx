@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2022-01-06 18:31:40
+ * @LastEditTime: 2022-01-07 15:06:04
  */
 import React, { useState, useMemo, useEffect, ReactElement } from "react";
 import dayjs from "dayjs";
@@ -13,6 +13,7 @@ import { useInterval } from "ahooks";
 
 import { STATUS } from "../../constants";
 
+import Loading from "../../components/Loading";
 import Cards from "./Cards";
 import Lists from "./Lists";
 import Search from "../../components/Search";
@@ -33,12 +34,13 @@ const { STATUSING } = ProofStatus;
 const { Option } = Select;
 
 export default function Proof(): ReactElement {
-  const [allProofs, setAllProofs] = useState([]);
+  const [allProofs, setAllProofs] = useState(null);
   const [verifingProof, setVerifingProof] = useState([]);
   const [showType, setShowType] = useState("card");
   const [interval, setInterval] = useState(12000);
   const [searchType, setSearchType] = useState("");
   const [searchInput, setSearchInput] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { account } = useWeb3React();
 
@@ -59,16 +61,17 @@ export default function Proof(): ReactElement {
 
   const queryData = () => {
     if (!account) return;
-
+    setLoading(true);
     queryProofsByAddr({
       dataOwner: account,
       programHash: verifingProof.map((it) => it.programHash),
     }).then((res) => {
+      setLoading(false);
       if (res.data.code === 200) {
         const data = formatData(res.data.data);
         const verifingData = data.filter((it) => it.statusCode === STATUSING);
 
-        if (allProofs.length === 0) {
+        if (!allProofs || allProofs?.length === 0) {
           // 首次发送请求时，存下全部proofs
           setAllProofs([
             // TOOD
@@ -87,7 +90,7 @@ export default function Proof(): ReactElement {
         } else {
           // 后续请求，更新verifing状态的数据
           const allUpdateId = data.map((it) => it.proofCid);
-          const dataAll = allProofs.map((item) => {
+          const dataAll = allProofs?.map((item) => {
             if (allUpdateId.includes(item.proofCid)) {
               return data?.find((it) => it.proofCid === item.proofCid);
             }
@@ -169,17 +172,20 @@ export default function Proof(): ReactElement {
           <Search onChange={handleInputChange} />
         </div>
       </div>
-      <div className="proof-content">
-        {isShowCard ? (
-          <Cards
-            data={allProofs}
-            searchType={searchType}
-            searchInput={searchInput}
-          />
-        ) : (
-          <Lists data={allProofs} />
-        )}
-      </div>
+      {allProofs && !loading && (
+        <div className="proof-content">
+          {isShowCard ? (
+            <Cards
+              data={allProofs}
+              searchType={searchType}
+              searchInput={searchInput}
+            />
+          ) : (
+            <Lists data={allProofs} />
+          )}
+        </div>
+      )}
+      {loading && <Loading />}
     </div>
   );
 }

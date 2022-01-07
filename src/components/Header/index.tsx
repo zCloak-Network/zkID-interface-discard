@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-02 11:07:37
- * @LastEditTime: 2021-12-31 16:58:02
+ * @LastEditTime: 2022-01-07 14:53:55
  */
 import React from "react";
 import { useActiveWeb3React } from "../../hooks/web3";
@@ -41,10 +41,10 @@ export default function Header({
   } else if (account) {
     inner = (
       <div className="btn connected" onClick={handleOpenConnect}>
-        <div className="acc-img">
-          <Image address={account} size={30} />
-        </div>
         {shortenAddress(account)}
+        <div className="acc-img">
+          <Image address={account} size={16} />
+        </div>
       </div>
     );
   } else {
