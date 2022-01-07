@@ -2,12 +2,16 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2022-01-05 23:27:12
+ * @LastEditTime: 2022-01-06 18:31:40
  */
 import React, { useState, useMemo, useEffect, ReactElement } from "react";
 import dayjs from "dayjs";
+import classNames from "classnames";
+import { Select } from "antd";
 import { useWeb3React } from "@web3-react/core";
 import { useInterval } from "ahooks";
+
+import { STATUS } from "../../constants";
 
 import Cards from "./Cards";
 import Lists from "./Lists";
@@ -26,12 +30,15 @@ import { queryProofsByAddr } from "../../services/api";
 import "./index.scss";
 
 const { STATUSING } = ProofStatus;
+const { Option } = Select;
 
 export default function Proof(): ReactElement {
   const [allProofs, setAllProofs] = useState([]);
   const [verifingProof, setVerifingProof] = useState([]);
   const [showType, setShowType] = useState("card");
   const [interval, setInterval] = useState(12000);
+  const [searchType, setSearchType] = useState("");
+  const [searchInput, setSearchInput] = useState("");
 
   const { account } = useWeb3React();
 
@@ -46,7 +53,7 @@ export default function Proof(): ReactElement {
       time: dayjs(it.date).format(timeFormat.dateTime),
       statusCode: it.status,
       //TODO
-      claimAlias: "zCloak Primary Access",
+      claimAlias: it.claimAlias,
     }));
   };
 
@@ -99,6 +106,14 @@ export default function Proof(): ReactElement {
     });
   };
 
+  const handleTypeChange = (value) => {
+    setSearchType(value);
+  };
+
+  const handleInputChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+
   useInterval(() => {
     queryData();
   }, interval);
@@ -112,28 +127,58 @@ export default function Proof(): ReactElement {
   return (
     <div className="proof">
       <div className="proof-header">
-        <span>
-          <img
-            src={isShowCard ? btnCardActive : btnCard}
-            alt="card"
-            className="proof-header-img"
-            onClick={() => {
-              handleShowType("card");
-            }}
-          />
-          <img
-            src={isShowCard ? btnList : btnListActive}
-            alt="list"
-            className="proof-header-img"
-            onClick={() => {
-              handleShowType("list");
-            }}
-          />
-        </span>
-        <Search />
+        <div>
+          <span>
+            <img
+              src={isShowCard ? btnCardActive : btnCard}
+              alt="card"
+              className="proof-header-img"
+              onClick={() => {
+                handleShowType("card");
+              }}
+            />
+            <img
+              src={isShowCard ? btnList : btnListActive}
+              alt="list"
+              className="proof-header-img"
+              onClick={() => {
+                handleShowType("list");
+              }}
+            />
+          </span>
+        </div>
+        <div
+          className={classNames("proof-header-right", {
+            show: showType === "card",
+          })}
+        >
+          <Select
+            defaultValue=""
+            onChange={handleTypeChange}
+            className="proof-select"
+          >
+            <Option value={""} key="all">
+              All
+            </Option>
+            {STATUS.map((it) => (
+              <Option value={it.title} key={it.title}>
+                {it.title}
+              </Option>
+            ))}
+          </Select>
+          <Search onChange={handleInputChange} />
+        </div>
       </div>
       <div className="proof-content">
-        {isShowCard ? <Cards data={allProofs} /> : <Lists data={allProofs} />}
+        {isShowCard ? (
+          <Cards
+            data={allProofs}
+            searchType={searchType}
+            searchInput={searchInput}
+          />
+        ) : (
+          <Lists data={allProofs} />
+        )}
       </div>
     </div>
   );

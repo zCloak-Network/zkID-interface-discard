@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-28 14:56:01
- * @LastEditTime: 2021-12-31 15:36:57
+ * @LastEditTime: 2022-01-06 16:52:57
  */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -40,7 +40,7 @@ const MODOLE = [
   // },
 ];
 
-export default function Menu() {
+export default function Menu(): JSX.Element {
   const navigate = useNavigate();
   const [module, setModule] = useState(MODOLE[0].key);
 
@@ -50,13 +50,11 @@ export default function Menu() {
   };
 
   useEffect(() => {
-    if (location.pathname) {
-      const module = MODOLE.find((it) =>
-        location.pathname.includes(it.url)
-      )?.key;
+    if (location.hash) {
+      const module = MODOLE.find((it) => location.hash.includes(it.url))?.key;
       if (module) setModule(module);
     }
-  }, [location]);
+  }, []);
 
   return (
     <ul className="menu-components" onClick={handleClick}>

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-20 14:49:32
- * @LastEditTime: 2021-12-28 14:06:02
+ * @LastEditTime: 2022-01-07 10:18:53
  */
 import React from "react";
 import Modal from "../Modal";
@@ -16,7 +16,7 @@ import { ApplicationModal } from "../../state/application/reducer";
 
 import "./index.scss";
 
-export default function ErrorModal() {
+export default function ErrorModal(): JSX.Element {
   const toggleErrorModal = useToggleErrorModal();
   const errorModalOpen = useModalOpen(ApplicationModal.ERROR);
 
