@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-08-27 11:52:05
- * @LastEditTime: 2022-01-05 17:41:33
+ * @LastEditTime: 2022-01-07 15:15:49
  *
  */
 
@@ -42,3 +42,5 @@ export const STATUS = [
 export const NetworkContextName = "NETWORK";
 
 export const DEFAULT_TXN_DISMISS_MS = 25000;
+
+export const IPFSURL = "https://ipfs.infura.io:5001/api/v0/cat?arg=";

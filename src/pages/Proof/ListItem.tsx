@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-30 16:51:36
- * @LastEditTime: 2022-01-05 23:26:30
+ * @LastEditTime: 2022-01-07 15:47:26
  */
 import React, { useState } from "react";
 import classNames from "classnames";
@@ -30,6 +30,7 @@ interface Props {
     programHash: string;
     rootHash: string;
   };
+  jumpToIpfs: (id: string) => void;
 }
 
 interface ProgressProps {
@@ -73,7 +74,7 @@ function Progress({ status, percent = 0 }: ProgressProps): JSX.Element {
   );
 }
 
-export default function ListItem({ data }: Props): JSX.Element {
+export default function ListItem({ data, jumpToIpfs }: Props): JSX.Element {
   const [open, setOpen] = useState(false);
 
   const {
@@ -105,7 +106,7 @@ export default function ListItem({ data }: Props): JSX.Element {
         <div>{programHashName}</div>
         <div>{claimAlias}</div>
         <div>{fieldName}</div>
-        <div>{shortenHash(proofCid)}</div>
+        <div onClick={() => jumpToIpfs(proofCid)}>{shortenHash(proofCid)}</div>
         <div>
           {/* TODO */}
           <Progress status={STATUSING} percent={0.3} />

@@ -5,7 +5,7 @@
   margin: 20px 30px 50px 30px;
 
   .logo {
-    width: 25px;
+    width: 28px;
     height: 30px;
     cursor: pointer;
   }
@@ -30,6 +30,10 @@
       display: inline-block;
       margin-left: 15px;
     }
+  }
+
+  .btn:hover {
+    border: 1px solid $primary-color;
   }
 
   .connected {

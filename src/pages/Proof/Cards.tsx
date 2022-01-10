@@ -2,15 +2,15 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-03 16:34:58
- * @LastEditTime: 2022-01-07 15:06:17
+ * @LastEditTime: 2022-01-10 15:40:20
  */
 import React, { useState, useMemo } from "react";
 import classNames from "classnames";
 
 import Empty from "../../components/Empty";
 
-import bgImg from "../../images/pic_card3.png";
-import bgImgBack from "../../images/pic_card3_back.png";
+import bgImg from "../../images/card_1.png";
+import bgImgBack from "../../images/card_1_2.png";
 import dropdownImg from "../../images/icon_arrow_fill.svg";
 import verifiedTrueImg from "../../images/icon_verified_true.svg";
 import verifiedFalseImg from "../../images/icon_verified_false.svg";
@@ -39,15 +39,17 @@ interface Props {
   data: ProofProps[];
   searchInput: string;
   searchType: string;
+  jumpToIpfs: (id: string) => void;
 }
 
 interface CardProps {
   dataItem: ProofProps;
+  jumpToIpfs: (id: string) => void;
 }
 
 const { STATUSTRUE, STATUSFALSE, STATUSING } = ProofStatus;
 
-function Card({ dataItem }: CardProps) {
+function Card({ dataItem, jumpToIpfs }: CardProps) {
   const [visible, toggleVisible] = useState(false);
 
   const handleClick = () => {
@@ -81,7 +83,10 @@ function Card({ dataItem }: CardProps) {
           {dataItem.programDetails?.programHashName}
         </div>
         <div className="main-item-footer">
-          <span className="main-item-proofCid">
+          <span
+            className="main-item-proofCid"
+            onClick={() => jumpToIpfs(dataItem.proofCid)}
+          >
             {shortenHash(dataItem.proofCid)}
           </span>
           <span className="main-item-footer-right" onClick={handleClick}>
@@ -131,6 +136,7 @@ export default function Cards({
   data,
   searchInput,
   searchType,
+  jumpToIpfs,
 }: Props): JSX.Element {
   const dataSelected = useMemo(() => {
     if (!searchType && !searchInput) return data;
@@ -147,12 +153,12 @@ export default function Cards({
       {dataSelected && dataSelected.length > 0 && (
         <ul className="cards-main">
           {dataSelected?.map((it, index) => (
-            <Card key={index} dataItem={it} />
+            <Card key={index} dataItem={it} jumpToIpfs={jumpToIpfs} />
           ))}
         </ul>
       )}
       {dataSelected && dataSelected.length === 0 && (
-        <Empty description="Your zk Pass will appear here." />
+        <Empty description="Your zkPass will appear here." />
       )}
     </div>
   );

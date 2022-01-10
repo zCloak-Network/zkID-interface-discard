@@ -28,6 +28,7 @@ $margin-xss: 4px; // more small
 $primary-color: #6768ac;
 
 $primary-2: rgba($primary-color, 20%);
+$primary-8: rgba($primary-color, 80%);
 
 $scrollbar-thumb-color: $gray-5;
 $scrollbar-thumb-width: 6px;
@@ -40,24 +41,21 @@ $main-color-hover-bg: rgba($main-color, 10%);
 $main-color-active-bg: rgba($main-color, 10%);
 $main-hover-color: #7087ff;
 $main-active-color: #5f78ff;
-$title-color: $gray-1;
 $stress-color: $gray-3;
-$text-color: $gray-1;
 $content-color: $gray-3;
-$placeholder-color: $gray-4;
-$subsidiary-color: $gray-3;
 $text-description-color: $gray-4;
-$required-color: #e60a26;
-$default-text-color: $text-color;
 $default-text-hover-color: $main-hover-color;
 $default-text-click-color: $main-active-color;
 $default-text-active-color: $white;
+
 $text-component-color: $main-color;
 $text-component-hover-color: $main-hover-color;
 $text-component-active-color: $main-active-color;
+
 $link-color: $text-component-color;
 $link-hover-color: $text-component-hover-color;
 $link-active-color: $text-component-active-color;
+
 $icon-color: $gray-4;
 $icon-color-hover: $main-hover-color;
 $icon-color-active: $main-active-color;
@@ -65,6 +63,7 @@ $icon-color-disable: $gray-5;
 $icon-component-color: $main-color;
 $icon-component-hover-color: $icon-color-hover;
 $icon-component-active-color: $icon-color-active;
+
 $border-component-color: $main-color;
 $border-component-hover-color: $main-hover-color;
 $border-component-active-color: $main-active-color;
@@ -74,24 +73,30 @@ $border-active-color-base: $main-color;
 $border-width-base: 1px;
 $border-style-base: solid;
 $border-color-split: $gray-5;
+
+$title-bar-bg: #f0f6ff;
+
+$bg-color: $white;
 $bg-main-color: #f4f5f6;
 $bg-sub-color: $gray-7;
-$title-bar-bg: #f0f6ff;
-$bg-color: $white;
 $bg-hover-color: $white;
 $bg-active-color: $white;
 $bg-component-color: $main-color;
 $bg-component-hover-color: $main-hover-color;
 $bg-component-active-color: $main-active-color;
+
 $item-active-bg: $main-color;
 $item-hover-bg: #f4f6fd;
+
 $shadow-color: rgba($gray-4, 0.7);
 $box-shadow: 0px 5px 20px 0px $shadow-color;
 $body-bg-color: $bg-main-color;
+
 $module-bg-color: $bg-color;
 $module-border-color: $border-color-base;
 $module-title-bg-color: $bg-color;
 $module-title-border-color: $border-color-base;
+
 $status-error-color: #d56386;
 $status-error-border-color: $status-error-color;
 $status-error-bg-color: #ffeceb;
@@ -115,23 +120,28 @@ $status-other-border-color: $status-other-color;
 $status-other-bg-color: #e6f2ff;
 $status-other-finish: #7cd322;
 $status-other-wait: #ffbf00;
+
 $disabled-color: #c0c5ca;
 $disabled-bg: $bg-main-color;
 $disabled-border: #ccd2d8;
+
 $font-size-base: 14px;
 $font-size-lg: $font-size-base + 2px;
 $font-size-sm: 12px;
+
 $border-radius-base: 2px;
 $border-radius-sub: 4px;
 $line-height-base: 1.5;
 
 /* 文字相关 */
-$title-color: $gray-1; // 一二三级标题
-$sub-title-color: rgba($gray-1, 0.85); // 小标题
-// $text-color: rgba($gray-1, 0.65); // 大段正文文本 / form、list的label
-$subsidiary-color: rgba($gray-1, 0.65); // 相关辅助解释性文字
-$legend-color: rgba($gray-1, 0.45); // 次级辅助文字、图例
-$required-color: #e60a26; // 必填标识
+$title-color: #000000; // 一二三级标题
+$sub-title-color: #333333; // 小标题
+$text-color: #000000; // 大段正文文本 / form、list的label
+$default-text-color: $text-color;
+$subsidiary-color: #666666; // 相关辅助解释性文字
+$legend-color: #999999; // 次级辅助文字、图例
+$required-color: #e60a26; //
+$placeholder-color: #b6b7c7; // 必填标识
 
 $space-xxs: 4px;
 $space-xs: 8px;

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-16 16:29:16
- * @LastEditTime: 2021-12-16 16:32:00
+ * @LastEditTime: 2022-01-10 10:29:33
  */
 import React from "react";
 
@@ -28,7 +28,7 @@ export default function Option({
   icon: string;
   active?: boolean;
   id: string;
-}) {
+}): React.ReactNode {
   const content = "content";
 
   // if (link) {

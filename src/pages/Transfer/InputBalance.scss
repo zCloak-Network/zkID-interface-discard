@@ -41,7 +41,7 @@
     font-size: 26px;
     font-family: Kanit;
     font-weight: 400;
-    color: #b6b7c7;
+    color: $placeholder-color;
   }
 
   .select-btn {
@@ -63,6 +63,10 @@
       width: 24px;
       height: 24px;
     }
+  }
+
+  .select-btn:hover {
+    border: 1px solid $primary-color;
   }
 
   &.selected {

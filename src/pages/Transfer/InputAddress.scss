@@ -13,7 +13,7 @@
   .input-label {
     font-size: 14px;
     margin-bottom: 12px;
-    color: #212121;
+    color: $sub-title-color;
     font-weight: 300;
     margin-top: 4px;
   }
@@ -24,7 +24,8 @@
     outline: 0;
     background: #f7f8f9;
     width: 100%;
-    color: #404040;
+    color: $sub-title-color;
+    font-weight: $font-weight-light;
   }
 
   .no-rule {
@@ -35,7 +36,7 @@
     opacity: 1;
     border-radius: 16px;
     font-size: 16px;
-    color: #999999;
+    color: $legend-color;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-03 16:35:07
- * @LastEditTime: 2022-01-07 15:06:57
+ * @LastEditTime: 2022-01-07 18:21:06
  */
 import React, { useMemo, useState } from "react";
 import { Pagination } from "antd";
@@ -16,9 +16,10 @@ const pageSize = 10;
 
 interface Props {
   data: any;
+  jumpToIpfs: (id: string) => void;
 }
 
-export default function Lists({ data }: Props): JSX.Element {
+export default function Lists({ data, jumpToIpfs }: Props): JSX.Element {
   const [currentNum, setCurrentNum] = useState(1);
 
   const handelPagination = (page) => {
@@ -45,7 +46,7 @@ export default function Lists({ data }: Props): JSX.Element {
           </div>
           {currData?.map((item, index) => (
             <div key={`${item.proofCid}-${index}`} className="proof-list">
-              <ListItem data={item} />
+              <ListItem data={item} jumpToIpfs={jumpToIpfs} />
             </div>
           ))}
           <Pagination
@@ -58,7 +59,7 @@ export default function Lists({ data }: Props): JSX.Element {
       )}
 
       {currData && currData.length === 0 && (
-        <Empty description="Your zk Pass will appear here." />
+        <Empty description="Your zkPass will appear here." />
       )}
     </div>
   );

@@ -10,7 +10,7 @@
   .menu {
     font-size: 16px;
     margin-bottom: 36px;
-    color: #505050;
+    color: $subsidiary-color;
     background: $white;
     display: flex;
     height: 48px;
@@ -37,7 +37,7 @@
     > li.active {
       color: #000000;
       border-radius: 20px;
-      background: #edeef2;
+      background: #eaecf2;
     }
   }
 }

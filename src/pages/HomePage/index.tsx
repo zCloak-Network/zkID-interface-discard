@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-08-30 16:38:02
- * @LastEditTime: 2022-01-05 23:29:40
+ * @LastEditTime: 2022-01-07 17:29:46
  */
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
@@ -46,15 +46,17 @@ function HomePage() {
       <div className="main">
         <Popups />
         <Header handleOpenConnect={handleOpenConnect} />
-        <Routes>
-          <Route path="/" element={<Navigate replace to="/transfer" />} />
-          <Route path="/transfer" element={<Transfer />}>
-            <Route index element={<RegulatedTransfer />} />
-            <Route path="/transfer/activities" element={<Activities />} />
-          </Route>
-          <Route path="/zk" element={<Zk />} />
-          <Route path="/zkPASS" element={<Proof />} />
-        </Routes>
+        <div className="main-content">
+          <Routes>
+            <Route path="/" element={<Navigate replace to="/transfer" />} />
+            <Route path="/transfer" element={<Transfer />}>
+              <Route index element={<RegulatedTransfer />} />
+              <Route path="/transfer/activities" element={<Activities />} />
+            </Route>
+            <Route path="/zk" element={<Zk />} />
+            <Route path="/zkPASS" element={<Proof />} />
+          </Routes>
+        </div>
       </div>
       <Modals />
     </div>

@@ -31,4 +31,8 @@
     background: $primary-color;
     color: $white;
   }
+
+  &.button-components-primary:hover {
+    background: $primary-8;
+  }
 }

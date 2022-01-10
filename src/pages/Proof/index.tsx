@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2022-01-07 15:06:04
+ * @LastEditTime: 2022-01-07 15:41:48
  */
 import React, { useState, useMemo, useEffect, ReactElement } from "react";
 import dayjs from "dayjs";
@@ -11,7 +11,7 @@ import { Select } from "antd";
 import { useWeb3React } from "@web3-react/core";
 import { useInterval } from "ahooks";
 
-import { STATUS } from "../../constants";
+import { STATUS, IPFSURL } from "../../constants";
 
 import Loading from "../../components/Loading";
 import Cards from "./Cards";
@@ -117,6 +117,11 @@ export default function Proof(): ReactElement {
     setSearchInput(e.target.value);
   };
 
+  const jumpToIpfs = (id) => {
+    const url = `${IPFSURL}${id}`;
+    window.open(url);
+  };
+
   useInterval(() => {
     queryData();
   }, interval);
@@ -179,9 +184,10 @@ export default function Proof(): ReactElement {
               data={allProofs}
               searchType={searchType}
               searchInput={searchInput}
+              jumpToIpfs={jumpToIpfs}
             />
           ) : (
-            <Lists data={allProofs} />
+            <Lists data={allProofs} jumpToIpfs={jumpToIpfs} />
           )}
         </div>
       )}
