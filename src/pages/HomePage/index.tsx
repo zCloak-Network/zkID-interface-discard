@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-08-30 16:38:02
- * @LastEditTime: 2022-01-11 10:22:38
+ * @LastEditTime: 2022-01-11 17:13:47
  */
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
@@ -11,7 +11,7 @@ import Popups from "../../components/Popups";
 import Header from "../../components/Header";
 import Transfer from "../Transfer";
 import Proof from "../Proof";
-import Zk from "../Zk";
+// import Zk from "../Zk";
 import Activities from "../Activities";
 import RegulatedTransfer from "../Transfer/RegulatedTransfer";
 import Modals from "../Modals";
@@ -51,10 +51,16 @@ function HomePage() {
             <Route path="/" element={<Navigate replace to="/transfer" />} />
             <Route path="/transfer" element={<Transfer />}>
               <Route index element={<RegulatedTransfer />} />
-              <Route path="/transfer/activities" element={<Activities />} />
+              <Route
+                path="/transfer/activities"
+                element={<Activities handleOpenConnect={handleOpenConnect} />}
+              />
             </Route>
-            <Route path="/zk" element={<Zk />} />
-            <Route path="/zkID" element={<Proof />} />
+            {/* <Route path="/zk" element={<Zk />} /> */}
+            <Route
+              path="/zkID"
+              element={<Proof handleOpenConnect={handleOpenConnect} />}
+            />
           </Routes>
         </div>
       </div>

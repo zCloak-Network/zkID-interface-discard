@@ -98,6 +98,6 @@
   }
 
   &.error {
-    border: 1px solid #d75079;
+    border: 1px solid $status-error-color;
   }
 }

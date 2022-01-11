@@ -2,43 +2,34 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-08-06 11:23:24
- * @LastEditTime: 2021-12-21 19:10:17
+ * @LastEditTime: 2022-01-11 17:16:56
  */
 
 import React, { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import Web3 from "web3";
-import {
-  useWeb3React,
-  createWeb3ReactRoot,
-  Web3ReactProvider,
-} from "@web3-react/core";
+import { createWeb3ReactRoot, Web3ReactProvider } from "@web3-react/core";
 import { Provider } from "react-redux";
 import { HashRouter as Router } from "react-router-dom";
-import { useActiveWeb3React } from "./hooks/web3";
 import store from "./state";
-import HomePage from "./pages/HomePage";
+import App from "./pages/App";
 import MyContext from "./components/Context";
 import Web3ReactManager from "./components/Web3ReactManager";
 
 import getLibrary from "./utils/getLibrary";
 
 import { NetworkContextName } from "./constants";
-// import Event from "./components/Notification";
 
-import "./styles/index.scss";
 import "antd/dist/antd.css";
-
+import "./styles/index.scss";
 const web3 = new Web3(Web3.givenProvider);
 const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName);
 
-// if (window.ethereum) {
-//   window.ethereum.autoRefreshOnNetworkChange = false;
-// }
+if (!!window.ethereum) {
+  window.ethereum.autoRefreshOnNetworkChange = false;
+}
 
-function App(): React.ReactElement {
-  const { error, account } = useWeb3React();
-
+function Root(): React.ReactElement {
   return (
     <StrictMode>
       <Provider store={store}>
@@ -47,7 +38,7 @@ function App(): React.ReactElement {
             <Web3ReactManager>
               <MyContext.Provider value={{ web3: web3 }}>
                 <Router>
-                  <HomePage />
+                  <App />
                 </Router>
               </MyContext.Provider>
             </Web3ReactManager>
@@ -58,4 +49,4 @@ function App(): React.ReactElement {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<Root />, document.getElementById("root"));

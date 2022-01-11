@@ -59,20 +59,15 @@
       cursor: pointer;
     }
 
-    .submit-btn {
+    .submit-btn,
+    .loading {
       width: 551px;
       height: 60px;
       border-radius: 20px;
       margin-top: 14px;
-      line-height: 60px;
-      text-align: center;
-      background: $primary-color;
       font-size: 18px;
-      font-weight: $font-weight-medium;
-      color: $white;
-      cursor: pointer;
     }
-    .submit-btn:hover,
+
     .generate-btn:hover {
       background: $primary-8;
     }

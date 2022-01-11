@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2022-01-07 15:30:41
+ * @LastEditTime: 2022-01-11 16:34:17
  */
 import React, { useEffect, useState, ReactElement } from "react";
 import { useWeb3React } from "@web3-react/core";
@@ -19,7 +19,11 @@ import { timeFormat } from "../../constants";
 
 import "./index.scss";
 
-export default function Activities(): ReactElement {
+interface Props {
+  handleOpenConnect: () => void;
+}
+
+export default function Activities({ handleOpenConnect }: Props): ReactElement {
   const [activities, setActivities] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -35,6 +39,16 @@ export default function Activities(): ReactElement {
       }
     });
   }, [account]);
+
+  if (!account) {
+    return (
+      <Empty
+        type="notConnected"
+        description="Your transactions will appear here."
+        handleConnect={handleOpenConnect}
+      />
+    );
+  }
 
   return (
     <div>

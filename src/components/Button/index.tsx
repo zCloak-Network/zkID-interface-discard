@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-29 16:15:23
- * @LastEditTime: 2022-01-05 15:59:39
+ * @LastEditTime: 2022-01-11 11:24:23
  */
 import React from "react";
 import classNames from "classnames";
@@ -40,6 +40,11 @@ export default function Button({
     className
   );
 
+  const handleClick = () => {
+    if (disabled) return;
+    onClick();
+  };
+
   if (loading) {
     return (
       <div className="button-components loading">
@@ -50,7 +55,7 @@ export default function Button({
   }
 
   return (
-    <div onClick={onClick} className={classes}>
+    <div onClick={handleClick} className={classes}>
       {children}
     </div>
   );

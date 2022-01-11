@@ -13,9 +13,9 @@
   cursor: pointer;
 
   &.disabled {
-    cursor: not-allowed;
-    color: #909090;
-    background: #eaecf2;
+    cursor: not-allowed !important;
+    color: $legend-color !important;
+    background: #eaecf2 !important;
   }
 
   &.loading {

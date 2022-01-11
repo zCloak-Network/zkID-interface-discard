@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2022-01-07 15:41:48
+ * @LastEditTime: 2022-01-11 17:11:52
  */
 import React, { useState, useMemo, useEffect, ReactElement } from "react";
 import dayjs from "dayjs";
@@ -17,6 +17,7 @@ import Loading from "../../components/Loading";
 import Cards from "./Cards";
 import Lists from "./Lists";
 import Search from "../../components/Search";
+import Empty from "../../components/Empty";
 
 import btnList from "../../images/btn_list.png";
 import btnListActive from "../../images/btn_list_active.svg";
@@ -33,7 +34,11 @@ import "./index.scss";
 const { STATUSING } = ProofStatus;
 const { Option } = Select;
 
-export default function Proof(): ReactElement {
+interface Props {
+  handleOpenConnect: () => void;
+}
+
+export default function Proof({ handleOpenConnect }: Props): ReactElement {
   const [allProofs, setAllProofs] = useState(null);
   const [verifingProof, setVerifingProof] = useState([]);
   const [showType, setShowType] = useState("card");
@@ -177,7 +182,15 @@ export default function Proof(): ReactElement {
           <Search onChange={handleInputChange} />
         </div>
       </div>
-      {allProofs && !loading && (
+      {!account && (
+        <Empty
+          type="notConnected"
+          description="Your zkID will appear here."
+          handleConnect={handleOpenConnect}
+          className="not-connected"
+        />
+      )}
+      {allProofs && !loading && account && (
         <div className="proof-content">
           {isShowCard ? (
             <Cards

@@ -2,9 +2,9 @@
  * @Description: submit modal
  * @Author: lixin
  * @Date: 2021-12-02 17:23:15
- * @LastEditTime: 2022-01-04 14:08:52
+ * @LastEditTime: 2022-01-11 15:08:55
  */
-import React, { useContext, useState, ReactElement } from "react";
+import React, { useContext, useState, useMemo } from "react";
 import Modal from "../../components/Modal";
 import MyContext from "../../components/Context";
 import {
@@ -13,6 +13,7 @@ import {
 } from "../../state/application/hooks";
 import { ApplicationModal } from "../../state/application/reducer";
 import { useAddPopup } from "../../state/application/hooks";
+import Button from "../../components/Button";
 
 import abi from "../../constants/contract/contractAbi/KiltProofs";
 import { shortenHash } from "../../utils";
@@ -40,8 +41,9 @@ export default function Submit({
   proHash,
   proName,
   programDetail,
-}: Props): ReactElement {
+}: Props): JSX.Element {
   const { web3 } = useContext(MyContext) as contextProps;
+  const [loading, setLoading] = useState(false);
   const [generationInfo, setGenerationInfo] = useState({
     proofCid: "",
     rootHash: "",
@@ -77,6 +79,7 @@ export default function Submit({
     );
   };
   const handleSumbit = () => {
+    setLoading(true);
     const contract = new web3.eth.Contract(abi, contractAddress);
     contract.methods
       .addProof(
@@ -92,8 +95,9 @@ export default function Submit({
         from: account,
       })
       .then(function (receipt) {
+        console.log("addProofReceipt", receipt);
         if (receipt) {
-          console.log(444444666, receipt);
+          setLoading(false);
           toggleSubmitProofModal();
 
           addPopup(
@@ -110,6 +114,11 @@ export default function Submit({
         }
       });
   };
+
+  const abled = useMemo(
+    () => proName && proHash && fieldName && generationInfo.proofCid,
+    [proName, proHash, fieldName, generationInfo.proofCid]
+  );
 
   return (
     <Modal
@@ -148,14 +157,20 @@ export default function Submit({
               </span>
             )}
 
-            <span className="generate-btn" onClick={goToGenerate}>
+            <Button className="generate-btn" onClick={goToGenerate}>
               Generate
-            </span>
+            </Button>
           </div>
         </div>
-        <div className="submit-btn" onClick={handleSumbit}>
+        <Button
+          disabled={!abled}
+          className="submit-btn"
+          type="primary"
+          onClick={handleSumbit}
+          loading={loading}
+        >
           Submit
-        </div>
+        </Button>
       </div>
     </Modal>
   );
