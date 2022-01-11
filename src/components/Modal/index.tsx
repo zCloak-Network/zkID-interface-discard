@@ -2,10 +2,10 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-20 14:13:47
- * @LastEditTime: 2022-01-05 16:00:16
+ * @LastEditTime: 2022-01-10 16:58:18
  */
 import React, { useMemo } from "react";
-import { Modal } from "antd";
+import { Modal, Divider } from "antd";
 import classNames from "classnames";
 
 import closeImg from "../../images/close.png";
@@ -14,6 +14,7 @@ import "./index.scss";
 
 interface Props {
   visible: boolean;
+  hasDivider?: boolean;
   title: string;
   wrapClassName?: string;
   onCancel: () => void;
@@ -22,6 +23,7 @@ interface Props {
 
 export default function MyModal({
   title,
+  hasDivider = false,
   visible,
   onCancel,
   children,
@@ -49,7 +51,10 @@ export default function MyModal({
       }
       {...rest}
     >
-      <div className="title">{title}</div>
+      <div className={classNames("title", { "has-divider": hasDivider })}>
+        {title}
+      </div>
+      {hasDivider && <i className="divider" />}
       {children}
     </Modal>
   );

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-03 16:35:07
- * @LastEditTime: 2022-01-07 18:21:06
+ * @LastEditTime: 2022-01-11 10:22:51
  */
 import React, { useMemo, useState } from "react";
 import { Pagination } from "antd";
@@ -59,7 +59,7 @@ export default function Lists({ data, jumpToIpfs }: Props): JSX.Element {
       )}
 
       {currData && currData.length === 0 && (
-        <Empty description="Your zkPass will appear here." />
+        <Empty description="Your zkID will appear here." />
       )}
     </div>
   );

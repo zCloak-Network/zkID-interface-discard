@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-03 16:34:58
- * @LastEditTime: 2022-01-10 15:40:20
+ * @LastEditTime: 2022-01-11 10:22:34
  */
 import React, { useState, useMemo } from "react";
 import classNames from "classnames";
@@ -158,7 +158,7 @@ export default function Cards({
         </ul>
       )}
       {dataSelected && dataSelected.length === 0 && (
-        <Empty description="Your zkPass will appear here." />
+        <Empty description="Your zkID will appear here." />
       )}
     </div>
   );

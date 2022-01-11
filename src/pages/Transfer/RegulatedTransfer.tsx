@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2022-01-05 23:25:06
+ * @LastEditTime: 2022-01-11 10:23:18
  */
 import React, { useState, useEffect, useMemo, useContext } from "react";
 import { message } from "antd";
@@ -175,6 +175,7 @@ export default function RegulatedTransfer(): JSX.Element {
   };
 
   const handleApprove = () => {
+    setIsLoading(true);
     const contract = new web3.eth.Contract(sampleTokenAbi, token.tokenAddress, {
       from: account,
     });
@@ -184,13 +185,14 @@ export default function RegulatedTransfer(): JSX.Element {
         from: account,
       })
       .then(function (receipt) {
+        setIsLoading(false);
         addPopup(
           {
             txn: {
               hash: receipt.transactionHash,
               success: true,
               title: "Approve Success",
-              summary: `Approve zkPass to use your ${token.tokenName} successfully.`,
+              summary: `Approve zkID to use your ${token.tokenName} successfully.`,
             },
           },
           receipt.transactionHash

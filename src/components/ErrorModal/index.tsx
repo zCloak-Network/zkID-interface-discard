@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-20 14:49:32
- * @LastEditTime: 2022-01-07 10:18:53
+ * @LastEditTime: 2022-01-10 18:19:39
  */
 import React from "react";
 import Modal from "../Modal";
@@ -54,6 +54,7 @@ export default function ErrorModal(): JSX.Element {
 
   return (
     <Modal
+      hasDivider
       visible={errorModalOpen}
       title="Wrong Network"
       onCancel={toggleErrorModal}

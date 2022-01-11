@@ -1,19 +1,15 @@
 .error-modal {
   .ant-modal-content {
     width: 424px;
-    height: 232px;
 
     .sub-title {
       font-size: 16px;
       font-family: Kanit;
       font-weight: 400;
-      color: #7c7c7c;
-      padding-top: 14px;
-      margin-bottom: 18px;
-      border-top: 1px solid #d8e0f0;
+      color: $legend-color;
+      padding: 14px 0;
       display: inline-block;
       width: 100%;
-      margin-top: 30px;
     }
     .switch-btn {
       width: 376px;
@@ -27,6 +23,10 @@
       line-height: 48px;
       text-align: center;
       cursor: pointer;
+    }
+
+    .switch-btn:hover {
+      background: $primary-8;
     }
   }
 }

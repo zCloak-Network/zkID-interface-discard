@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-28 14:56:01
- * @LastEditTime: 2022-01-06 16:52:57
+ * @LastEditTime: 2022-01-11 10:22:21
  */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -25,9 +25,9 @@ const MODOLE = [
     activeImg: transferActiveImg,
   },
   {
-    title: "zk PASS",
+    title: "zkID",
     key: "proof",
-    url: "/zkPASS",
+    url: "/zkID",
     img: proofImg,
     activeImg: proofActiveImg,
   },

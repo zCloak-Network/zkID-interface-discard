@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2021-12-16 11:32:59
+ * @LastEditTime: 2022-01-10 18:32:38
  */
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
@@ -22,7 +22,7 @@ const MENU = [
   },
 ];
 
-export default function Transfer() {
+export default function Transfer(): JSX.Element {
   const navigate = useNavigate();
   const location = useLocation();
   const [module, setModule] = useState(MENU[0].key);

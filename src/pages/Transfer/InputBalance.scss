@@ -14,7 +14,7 @@
     font-size: 12px;
     font-weight: 300;
     line-height: 24px;
-    color: #7c7c7c;
+    color: $subsidiary-color;
     margin-top: 10px;
     text-align: right;
     width: 100%;
@@ -84,7 +84,7 @@
       padding-left: 12px;
       padding-right: 8px;
 
-      .token-item {
+      .token-item-balance {
         padding-top: 6px;
         font-weight: $font-weight-medium;
         > img {

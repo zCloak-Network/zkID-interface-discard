@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-28 17:56:31
- * @LastEditTime: 2021-12-28 20:00:50
+ * @LastEditTime: 2022-01-11 10:26:11
  */
 import React from "react";
 import Modal from "../Modal";
@@ -20,7 +20,7 @@ import { ExplorerDataType, getExplorerLink } from "../../utils/getExplorerLink";
 
 import "./indes.scss";
 
-export default function AccountDetails() {
+export default function AccountDetails(): JSX.Element {
   const { account, chainId } = useActiveWeb3React();
   const toggleConnectWalletModal = useToggleConnectWalletModal();
   const toggleAccountDetailsModal = useToggleAccountDetailsModal();
@@ -34,6 +34,7 @@ export default function AccountDetails() {
 
   return (
     <Modal
+      hasDivider
       visible={accountDetailsModalOpen}
       title="Account"
       onCancel={toggleAccountDetailsModal}

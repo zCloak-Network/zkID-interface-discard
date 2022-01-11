@@ -3,7 +3,7 @@
     width: 424px;
 
     .wallets {
-      margin-top: $margin-lg;
+      margin-top: 34px;
 
       > li {
         display: flex;
@@ -18,7 +18,7 @@
 
         .wallet-name {
           font-size: $font-size-base;
-          color: #0a1629;
+          color: $sub-title-color;
           display: inline-block;
           margin-left: $margin-md;
         }

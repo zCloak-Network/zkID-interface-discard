@@ -3,13 +3,11 @@
     display: flex;
     justify-content: space-between;
     padding-top: 14px;
-    margin-top: 20px;
     margin-bottom: 15px;
-    border-top: 1px solid #eaecf2;
 
     .sub-title {
       font-size: $font-size-lg;
-      color: #7c7c7c;
+      color: $legend-color;
     }
 
     .change-btn {
@@ -24,6 +22,10 @@
       justify-content: center;
       cursor: pointer;
     }
+
+    .change-btn:hover {
+      opacity: 0.8;
+    }
   }
 
   .account {
@@ -32,14 +34,16 @@
     font-weight: 500;
     margin-bottom: 4px;
     display: inline-block;
+    margin-left: 26px;
   }
 
   .account-details-btns {
     display: flex;
+    margin-left: 26px;
 
     .copy-btn,
     .view-btn {
-      color: #7c7c7c;
+      color: $subsidiary-color;
       cursor: pointer;
     }
     .copy-btn:hover,

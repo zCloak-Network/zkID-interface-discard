@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-10 13:51:08
- * @LastEditTime: 2022-01-05 23:24:43
+ * @LastEditTime: 2022-01-11 10:22:11
  */
 import React from "react";
 import { UnsupportedChainIdError } from "@web3-react/core";
@@ -97,7 +97,7 @@ export default function TransferBtn({
   if (account && !approveStatus && token.tokenAddress) {
     return (
       <Button loading={loading} type="primary" onClick={handleApprove}>
-        Allow zkPass to use your {token.tokenName}.
+        Allow zkID to use your {token.tokenName}.
       </Button>
     );
   }

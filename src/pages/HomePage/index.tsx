@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-08-30 16:38:02
- * @LastEditTime: 2022-01-07 17:29:46
+ * @LastEditTime: 2022-01-11 10:22:38
  */
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
@@ -54,7 +54,7 @@ function HomePage() {
               <Route path="/transfer/activities" element={<Activities />} />
             </Route>
             <Route path="/zk" element={<Zk />} />
-            <Route path="/zkPASS" element={<Proof />} />
+            <Route path="/zkID" element={<Proof />} />
           </Routes>
         </div>
       </div>

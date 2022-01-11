@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-02 15:06:01
- * @LastEditTime: 2022-01-05 16:03:21
+ * @LastEditTime: 2022-01-10 18:26:56
  */
 import React from "react";
 import classNames from "classnames";
@@ -43,7 +43,7 @@ function SelectToken({ token, handleOpenToken }: SelectTokenProps) {
     >
       {token.tokenAddress ? (
         <>
-          <TokenItem data={token} classNames="token-item" />
+          <TokenItem data={token} classNames="token-item-balance" />
           <img src={arrowDownInactiveImg} />
         </>
       ) : (
