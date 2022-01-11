@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2022-01-11 10:23:18
+ * @LastEditTime: 2022-01-11 11:11:53
  */
 import React, { useState, useEffect, useMemo, useContext } from "react";
 import { message } from "antd";
@@ -109,6 +109,7 @@ export default function RegulatedTransfer(): JSX.Element {
           programHash: res.data.data.programHash,
         }).then((res2) => {
           const { data } = res2.data;
+          setIsLoading(false);
           if (data.programHash > 0) {
             const { status } = data;
 
