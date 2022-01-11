@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-10 13:51:08
- * @LastEditTime: 2022-01-11 10:22:11
+ * @LastEditTime: 2022-01-11 20:28:24
  */
 import React from "react";
 import { UnsupportedChainIdError } from "@web3-react/core";
@@ -135,7 +135,7 @@ export default function TransferBtn({
   }
 
   return (
-    <Button loading type="primary" onClick={onClick}>
+    <Button loading={loading} type="primary" onClick={onClick}>
       Transfer
     </Button>
   );

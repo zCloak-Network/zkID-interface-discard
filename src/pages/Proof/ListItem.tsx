@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-30 16:51:36
- * @LastEditTime: 2022-01-07 15:47:26
+ * @LastEditTime: 2022-01-11 19:35:10
  */
 import React, { useState } from "react";
 import classNames from "classnames";
@@ -20,6 +20,7 @@ interface Props {
     programDetails: {
       programHashName: string;
     };
+    percent: string;
     statusCode: string;
     claimAlias: string;
     proofCid: string;
@@ -34,17 +35,13 @@ interface Props {
 }
 
 interface ProgressProps {
-  status: ProofStatus;
-  percent?: number;
+  status: string;
+  percent: number;
 }
 
 const { STATUSTRUE, STATUSFALSE, STATUSING } = ProofStatus;
 
 function Progress({ status, percent = 0 }: ProgressProps): JSX.Element {
-  const innerStyle = {
-    width: `${percent * 100}%`,
-  };
-
   const classes = classNames("progress-outer", {
     "progress-success": status === STATUSTRUE,
     "progress-fail": status === STATUSFALSE,
@@ -64,6 +61,10 @@ function Progress({ status, percent = 0 }: ProgressProps): JSX.Element {
     content = <span>{STATUSING}</span>;
   }
 
+  const innerStyle = {
+    width: status === STATUSING ? `${percent * 100}%` : "100%",
+  };
+
   return (
     <div className={classes}>
       <div className="progress-inner">
@@ -80,6 +81,7 @@ export default function ListItem({ data, jumpToIpfs }: Props): JSX.Element {
   const {
     time,
     index,
+    percent,
     cTypeHash,
     rootHash,
     programHash,
@@ -108,9 +110,7 @@ export default function ListItem({ data, jumpToIpfs }: Props): JSX.Element {
         <div>{fieldName}</div>
         <div onClick={() => jumpToIpfs(proofCid)}>{shortenHash(proofCid)}</div>
         <div>
-          {/* TODO */}
-          <Progress status={STATUSING} percent={0.3} />
-          {/* <Progress status={statusCode} percent="90" /> */}
+          <Progress status={statusCode} percent={Number(percent)} />
         </div>
         <div>{time}</div>
         <div>

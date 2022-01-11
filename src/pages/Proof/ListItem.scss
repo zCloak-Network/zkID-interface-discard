@@ -95,23 +95,26 @@
       position: absolute;
       left: 0;
       z-index: -1;
+      border-radius: 4px;
     }
 
     &.progress-success {
       color: #76af92;
+      border: 1px solid #76af92;
 
       .progress-bg {
+        height: 100%;
         background: #eff6f3;
-        border: 1px solid #eff6f3;
       }
     }
 
     &.progress-fail {
-      color: #d56386;
+      color: $status-error-color;
+      border: 1px solid $status-error-color;
 
       .progress-bg {
+        height: 100%;
         background: #faedf1;
-        border: 1px solid #faedf1;
       }
     }
 

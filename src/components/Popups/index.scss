@@ -8,6 +8,7 @@
   position: absolute;
   right: 40px;
   top: 88px;
+  z-index: 9999;
 
   .close-btn {
     width: 18px;
@@ -16,6 +17,7 @@
     border-radius: 4px;
     float: right;
     text-align: center;
+    cursor: pointer;
     > img {
       width: 10px;
       height: 10px;

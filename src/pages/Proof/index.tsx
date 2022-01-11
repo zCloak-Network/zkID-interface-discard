@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2022-01-11 17:11:52
+ * @LastEditTime: 2022-01-11 20:26:39
  */
 import React, { useState, useMemo, useEffect, ReactElement } from "react";
 import dayjs from "dayjs";
@@ -66,12 +66,11 @@ export default function Proof({ handleOpenConnect }: Props): ReactElement {
 
   const queryData = () => {
     if (!account) return;
-    setLoading(true);
+
     queryProofsByAddr({
       dataOwner: account,
       programHash: verifingProof.map((it) => it.programHash),
     }).then((res) => {
-      setLoading(false);
       if (res.data.code === 200) {
         const data = formatData(res.data.data);
         const verifingData = data.filter((it) => it.statusCode === STATUSING);
@@ -127,12 +126,18 @@ export default function Proof({ handleOpenConnect }: Props): ReactElement {
     window.open(url);
   };
 
+  const getFirstData = async () => {
+    await setLoading(true);
+    await queryData();
+    await setLoading(false);
+  };
+
   useInterval(() => {
     queryData();
   }, interval);
 
   useEffect(() => {
-    queryData();
+    getFirstData();
   }, [account]);
 
   const isShowCard = useMemo(() => showType === "card", [showType]);

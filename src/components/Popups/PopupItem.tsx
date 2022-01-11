@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-23 18:20:26
- * @LastEditTime: 2021-12-24 17:06:10
+ * @LastEditTime: 2022-01-11 18:50:09
  */
 
 import React, { useCallback, useEffect } from "react";
@@ -12,6 +12,7 @@ import TransactionPopup from "./TransactionPopup";
 // import { XIcon } from "@heroicons/react/outline";
 import { animated, useSpring } from "react-spring";
 import { useRemovePopup } from "../../state/application/hooks";
+import closeImg from "../../images/close.png";
 
 const AnimatedFader = animated(({ children, ...rest }) => (
   <div className="h-[3px] bg-dark-800 w-full">
@@ -71,14 +72,12 @@ export default function PopupItem({
   return (
     <div>
       <div>
-        <div>
-          {popupContent}
-          <div>
-            {/* <XIcon width={24} height={24} onClick={removeThisPopup} /> */}
-          </div>
-        </div>
-        {removeAfterMs !== null ? <AnimatedFader style={faderStyle} /> : null}
+        <span className="close-btn" onClick={removeThisPopup}>
+          <img src={closeImg} />
+        </span>
+        {popupContent}
       </div>
+      {removeAfterMs !== null ? <AnimatedFader style={faderStyle} /> : null}
     </div>
   );
 }
