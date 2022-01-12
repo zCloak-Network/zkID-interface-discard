@@ -2,7 +2,7 @@
  * @Description: submit modal
  * @Author: lixin
  * @Date: 2021-12-02 17:23:15
- * @LastEditTime: 2022-01-12 10:31:57
+ * @LastEditTime: 2022-01-12 17:24:08
  */
 import React, { useState, useEffect, ReactElement } from "react";
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
@@ -16,7 +16,6 @@ import {
 } from "../../state/application/hooks";
 import { ApplicationModal } from "../../state/application/reducer";
 import { SUPPORTED_WALLETS } from "../../constants/wallet";
-import { useActiveWeb3React } from "../../hooks/web3";
 
 import "./index.scss";
 
@@ -29,7 +28,7 @@ const WALLET_VIEWS = {
 };
 
 export default function Connect(): ReactElement {
-  const { active, account, connector, activate, error } = useActiveWeb3React();
+  const { active, account, connector, activate, error } = useWeb3React();
   const [walletView, setWalletView] = useState(WALLET_VIEWS.ACCOUNT);
   const [pendingWallet, setPendingWallet] = useState<
     AbstractConnector | undefined
@@ -77,14 +76,13 @@ export default function Connect(): ReactElement {
       : !option.href && tryActivation(option.connector);
   };
 
-  //TODO 当在错误网络时候，链接钱包出现白屏
-
-  // useEffect(() => {
-  //   console.log(99999, error, error instanceof UnsupportedChainIdError);
-  //   if (error instanceof UnsupportedChainIdError) {
-  //     toggleErrorModal();
-  //   }
-  // }, [error, toggleErrorModal]);
+  useEffect(() => {
+    if (error instanceof UnsupportedChainIdError) {
+      toggleErrorModal();
+    }
+    // 不要加入toggleErrorModal, 否则出现白屏bug
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error]);
 
   return (
     <Modal

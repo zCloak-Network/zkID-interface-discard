@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2022-01-12 15:25:30
+ * @LastEditTime: 2022-01-12 15:46:42
  */
 import React, { useState, useEffect, useMemo, useContext } from "react";
 import { message } from "antd";
@@ -190,7 +190,9 @@ export default function RegulatedTransfer(): JSX.Element {
         from: account,
       })
       .then(function (receipt) {
+        console.log("Approvereceipt", receipt);
         setIsLoading(false);
+
         addPopup(
           {
             txn: {
