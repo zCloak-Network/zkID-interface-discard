@@ -8,14 +8,13 @@
     border-radius: 10px;
     margin-top: $margin-lg;
     font-size: 16px;
-    color: #0a1629;
     padding-left: 46px;
     padding-right: 44px;
     line-height: 1.5;
     cursor: pointer;
 
     .from {
-      color: #535353;
+      color: $subsidiary-color;
     }
 
     .arrow-icon {
@@ -30,7 +29,7 @@
     }
 
     .to {
-      color: #0a1629;
+      color: $text-color;
     }
 
     .program {
@@ -38,7 +37,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      color: #0a1629;
+      color: $text-color;
       margin-left: auto;
       margin-right: 24px;
     }
@@ -46,7 +45,7 @@
     .amount {
       font-size: 16px;
       line-height: 24px;
-      color: #76af92;
+      color: $status-success-color;
       float: right;
     }
 
@@ -55,7 +54,7 @@
       font-family: Kanit;
       font-weight: 300;
       line-height: 24px;
-      color: #7c7c7c;
+      color: $subsidiary-color;
     }
   }
 

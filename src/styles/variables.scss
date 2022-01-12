@@ -101,12 +101,15 @@ $module-title-border-color: $border-color-base;
 $status-error-color: #d56386;
 $status-error-border-color: $status-error-color;
 $status-error-bg-color: #ffeceb;
-$status-warning-color: #ff950c;
+
+$status-warning-color: #ecae71;
 $status-warning-border-color: $status-warning-color;
-$status-warning-bg-color: #fdf0df;
-$status-success-color: #36bf8f;
+$status-warning-bg-color: #ecae71;
+
+$status-success-color: #76af92;
 $status-success-border-color: $status-success-color;
 $status-success-bg-color: #ebfff8;
+
 $status-processing-color: #4a62e7;
 $status-processing-border-color: $status-processing-color;
 $status-processing-bg-color: #ebeeff;
@@ -118,6 +121,7 @@ $status-invalid-border-color: $status-invalid-color;
 $status-invalid-bg-color: $bg-main-color;
 $status-other-color: #2b95ff;
 $status-other-border-color: $status-other-color;
+
 $status-other-bg-color: #e6f2ff;
 $status-other-finish: #7cd322;
 $status-other-wait: #ffbf00;

@@ -99,8 +99,8 @@
     }
 
     &.progress-success {
-      color: #76af92;
-      border: 1px solid #76af92;
+      color: $status-success-color;
+      border: 1px solid #eff6f3;
 
       .progress-bg {
         height: 100%;
@@ -110,7 +110,7 @@
 
     &.progress-fail {
       color: $status-error-color;
-      border: 1px solid $status-error-color;
+      border: 1px solid #faedf1;
 
       .progress-bg {
         height: 100%;
@@ -119,8 +119,8 @@
     }
 
     &.progress-ing {
+      color: $status-warning-color;
       border: 1px solid #fdf1e5;
-      color: #ecae71;
 
       .progress-bg {
         height: 100%;
