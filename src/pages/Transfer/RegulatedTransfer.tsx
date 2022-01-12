@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2022-01-11 20:27:39
+ * @LastEditTime: 2022-01-12 15:20:03
  */
 import React, { useState, useEffect, useMemo, useContext } from "react";
 import { message } from "antd";
@@ -14,11 +14,13 @@ import SelectToken from "../SelectToken";
 import TransferBtn from "./transferBtn";
 
 import {
+  useModalOpen,
   useToggleErrorModal,
   useToggleSelectTokenModal,
   useToggleSubmitProofModal,
 } from "../../state/application/hooks";
 import { useAddPopup } from "../../state/application/hooks";
+import { ApplicationModal } from "../../state/application/reducer";
 
 import useBalance from "../../hooks/useBalance";
 // import useApprove from "../../hooks/useApprove";
@@ -83,6 +85,7 @@ export default function RegulatedTransfer(): JSX.Element {
   const toggleErrorModal = useToggleErrorModal();
   const toggleSubmitProofModal = useToggleSubmitProofModal();
   const toggleSelectTokenModal = useToggleSelectTokenModal();
+  const submitProofModalOpen = useModalOpen(ApplicationModal.SUBMIT_PROOF);
 
   const { web3 } = useContext(MyContext) as contextProps;
 
@@ -286,14 +289,17 @@ export default function RegulatedTransfer(): JSX.Element {
         allTokens={allTokens}
         handleSelectToken={handleSelectToken}
       />
-      <Submit
-        account={account}
-        cTypeHash={currRule.cTypeHash}
-        fieldName={currRule.programDetails.programFieldName}
-        proHash={currRule.programHash}
-        programDetail={currRule.programDetails.programDetail}
-        proName={currRule.programDetails.programHashName}
-      />
+      {/*  Fix Submit modal content not updating */}
+      {submitProofModalOpen && (
+        <Submit
+          account={account}
+          cTypeHash={currRule.cTypeHash}
+          fieldName={currRule.programDetails.programFieldName}
+          proHash={currRule.programHash}
+          programDetail={currRule.programDetails.programDetail}
+          proName={currRule.programDetails.programHashName}
+        />
+      )}
     </div>
   );
 }
