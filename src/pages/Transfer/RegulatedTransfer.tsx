@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2022-01-12 15:20:03
+ * @LastEditTime: 2022-01-12 15:25:30
  */
 import React, { useState, useEffect, useMemo, useContext } from "react";
 import { message } from "antd";
@@ -85,6 +85,7 @@ export default function RegulatedTransfer(): JSX.Element {
   const toggleErrorModal = useToggleErrorModal();
   const toggleSubmitProofModal = useToggleSubmitProofModal();
   const toggleSelectTokenModal = useToggleSelectTokenModal();
+  const selectTokenModalOpen = useModalOpen(ApplicationModal.SELECT_TOKEN);
   const submitProofModalOpen = useModalOpen(ApplicationModal.SUBMIT_PROOF);
 
   const { web3 } = useContext(MyContext) as contextProps;
@@ -285,10 +286,13 @@ export default function RegulatedTransfer(): JSX.Element {
         handleApprove={handleApprove}
         handleSubmitProof={toggleSubmitProofModal}
       />
-      <SelectToken
-        allTokens={allTokens}
-        handleSelectToken={handleSelectToken}
-      />
+      {/*  Fix modal content not updating */}
+      {selectTokenModalOpen && (
+        <SelectToken
+          allTokens={allTokens}
+          handleSelectToken={handleSelectToken}
+        />
+      )}
       {/*  Fix Submit modal content not updating */}
       {submitProofModalOpen && (
         <Submit
