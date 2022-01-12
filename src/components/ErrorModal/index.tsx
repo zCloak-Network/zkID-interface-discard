@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-20 14:49:32
- * @LastEditTime: 2022-01-10 18:19:39
+ * @LastEditTime: 2022-01-12 10:45:19
  */
 import React from "react";
 import Modal from "../Modal";
@@ -51,6 +51,13 @@ export default function ErrorModal(): JSX.Element {
       await toggleErrorModal();
     }
   };
+
+  // useEffect(() => {
+  //   console.log(99999, error, error instanceof UnsupportedChainIdError);
+  //   if (error instanceof UnsupportedChainIdError) {
+  //     toggleErrorModal();
+  //   }
+  // }, [error, toggleErrorModal]);
 
   return (
     <Modal
