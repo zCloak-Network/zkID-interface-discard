@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2022-01-11 20:26:39
+ * @LastEditTime: 2022-01-12 13:42:31
  */
 import React, { useState, useMemo, useEffect, ReactElement } from "react";
 import dayjs from "dayjs";
@@ -59,7 +59,6 @@ export default function Proof({ handleOpenConnect }: Props): ReactElement {
       index: index + 1,
       time: dayjs(it.date).format(timeFormat.dateTime),
       statusCode: it.status,
-      //TODO
       claimAlias: it.claimAlias,
     }));
   };

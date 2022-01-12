@@ -16,10 +16,10 @@
 
   .proof-list-main {
     display: grid;
-    gap: 1em;
+    gap: 10px;
     -webkit-box-align: center;
     align-items: center;
-    grid-template-columns: 20px 2fr 2fr 1fr repeat(3, 2fr) 20px;
+    grid-template-columns: 20px 1.5fr 2fr 1fr 2fr 1fr 2fr 20px;
     cursor: pointer;
 
     > div {
