@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-01 16:31:50
- * @LastEditTime: 2022-01-12 13:42:31
+ * @LastEditTime: 2022-01-18 16:47:51
  */
 import React, { useState, useMemo, useEffect, ReactElement } from "react";
 import dayjs from "dayjs";
@@ -183,7 +183,7 @@ export default function Proof({ handleOpenConnect }: Props): ReactElement {
               </Option>
             ))}
           </Select>
-          <Search onChange={handleInputChange} />
+          <Search onChange={handleInputChange} className="proof-search" />
         </div>
       </div>
       {!account && (

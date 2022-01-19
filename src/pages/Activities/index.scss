@@ -30,6 +30,7 @@
 
     .to {
       color: $text-color;
+      margin-right: 12px;
     }
 
     .program {
@@ -60,5 +61,63 @@
 
   > li:hover {
     background: #eaecf2;
+  }
+}
+
+@media (max-width: $screen-md) {
+  .activities {
+    > li {
+      width: 100%;
+      padding: 0 18px;
+    }
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .activities {
+    > li {
+      margin-top: 0;
+      display: flex;
+      flex-direction: column;
+      width: 310px;
+      height: 210px;
+      padding: 0 16px;
+      justify-content: center;
+      align-self: center;
+      text-align: center;
+      .arrow-icon {
+        transform: rotate(360deg);
+        margin: 4px 0;
+        display: inline-block;
+      }
+
+      .to {
+        margin-right: 0;
+        color: $sub-title-color;
+      }
+
+      .program {
+        display: inline-block;
+        margin-top: 16px;
+        font-weight: 500;
+      }
+
+      .amount {
+        display: inline-block;
+        margin-top: 16px;
+        margin-bottom: 4px;
+      }
+
+      .program,
+      .amount {
+        margin-left: 0;
+        margin-right: 0;
+        float: none;
+      }
+    }
+
+    li + li {
+      margin-top: 16px;
+    }
   }
 }

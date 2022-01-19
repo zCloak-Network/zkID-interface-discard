@@ -1,5 +1,5 @@
 .button-components {
-  width: 494px;
+  width: 495px;
   height: 60px;
   border-radius: 20px;
   background: $primary-color;
@@ -9,7 +9,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: $margin-xs;
   cursor: pointer;
 
   &.disabled {
@@ -27,6 +26,15 @@
     }
   }
 
+  &.button-components-default {
+    background: $white;
+    border: 1px solid #c5c5de;
+    border-radius: 24px;
+    color: $text-color;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
   &.button-components-primary {
     background: $primary-color;
     color: $white;
@@ -34,5 +42,11 @@
 
   &.button-components-primary:hover {
     background: $primary-8;
+  }
+}
+
+@media (max-width: $screen-md) {
+  .button-components {
+    width: 457px;
   }
 }

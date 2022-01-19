@@ -2,10 +2,11 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-28 14:56:01
- * @LastEditTime: 2022-01-11 10:22:21
+ * @LastEditTime: 2022-01-19 15:10:35
  */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import classNames from "classnames";
 
 import transferImg from "../../images/transfer.png";
 import transferActiveImg from "../../images/transfer_active.png";
@@ -15,6 +16,10 @@ import proofActiveImg from "../../images/proof_active.png";
 // import zkEntitiesActiveImg from "../../images/zkEntities_active.png";
 
 import "./index.scss";
+
+interface Props {
+  className?: string;
+}
 
 const MODOLE = [
   {
@@ -40,9 +45,11 @@ const MODOLE = [
   // },
 ];
 
-export default function Menu(): JSX.Element {
+export default function Menu({ className }: Props): JSX.Element {
   const navigate = useNavigate();
   const [module, setModule] = useState(MODOLE[0].key);
+
+  const classes = classNames("menu-components", className);
 
   const handleClick = (e) => {
     setModule(e.target?.dataset.id);
@@ -57,7 +64,7 @@ export default function Menu(): JSX.Element {
   }, []);
 
   return (
-    <ul className="menu-components" onClick={handleClick}>
+    <ul className={classes} onClick={handleClick}>
       {MODOLE.map((it) => (
         <li
           key={it.key}
@@ -65,11 +72,6 @@ export default function Menu(): JSX.Element {
           data-url={it.url}
           className={module === it.key ? "active" : ""}
         >
-          {/* <img
-            src={module === it.key ? it.activeImg : it.img}
-            alt={it.title}
-            className="menu-icon"
-          /> */}
           {it.title}
         </li>
       ))}

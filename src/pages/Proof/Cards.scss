@@ -131,3 +131,11 @@
     }
   }
 }
+
+@media (max-width: $screen-md) {
+  .proof-cards {
+    .cards-main {
+      justify-content: center;
+    }
+  }
+}

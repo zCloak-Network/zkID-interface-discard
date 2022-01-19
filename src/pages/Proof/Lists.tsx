@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-03 16:35:07
- * @LastEditTime: 2022-01-11 10:22:51
+ * @LastEditTime: 2022-01-18 16:48:22
  */
 import React, { useMemo, useState } from "react";
 import { Pagination } from "antd";
@@ -34,21 +34,23 @@ export default function Lists({ data, jumpToIpfs }: Props): JSX.Element {
     <div className="proof-lists">
       {currData && currData.length > 0 && (
         <>
-          <div className="proof-lists-header">
-            <span />
-            <span>Program Name</span>
-            <span>Claim alias</span>
-            <span>Data type</span>
-            <span>Proof CID</span>
-            <span>Status</span>
-            <span>Time</span>
-            <span />
-          </div>
-          {currData?.map((item, index) => (
-            <div key={`${item.proofCid}-${index}`} className="proof-list">
-              <ListItem data={item} jumpToIpfs={jumpToIpfs} />
+          <div className="proof-lists-content-wrapper">
+            <div className="proof-lists-header">
+              <span />
+              <span>Program Name</span>
+              <span className="proof-lists-header-item">Claim alias</span>
+              <span>Data type</span>
+              <span className="proof-lists-header-item">Proof CID</span>
+              <span>Status</span>
+              <span className="proof-lists-header-item">Time</span>
+              <span />
             </div>
-          ))}
+            {currData?.map((item, index) => (
+              <div key={`${item.proofCid}-${index}`} className="proof-list">
+                <ListItem data={item} jumpToIpfs={jumpToIpfs} />
+              </div>
+            ))}
+          </div>
           <Pagination
             current={currentNum}
             pageSize={pageSize}

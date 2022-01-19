@@ -46,6 +46,10 @@
     color: #000000;
     margin-top: 24px;
 
+    .proof-list-detail-item {
+      display: none;
+    }
+
     .label {
       color: #7c7c7c;
       margin-bottom: 8px;
@@ -125,6 +129,61 @@
       .progress-bg {
         height: 100%;
         background: #fdf1e5;
+      }
+    }
+  }
+}
+
+@media (max-width: $screen-lg) {
+  .proof-list-item {
+    width: 100%;
+    .proof-list-main {
+      grid-template-columns: 20px repeat(3, 1fr) 20px;
+      .proof-list-main-item {
+        display: none;
+      }
+    }
+
+    &.open {
+      .proof-list-detail {
+        display: flex;
+        flex-direction: column;
+        > div {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+        }
+        > div.output {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .proof-list-item {
+    width: 480px;
+    .proof-list-main {
+      grid-template-columns: 20px repeat(3, 1fr) 20px;
+      .proof-list-main-item {
+        display: none;
+      }
+    }
+
+    &.open {
+      .proof-list-detail {
+        display: flex;
+        flex-direction: column;
+        margin-top: 38px;
+        > div {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+        }
+        > div.output {
+          padding-left: 0;
+        }
       }
     }
   }

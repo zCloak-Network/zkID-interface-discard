@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-30 16:51:36
- * @LastEditTime: 2022-01-11 19:35:10
+ * @LastEditTime: 2022-01-18 16:38:52
  */
 import React, { useState } from "react";
 import classNames from "classnames";
@@ -106,13 +106,18 @@ export default function ListItem({ data, jumpToIpfs }: Props): JSX.Element {
       <div className="proof-list-main" onClick={handleToggle}>
         <div>{index}</div>
         <div>{programHashName}</div>
-        <div>{claimAlias}</div>
+        <div className="proof-list-main-item">{claimAlias}</div>
         <div>{fieldName}</div>
-        <div onClick={() => jumpToIpfs(proofCid)}>{shortenHash(proofCid)}</div>
+        <div
+          className="proof-list-main-item"
+          onClick={() => jumpToIpfs(proofCid)}
+        >
+          {shortenHash(proofCid)}
+        </div>
         <div>
           <Progress status={statusCode} percent={Number(percent)} />
         </div>
-        <div>{time}</div>
+        <div className="proof-list-main-item">{time}</div>
         <div>
           <img src={arrowImg} alt="down" className="btn" />
         </div>
@@ -122,6 +127,18 @@ export default function ListItem({ data, jumpToIpfs }: Props): JSX.Element {
           <span className="label">output:</span>
           <br />
           <span>{String(expectResult)}</span>
+        </div>
+        <div className="proof-list-detail-item">
+          <span className="label ">Claim alias:</span>
+          <br />
+          <span>{claimAlias}</span>
+        </div>
+        <div className="proof-list-detail-item">
+          <span className="label" onClick={() => jumpToIpfs(proofCid)}>
+            Proof CID:
+          </span>
+          <br />
+          <span>{shortenHash(proofCid)}</span>
         </div>
         <div>
           <span className="label">Ctype hash:</span>
@@ -137,6 +154,11 @@ export default function ListItem({ data, jumpToIpfs }: Props): JSX.Element {
           <span className="label">rootHash:</span>
           <br />
           <span>{shortenHash(rootHash)}</span>
+        </div>
+        <div className="proof-list-detail-item">
+          <span className="label">time:</span>
+          <br />
+          <span>{time}</span>
         </div>
       </div>
     </div>

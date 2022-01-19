@@ -2,8 +2,9 @@
  * @Description: submit modal
  * @Author: lixin
  * @Date: 2021-12-02 17:23:15
- * @LastEditTime: 2022-01-11 18:36:30
+ * @LastEditTime: 2022-01-17 15:09:14
  */
+
 import React, { useContext, useState, useMemo } from "react";
 import Modal from "../../components/Modal";
 import MyContext from "../../components/Context";
@@ -156,7 +157,6 @@ export default function Submit({
                 {shortenHash(generationInfo.proofCid)}
               </span>
             )}
-
             <Button className="generate-btn" onClick={goToGenerate}>
               Generate
             </Button>

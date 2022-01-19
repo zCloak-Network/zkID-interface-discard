@@ -72,3 +72,9 @@
     width: 100%;
   }
 }
+
+@media (max-width: $screen-md) {
+  .input-address {
+    width: 457px;
+  }
+}

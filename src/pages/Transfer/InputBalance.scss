@@ -101,3 +101,9 @@
     border: 1px solid $status-error-color;
   }
 }
+
+@media (max-width: $screen-md) {
+  .input-balance {
+    width: 457px;
+  }
+}

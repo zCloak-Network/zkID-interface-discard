@@ -31,32 +31,41 @@
     margin-top: $margin-xs;
   }
 
-  .btn {
-    width: 494px;
-    height: 60px;
-    border-radius: 20px;
-    background: $primary-color;
-    font-size: 20px;
-    font-weight: bold;
-    color: $white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .button-components {
     margin-top: $margin-xs;
-    cursor: pointer;
   }
-  .btn.disabled {
-    cursor: not-allowed;
-    color: #909090;
-    background: #eaecf2;
-  }
+  // .btn {
+  //   width: 494px;
+  //   height: 60px;
+  //   border-radius: 20px;
+  //   background: $primary-color;
+  //   font-size: 20px;
+  //   font-weight: bold;
+  //   color: $white;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   margin-top: $margin-xs;
+  //   cursor: pointer;
+  // }
+  // .btn.disabled {
+  //   cursor: not-allowed;
+  //   color: #909090;
+  //   background: #eaecf2;
+  // }
 
-  .btn-transfer {
-    background: $primary-color;
-    color: $white;
-  }
+  // .btn-transfer {
+  //   background: $primary-color;
+  //   color: $white;
+  // }
 
-  .btn.no-proof-btn {
-    cursor: pointer;
+  // .btn.no-proof-btn {
+  //   cursor: pointer;
+  // }
+}
+
+@media (max-width: $screen-md) {
+  .regulatedTransfer {
+    width: 480px;
   }
 }

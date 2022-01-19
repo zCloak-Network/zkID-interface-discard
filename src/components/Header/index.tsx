@@ -2,14 +2,16 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-02 11:07:37
- * @LastEditTime: 2022-01-07 14:53:55
+ * @LastEditTime: 2022-01-19 16:54:54
  */
-import React from "react";
-import { useActiveWeb3React } from "../../hooks/web3";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
 import { Image } from "@davatar/react";
+import classNames from "classnames";
+import { useClickAway } from "ahooks";
 import Menu from "../Menu";
+import Button from "../Button";
 
 import Logo from "../../images/logo.svg";
 
@@ -25,10 +27,15 @@ export default function Header({
   handleOpenConnect,
 }: Props): React.ReactElement {
   const navigate = useNavigate();
+  const ref = useRef();
+  const [menuStatus, setMenuStatus] = useState(false);
 
   let inner;
   const { error, account } = useWeb3React();
-  // const { error, account } = useActiveWeb3React();
+
+  useClickAway(() => {
+    setMenuStatus(false);
+  }, ref);
 
   if (error) {
     inner = (
@@ -59,11 +66,28 @@ export default function Header({
     navigate("/");
   };
 
+  const openMenu = (e) => {
+    e.stopPropagation();
+    setMenuStatus(!menuStatus);
+  };
+
   return (
     <div className="header-component">
       <img src={Logo} alt="logo" className="logo" onClick={handleGoHome} />
-      <Menu />
-      {inner}
+      <div
+        className={classNames("header-menu-wrapper", {
+          open: menuStatus,
+        })}
+        ref={ref}
+      >
+        <Menu className="header-menu" />
+      </div>
+      <div className="header-right">
+        {inner}
+        <Button className="menu-btn" onClick={openMenu}>
+          Menu
+        </Button>
+      </div>
     </div>
   );
 }

@@ -1,11 +1,23 @@
 .proof-lists {
+  width: 100%;
+  .proof-lists-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .proof-lists-header {
     display: grid;
     gap: 10px;
     padding: 0 20px 12px;
     grid-template-columns: 20px 1.5fr 2fr 1fr 2fr 1fr 2fr 20px;
-  }
 
+    .proof-lists-header-item {
+      display: block;
+    }
+  }
+  .proof-list {
+    width: 100%;
+  }
   .proof-list + .proof-list {
     margin-top: 6px;
   }
@@ -52,6 +64,30 @@
       color: #000000;
       background: #e9ecef;
       border: 1px solid #b9b9b9;
+    }
+  }
+}
+
+@media (max-width: $screen-lg) {
+  .proof-lists {
+    .proof-lists-header {
+      grid-template-columns: 20px repeat(3, 1fr) 20px;
+      width: 100%;
+      .proof-lists-header-item {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .proof-lists {
+    .proof-lists-header {
+      grid-template-columns: 20px repeat(3, 1fr) 20px;
+      width: 480px;
+      .proof-lists-header-item {
+        display: none;
+      }
     }
   }
 }

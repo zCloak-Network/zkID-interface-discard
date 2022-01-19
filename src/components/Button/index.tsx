@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-29 16:15:23
- * @LastEditTime: 2022-01-11 11:24:23
+ * @LastEditTime: 2022-01-19 16:54:37
  */
 import React from "react";
 import classNames from "classnames";
@@ -16,7 +16,7 @@ interface Props {
   disabled?: boolean;
   loading?: boolean;
   children?: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (e?: any) => void;
   className?: string;
 }
 
@@ -40,9 +40,9 @@ export default function Button({
     className
   );
 
-  const handleClick = () => {
+  const handleClick = (e) => {
     if (disabled) return;
-    onClick();
+    onClick(e);
   };
 
   if (loading) {
