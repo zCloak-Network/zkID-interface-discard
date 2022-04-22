@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-28 14:56:01
- * @LastEditTime: 2022-01-19 15:10:35
+ * @LastEditTime: 2022-04-19 18:20:23
  */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -23,16 +23,32 @@ interface Props {
 
 const MODOLE = [
   {
-    title: "Transfer",
-    key: "transfer",
-    url: "/transfer",
+    title: "Dashboard",
+    key: "Dashboard",
+    url: "/dashboard",
     img: transferImg,
     activeImg: transferActiveImg,
   },
+  // {
+  //   title: "Transfer",
+  //   key: "transfer",
+  //   url: "/transfer",
+  //   img: transferImg,
+  //   activeImg: transferActiveImg,
+  // },
   {
     title: "zkID",
-    key: "proof",
-    url: "/zkID",
+    key: "zkID",
+    id: "zkID",
+    url: "/#zkID",
+    img: proofImg,
+    activeImg: proofActiveImg,
+  },
+  {
+    title: "POAP",
+    key: "poap",
+    id: "poap",
+    url: "/#poap",
     img: proofImg,
     activeImg: proofActiveImg,
   },
@@ -53,7 +69,9 @@ export default function Menu({ className }: Props): JSX.Element {
 
   const handleClick = (e) => {
     setModule(e.target?.dataset.id);
-    navigate(e.target?.dataset.url);
+    // navigate(e.target?.dataset.url);
+    // window.location.hash = e.target?.dataset.url;
+    document.getElementById(e.target?.dataset.id).scrollIntoView();
   };
 
   useEffect(() => {
