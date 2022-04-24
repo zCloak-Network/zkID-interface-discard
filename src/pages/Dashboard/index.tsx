@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2022-04-19 13:47:46
- * @LastEditTime: 2022-04-22 15:40:34
+ * @LastEditTime: 2022-04-24 10:40:18
  */
 import React from "react";
 import Activities from "./Activities";
@@ -23,10 +23,13 @@ const Dashboard: React.FC<Props> = ({ handleOpenConnect }) => {
   return (
     <div className="dashboard">
       <div className="banner">banner</div>
-      <Poap />
-      <ZkID />
-      <Activities />
-      {!account && (
+      {account ? (
+        <>
+          <Poap />
+          <ZkID />
+          <Activities />
+        </>
+      ) : (
         <Empty
           type="notConnected"
           description="Your zkID will appear here."
