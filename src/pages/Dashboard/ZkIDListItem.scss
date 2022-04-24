@@ -4,6 +4,13 @@
   border-radius: 10px;
   padding: 18px 30px;
 
+
+  &:hover {
+    background: #E5E7ED;
+    opacity: 1;
+    border-radius: 10px;
+  }
+
   &.open {
     .zkId-list-detail {
       display: grid;
