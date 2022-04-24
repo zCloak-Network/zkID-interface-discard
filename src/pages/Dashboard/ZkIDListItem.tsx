@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-30 16:51:36
- * @LastEditTime: 2022-04-21 18:29:21
+ * @LastEditTime: 2022-04-24 16:13:21
  */
 import React, { useState } from "react";
 import classNames from "classnames";
@@ -137,7 +137,9 @@ export default function ListItem({
           className="zkId-list-main-item"
           // onClick={() => jumpToIpfs(proofCid)}
         >
-          {shortenHash(proofCid)}
+          <Tooltip placement="bottomLeft" title={proofCid}>
+            {proofCid}
+          </Tooltip>
         </div>
         <div className="zkId-list-main-progress">
           <Progress status={status} percent={Number(percent)} />
