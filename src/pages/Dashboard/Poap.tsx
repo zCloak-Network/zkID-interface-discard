@@ -2,11 +2,11 @@
  * @Description:
  * @Author: lixin
  * @Date: 2022-04-19 17:49:14
- * @LastEditTime: 2022-04-24 10:46:39
+ * @LastEditTime: 2022-04-24 15:37:07
  */
 import React, { useState, useEffect } from "react";
 import { useWeb3React } from "@web3-react/core";
-import { PROOFHOSTPREFIX } from "../../constants";
+import { getImg } from "../../utils/poap";
 import { getPoapId } from "../../services/api";
 import Empty from "../../components/Empty";
 import { hexToNumber } from "@polkadot/util";
@@ -57,11 +57,7 @@ const Poap: React.FC = () => {
       <div className="content">
         {poapId ? (
           <div className="content-item">
-            <img
-              src={`${PROOFHOSTPREFIX}/public/${poapId}.png`}
-              alt=""
-              className="poap-img"
-            />
+            <img src={getImg(poapId)} alt="" className="poap-img" />
             <div className="poap-num">
               {nftId ? formatNum(String(nftId)) : "-"}
             </div>
