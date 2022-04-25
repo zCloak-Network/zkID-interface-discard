@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2022-04-24 14:51:02
- * @LastEditTime: 2022-04-24 14:51:05
+ * @LastEditTime: 2022-04-25 17:49:57
 -->
 <!--
  * @Description: README
@@ -24,7 +24,7 @@ Generate credentials for proofgen extension
 
 #### 安装依赖包
 
-npm install
+yarn
 
 ## Available Scripts
 

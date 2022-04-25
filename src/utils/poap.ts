@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2022-04-24 15:29:50
- * @LastEditTime: 2022-04-24 15:29:52
+ * @LastEditTime: 2022-04-25 15:06:18
  */
 /*
  * @Description:
@@ -19,7 +19,7 @@ import img6 from "../images/nft/200131628285890828369532065092663508412.png";
 import img7 from "../images/nft/202100964360959351678140981251573392558.png";
 import img8 from "../images/nft/219435727696893656932292705285121930827.png";
 
-export function getImg(imgUrl) {
+export function getImg(imgUrl = null) {
   const imgs = {
     "40522552889507486262027357734207559572": img1,
     "42018931746397126175492143712451320807": img2,
@@ -30,6 +30,10 @@ export function getImg(imgUrl) {
     "202100964360959351678140981251573392558": img7,
     "219435727696893656932292705285121930827": img8,
   };
+
+  if (!imgUrl) {
+    return imgs;
+  }
 
   return imgs[imgUrl];
 }
