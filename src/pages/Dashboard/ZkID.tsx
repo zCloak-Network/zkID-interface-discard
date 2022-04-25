@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2022-04-19 17:49:55
- * @LastEditTime: 2022-04-22 14:20:57
+ * @LastEditTime: 2022-04-25 17:55:13
  */
 import React, { useEffect, useState } from "react";
 import Loading from "../../components/Loading";
@@ -91,11 +91,11 @@ const ZkID: React.FC = () => {
   return (
     <div className="dashboard-zkid">
       <a className="title" href="#zkID" id="zkID">
-        zkID
+        Proof
       </a>
 
       {allProofs?.length === 0 ? (
-        <Empty description="Your zkID will appear here." />
+        <Empty description="Your proof will appear here." />
       ) : (
         <div className="content">
           {allProofs && !loading && account && (

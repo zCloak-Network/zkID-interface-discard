@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-28 14:56:01
- * @LastEditTime: 2022-04-24 16:12:07
+ * @LastEditTime: 2022-04-25 17:55:42
  */
 import React, { useState, useEffect } from "react";
 // import { useNavigate } from "react-router-dom";
@@ -37,7 +37,7 @@ const MODOLE = [
   //   activeImg: transferActiveImg,
   // },
   {
-    title: "zkID",
+    title: "Proof",
     key: "zkID",
     id: "zkID",
     url: "/#zkID",
