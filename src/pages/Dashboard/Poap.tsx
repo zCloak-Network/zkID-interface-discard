@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2022-04-19 17:49:14
- * @LastEditTime: 2022-04-25 17:37:09
+ * @LastEditTime: 2022-04-26 15:35:51
  */
 import React, { useState, useEffect, useMemo } from "react";
 import { useWeb3React } from "@web3-react/core";
@@ -106,7 +106,7 @@ const Poap: React.FC = () => {
 
   return (
     <div className="dashboard-poap">
-      <a className="title" href="#poap" id="poap">
+      <a className="title" id="poap">
         POAP
       </a>
       <div className="slick-carousel">

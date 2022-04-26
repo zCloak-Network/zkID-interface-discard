@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2022-04-19 17:49:55
- * @LastEditTime: 2022-04-25 17:55:13
+ * @LastEditTime: 2022-04-26 15:35:14
  */
 import React, { useEffect, useState } from "react";
 import Loading from "../../components/Loading";
@@ -90,7 +90,7 @@ const ZkID: React.FC = () => {
 
   return (
     <div className="dashboard-zkid">
-      <a className="title" href="#zkID" id="zkID">
+      <a className="title" id="zkID">
         Proof
       </a>
 
