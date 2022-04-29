@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-30 16:51:36
- * @LastEditTime: 2022-04-24 16:13:21
+ * @LastEditTime: 2022-04-29 16:14:19
  */
 import React, { useState } from "react";
 import classNames from "classnames";
@@ -110,6 +110,9 @@ export default function ListItem({
 
   // const fieldNameFormat = useMemo(() => formatFiled(fieldNames), [fieldNames]);
 
+  // TODO  因合约没有同步更新，所以只在前端更新名字
+  const ctypeName = "Adventurer Profile";
+
   return (
     <div
       className={classNames("zkId-list-item", {
@@ -124,8 +127,8 @@ export default function ListItem({
           </Tooltip>
         </div>
         <div className="zkId-list-main-item">
-          <Tooltip placement="bottomLeft" title={claimAlias}>
-            {claimAlias}
+          <Tooltip placement="bottomLeft" title={ctypeName}>
+            {ctypeName}
           </Tooltip>
         </div>
         <div>
