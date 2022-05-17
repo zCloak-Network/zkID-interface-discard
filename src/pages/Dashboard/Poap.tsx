@@ -2,17 +2,18 @@
  * @Description:
  * @Author: lixin
  * @Date: 2022-04-19 17:49:14
- * @LastEditTime: 2022-04-26 15:35:51
+ * @LastEditTime: 2022-05-17 15:10:41
  */
 import React, { useState, useEffect, useMemo } from "react";
 import { useWeb3React } from "@web3-react/core";
 import { getImg } from "../../utils/poap";
 import { getPoapId } from "../../services/api";
 import { hexToNumber } from "@polkadot/util";
-import { stripHexPrefix, numberToHex, padLeft } from "web3-utils";
+import { stripHexPrefix, numberToHex } from "web3-utils";
 import BN from "bn.js";
 import Slider from "react-slick";
 import classNames from "classnames";
+import _ from "lodash";
 
 import "./Poap.scss";
 
@@ -81,7 +82,7 @@ const Poap: React.FC = () => {
       stripHexPrefix(numberToHex(new BN(num))).slice(32)
     );
 
-    return stripHexPrefix(padLeft(numId, 6, "0"));
+    return _.padStart(String(numId), 6, "0");
   };
 
   const formatePoaps = useMemo(() => {
