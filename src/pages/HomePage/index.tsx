@@ -2,10 +2,10 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-08-30 16:38:02
- * @LastEditTime: 2022-04-22 16:41:42
+ * @LastEditTime: 2022-04-29 11:08:01
  */
 import React from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 import Popups from "../../components/Popups";
 import Header from "../../components/Header";
@@ -49,7 +49,7 @@ function HomePage() {
         <Header handleOpenConnect={handleOpenConnect} />
         <div className="main-content">
           <Routes>
-            <Route path="/" element={<Navigate replace to="/dashboard" />} />
+            {/* <Route path="/" element={<Navigate replace to="/" />} /> */}
             {/* <Route path="/transfer" element={<Transfer />}>
               <Route index element={<RegulatedTransfer />} />
               <Route
@@ -58,7 +58,7 @@ function HomePage() {
               />
             </Route> */}
             <Route
-              path="/dashboard"
+              path="/"
               element={<Dashboard handleOpenConnect={handleOpenConnect} />}
             />
             {/* <Route path="/zk" element={<Zk />} /> */}

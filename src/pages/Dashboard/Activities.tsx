@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2022-04-19 17:53:30
- * @LastEditTime: 2022-04-22 13:52:20
+ * @LastEditTime: 2022-04-26 15:35:59
  */
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
@@ -85,9 +85,7 @@ const Activities: React.FC = () => {
 
   return (
     <div className="dashboard-activities">
-      <a className="title" href="#activities">
-        Activities
-      </a>
+      <a className="title">Activities</a>
 
       {data && data?.length === 0 ? (
         <Empty description="Your activities will appear here." />

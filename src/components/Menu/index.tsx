@@ -2,10 +2,10 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-28 14:56:01
- * @LastEditTime: 2022-04-19 18:20:23
+ * @LastEditTime: 2022-04-25 17:55:42
  */
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 
 import transferImg from "../../images/transfer.png";
@@ -37,7 +37,7 @@ const MODOLE = [
   //   activeImg: transferActiveImg,
   // },
   {
-    title: "zkID",
+    title: "Proof",
     key: "zkID",
     id: "zkID",
     url: "/#zkID",
@@ -62,7 +62,7 @@ const MODOLE = [
 ];
 
 export default function Menu({ className }: Props): JSX.Element {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [module, setModule] = useState(MODOLE[0].key);
 
   const classes = classNames("menu-components", className);
