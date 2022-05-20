@@ -1,7 +1,8 @@
 name: GitHub Actions
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  dev-deploy:
+    if: github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -42,3 +43,30 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             whoami
+  prod-deploy:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    environment: master
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+      - run: npm run build --if-present
+      - run: ls -l ${{ github.workspace }}
+      - uses: appleboy/scp-action@master
+        with:
+          username: ubuntu
+          host: ${{ secrets.HOST }}
+          port: 22
+          key: ${{ secrets.KEY }}
+          source: ${{ github.workspace }}/dist
+          target: "/home/ubuntu/zkid-interface"
+          strip_components: 3
+          rm: true
