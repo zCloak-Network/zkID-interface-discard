@@ -1,0 +1,222 @@
+.zkId-list-item {
+  // width: 960px;
+  background: $white;
+  border-radius: 10px;
+  padding: 18px 30px;
+
+
+  &:hover {
+    background: #E5E7ED;
+    opacity: 1;
+    border-radius: 10px;
+  }
+
+  &.open {
+    .zkId-list-detail {
+      display: grid;
+    }
+
+    .btn {
+      transform: rotate(-180deg);
+    }
+  }
+
+  .zkId-list-main {
+    display: grid;
+    gap: 10px;
+    -webkit-box-align: center;
+    align-items: center;
+    grid-template-columns: 20px repeat(6, 2fr) 20px;
+    cursor: pointer;
+
+    > div {
+      // display: flex;
+      font-size: 14px;
+      font-weight: 400;
+      color: #000000;
+      //   -webkit-box-pack: start;
+      justify-content: flex-start;
+      //   -webkit-box-align: center;
+      align-items: center;
+
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      // font-variant-numeric: tabular-nums;
+
+    }
+    .zkId-list-main-progress {
+      display: flex;
+    }
+    .zkId-list-main-index {
+      font-size: 14px;
+      font-family: Kanit;
+      font-weight: 300;
+      color: #292929;
+    }
+
+    // .zkId-list-main-proofCid {
+    //   color: $primary-color;
+    // }
+
+    .zkId-list-main-time{
+      font-size: 14px;
+      font-family: Kanit;
+      font-weight: 400;
+      color: #999999;
+    }
+  }
+
+  .zkId-list-detail {
+    display: none;
+    gap: 1em;
+    -webkit-box-align: center;
+    align-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    font-size: 12px;
+    font-weight: 300;
+    color: #000000;
+    margin-top: 24px;
+
+    .zkId-list-detail-item {
+      display: none;
+    }
+
+    .label {
+      color: #7c7c7c;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .output {
+      padding-left: 40px;
+    }
+  }
+
+  .progress-outer {
+    width: 90px;
+
+    font-size: 13px;
+    border-radius: 4px;
+
+    .progress-inner {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      height: 25px;
+
+      //   > span::after {
+      //     display: inline-block;
+      //     animation: ellipsis 1.25s infinite;
+      //     content: ".";
+      //     width: 1em;
+      //     text-align: left;
+      //   }
+      //   @keyframes ellipsis {
+      //     0% {
+      //       content: ".";
+      //     }
+      //     33% {
+      //       content: "..";
+      //     }
+      //     66% {
+      //       content: "...";
+      //     }
+      //   }
+    }
+
+    .progress-bg {
+      position: absolute;
+      left: 0;
+      z-index: -1;
+      border-radius: 4px;
+    }
+
+    &.progress-success {
+      color: $status-success-color;
+      border: 1px solid #eff6f3;
+
+      .progress-bg {
+        height: 100%;
+        background: #eff6f3;
+      }
+    }
+
+    &.progress-fail {
+      color: $status-error-color;
+      border: 1px solid #faedf1;
+
+      .progress-bg {
+        height: 100%;
+        background: #faedf1;
+      }
+    }
+
+    &.progress-ing {
+      color: $status-warning-color;
+      border: 1px solid #fdf1e5;
+
+      .progress-bg {
+        height: 100%;
+        background: #fdf1e5;
+      }
+    }
+  }
+}
+
+// @media (max-width: $screen-lg) {
+//   .zkId-list-item {
+//     width: 100%;
+//     .zkId-list-main {
+//       grid-template-columns: 20px repeat(3, 1fr) 20px;
+//       .zkId-list-main-item {
+//         display: none;
+//       }
+//     }
+
+//     &.open {
+//       .zkId-list-detail {
+//         display: flex;
+//         flex-direction: column;
+//         > div {
+//           display: flex;
+//           justify-content: space-between;
+//           width: 100%;
+//         }
+//         > div.output {
+//           padding-left: 0;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// @media (max-width: $screen-sm) {
+//   .zkId-list-item {
+//     width: 480px;
+//     .zkId-list-main {
+//       grid-template-columns: 20px repeat(3, 1fr) 20px;
+//       .zkId-list-main-item {
+//         display: none;
+//       }
+//     }
+
+//     &.open {
+//       .zkId-list-detail {
+//         display: flex;
+//         flex-direction: column;
+//         margin-top: 38px;
+//         > div {
+//           display: flex;
+//           justify-content: space-between;
+//           width: 100%;
+//         }
+//         > div.output {
+//           padding-left: 0;
+//         }
+//       }
+//     }
+//   }
+// }

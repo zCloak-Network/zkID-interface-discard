@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-02 11:07:37
- * @LastEditTime: 2022-01-19 16:54:54
+ * @LastEditTime: 2022-04-22 16:38:32
  */
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +28,7 @@ export default function Header({
 }: Props): React.ReactElement {
   const navigate = useNavigate();
   const ref = useRef();
-  const [menuStatus, setMenuStatus] = useState(false);
+  const [menuStatus, setMenuStatus] = useState(true);
 
   let inner;
   const { error, account } = useWeb3React();
@@ -76,13 +76,14 @@ export default function Header({
       <img src={Logo} alt="logo" className="logo" onClick={handleGoHome} />
       <div
         className={classNames("header-menu-wrapper", {
-          open: menuStatus,
+          close: !menuStatus,
         })}
         ref={ref}
       >
         <Menu className="header-menu" />
       </div>
       <div className="header-right">
+        <div className="network">Moonbase Alpha</div>
         {inner}
         <Button className="menu-btn" onClick={openMenu}>
           Menu

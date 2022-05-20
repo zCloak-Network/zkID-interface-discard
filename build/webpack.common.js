@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-08-11 13:50:41
- * @LastEditTime: 2022-01-05 11:06:32
+ * @LastEditTime: 2022-04-24 10:49:25
  */
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -115,7 +115,7 @@ const commonConfig = {
       Buffer: ["buffer", "Buffer"],
     }),
     new webpack.ProvidePlugin({
-      process: "process/browser",
+      process: "process/browser.js",
     }),
   ],
   output: {

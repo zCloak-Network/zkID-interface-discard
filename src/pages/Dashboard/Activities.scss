@@ -1,0 +1,114 @@
+.dashboard-activities  {
+    padding-bottom: 68px;
+    .title {
+        display: inline-block;
+        font-size: 24px;
+        font-family: Kanit;
+        font-weight: 500;
+        color: #000000;
+        margin-top: 52px;
+        margin-bottom: 28px;
+    }
+    
+    .content {
+        .activities-content {
+            width: 1100px;
+            background: #FFFFFF;
+            border: 1px solid #E5E7ED;
+            box-shadow: 0px 0px 30px rgba(121, 145, 173, 0.1);
+            opacity: 1;
+            border-radius: 10px;
+            padding: 14px;
+        }
+
+        .header {
+            display: grid;
+            grid-template-columns: 20px 2fr 2fr 1fr;
+            border-bottom: 1px solid #E5E7ED;
+            padding: 10px 30px 16px;
+            gap: 10px;
+            font-size: 14px;
+            font-family: Kanit;
+            font-weight: 400;
+            color: #666666;
+
+            .operate-type {
+                cursor: pointer;
+            }
+
+            .operate-type + .operate-type {
+                margin-left: 20px;
+            }
+
+            .operate-type:not(.operate-type-active) {
+                color: #999999;
+            }
+        }
+
+        .activity-content {
+            max-height: 300px;
+            overflow-y: auto;
+
+
+            &::-webkit-scrollbar {  
+                width: 5px;  
+                border-radius: 4px;
+                background: #D8E0F0;
+            } 
+            &::-webkit-scrollbar-thumb {  
+                border-radius: 4px; 
+                background-color: $primary-color;  
+            } 
+            
+       
+            .activity-list {
+                display: grid;
+                grid-template-columns: 20px 2fr 2fr 1fr;
+                height: 60px;
+                line-height: 60px;
+                padding: 0 30px;
+                cursor: pointer;
+                gap: 10px;
+
+                font-size: 14px;
+                font-family: Kanit;
+                font-weight: 400;
+                color: #333333;
+
+                .activity-list-index {
+                    font-size: 14px;
+                    font-family: Kanit;
+                    font-weight: 300;
+                    color: #292929;
+                }
+
+                .activity-list-time {
+                    font-size: 14px;
+                    font-family: Kanit;
+                    font-weight: 400;
+                    color: #999999;
+                }
+
+                .activity-list-details{
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+
+                .activity-list-link {
+                    color: $primary-color;
+                }
+            }
+
+            .activity-list:hover {
+                background: #E5E7ED;
+                opacity: 1;
+                border-radius: 10px;
+            }
+        }
+    }
+
+    .activities-loading {
+        margin: 40px 0;
+    }
+}

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-20 14:49:32
- * @LastEditTime: 2022-01-12 17:20:28
+ * @LastEditTime: 2022-04-28 14:23:58
  */
 import React from "react";
 import Modal from "../Modal";
@@ -60,9 +60,9 @@ export default function ErrorModal(): JSX.Element {
       onCancel={toggleErrorModal}
       wrapClassName="error-modal"
     >
-      <h2 className="sub-title">Please connect to Mooriver Network.</h2>
+      <h2 className="sub-title">Please connect to Moonbase Alpha Network.</h2>
       <div onClick={handleSwitch} className="switch-btn">
-        Switch to Moonriver Network
+        Switch to Moonbase Alpha Network
       </div>
     </Modal>
   );

@@ -13,14 +13,26 @@
   .header-menu-wrapper {
     margin-right: auto;
     margin-left: 64px;
-    display: none;
-    &.open {
-      display: block;
-    }
+    display: block;
   }
 
   .header-right {
     display: flex;
+
+    .network {
+      width: 167px;
+      height: 40px;
+      text-align: center;
+      background: rgba(103, 104, 172, 0.2);
+      opacity: 1;
+      border-radius: 20px;
+      font-size: 16px;
+      font-family: Kanit;
+      font-weight: 400;
+      line-height: 40px;
+      color: #6768AC;
+      margin-right: 16px;
+    }
   }
 
   .menu-btn {
@@ -73,6 +85,10 @@
       border-radius: 10px;
       padding: 4px;
       z-index: 999;
+      display: block;
+      &.close {
+        display: none;
+      }
       .header-menu {
         display: flex;
         flex-direction: column;

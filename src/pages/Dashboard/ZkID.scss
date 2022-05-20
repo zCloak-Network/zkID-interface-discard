@@ -1,0 +1,26 @@
+.dashboard-zkid  {
+    .title {
+        display: inline-block;
+        font-size: 24px;
+        font-family: Kanit;
+        font-weight: 500;
+        color: #000000;
+        margin-top: 52px;
+        margin-bottom: 28px;
+    }
+
+    .content {
+        .proof-content {
+            width: 1100px;
+            background: #FFFFFF;
+            border: 1px solid #E5E7ED;
+            box-shadow: 0px 0px 30px rgba(121, 145, 173, 0.1);
+            opacity: 1;
+            border-radius: 10px;
+        }
+    }
+
+    .zkid-loading {
+        margin: 40px 0;
+    }
+}

@@ -11,7 +11,7 @@ import Submit from "../Submit";
 import InputAddress from "./InputAddress";
 import InputBalance from "./InputBalance";
 import SelectToken from "../SelectToken";
-import TransferBtn from "./transferBtn";
+import TransferBtn from "./TransferBtn";
 
 import {
   useModalOpen,

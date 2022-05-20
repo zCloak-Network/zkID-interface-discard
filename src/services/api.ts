@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-08 19:47:31
- * @LastEditTime: 2022-01-05 10:22:07
+ * @LastEditTime: 2022-04-22 16:40:59
  */
 import axios from "axios";
 import { HOSTPREFIX } from "../constants";
@@ -89,6 +89,45 @@ export async function queryActivities(
   return axios({
     method: "get",
     url: `${HOSTPREFIX}/transfer/record`,
+    params: {
+      ...params,
+    },
+  });
+}
+
+export async function getPoapId(
+  params: { who: string },
+  options?: { [key: string]: any }
+) {
+  return axios({
+    method: "get",
+    url: `${HOSTPREFIX}/mint-poap`,
+    params: {
+      ...params,
+    },
+  });
+}
+
+export async function getProofs(
+  params: { dataOwner: string; programHash?: any },
+  options?: { [key: string]: any }
+) {
+  return axios({
+    method: "get",
+    url: `${HOSTPREFIX}/user/proof`,
+    params: {
+      ...params,
+    },
+  });
+}
+
+export async function getActivities(
+  params: { dataOwner: string },
+  options?: { [key: string]: any }
+) {
+  return axios({
+    method: "get",
+    url: `${HOSTPREFIX}/user/activies`,
     params: {
       ...params,
     },
