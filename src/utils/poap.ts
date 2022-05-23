@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2022-04-24 15:29:50
- * @LastEditTime: 2022-04-25 15:06:18
+ * @LastEditTime: 2022-05-23 15:38:48
  */
 /*
  * @Description:
@@ -10,14 +10,14 @@
  * @Date: 2022-04-24 14:06:38
  * @LastEditTime: 2022-04-24 14:12:06
  */
-import img1 from "../images/nft/40522552889507486262027357734207559572.png";
-import img2 from "../images/nft/42018931746397126175492143712451320807.png";
-import img3 from "../images/nft/125185194153452917765631924411805583030.png";
-import img4 from "../images/nft/142084376254405164571847791340268850858.png";
-import img5 from "../images/nft/150098118728916422961885807481892654353.png";
-import img6 from "../images/nft/200131628285890828369532065092663508412.png";
-import img7 from "../images/nft/202100964360959351678140981251573392558.png";
-import img8 from "../images/nft/219435727696893656932292705285121930827.png";
+import img1 from "../images/nft/40522552889507486262027357734207559572.webp";
+import img2 from "../images/nft/42018931746397126175492143712451320807.webp";
+import img3 from "../images/nft/125185194153452917765631924411805583030.webp";
+import img4 from "../images/nft/142084376254405164571847791340268850858.webp";
+import img5 from "../images/nft/150098118728916422961885807481892654353.webp";
+import img6 from "../images/nft/200131628285890828369532065092663508412.webp";
+import img7 from "../images/nft/202100964360959351678140981251573392558.webp";
+import img8 from "../images/nft/219435727696893656932292705285121930827.webp";
 
 export function getImg(imgUrl = null) {
   const imgs = {
