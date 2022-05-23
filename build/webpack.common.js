@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-08-11 13:50:41
- * @LastEditTime: 2022-04-24 10:49:25
+ * @LastEditTime: 2022-05-20 17:48:09
  */
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -35,7 +35,7 @@ const commonConfig = {
         // use:["ts-loader", 'eslint-loader']
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/,
+        test: /\.(png|jpe?g|gif|svg|webp)$/,
         type: "asset",
         generator: {
           filename: "images/[hash][ext]",

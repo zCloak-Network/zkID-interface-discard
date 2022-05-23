@@ -2,12 +2,10 @@
  * @Description:
  * @Author: lixin
  * @Date: 2022-04-19 17:49:14
- * @LastEditTime: 2022-05-17 15:10:41
+ * @LastEditTime: 2022-05-20 18:04:43
  */
-import React, { useState, useEffect, useMemo } from "react";
-import { useWeb3React } from "@web3-react/core";
+import React, { useMemo } from "react";
 import { getImg } from "../../utils/poap";
-import { getPoapId } from "../../services/api";
 import { hexToNumber } from "@polkadot/util";
 import { stripHexPrefix, numberToHex } from "web3-utils";
 import BN from "bn.js";
@@ -16,6 +14,11 @@ import classNames from "classnames";
 import _ from "lodash";
 
 import "./Poap.scss";
+
+interface IProps {
+  nftId: string;
+  poapId: string;
+}
 
 function SampleNextArrow(props) {
   // eslint-disable-next-line react/prop-types
@@ -45,28 +48,7 @@ function SamplePrevArrow(props) {
   );
 }
 
-const Poap: React.FC = () => {
-  const [poapId, setPoapId] = useState(null);
-  const [nftId, setNftId] = useState(null);
-  const { account } = useWeb3React();
-
-  const getPoapIdByAccount = async () => {
-    if (account) {
-      const res = await getPoapId({ who: account });
-
-      if (res.data.code === 200) {
-        if (res.data.data) {
-          const { poapId, nftId } = res.data.data;
-          setPoapId(poapId);
-          setNftId(nftId);
-        } else {
-          setPoapId(null);
-          setNftId(null);
-        }
-      }
-    }
-  };
-
+const Poap: React.FC<IProps> = ({ poapId, nftId }) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -100,10 +82,6 @@ const Poap: React.FC = () => {
 
     return data;
   }, [poapId]);
-
-  useEffect(() => {
-    getPoapIdByAccount();
-  }, [account]);
 
   return (
     <div className="dashboard-poap">

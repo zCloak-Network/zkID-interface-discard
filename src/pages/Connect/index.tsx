@@ -2,9 +2,9 @@
  * @Description: submit modal
  * @Author: lixin
  * @Date: 2021-12-02 17:23:15
- * @LastEditTime: 2022-01-12 17:24:08
+ * @LastEditTime: 2022-05-23 15:15:59
  */
-import React, { useState, useEffect, ReactElement } from "react";
+import React, { useEffect, ReactElement } from "react";
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
 import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
 import { AbstractConnector } from "@web3-react/abstract-connector";
@@ -19,21 +19,21 @@ import { SUPPORTED_WALLETS } from "../../constants/wallet";
 
 import "./index.scss";
 
-const WALLET_VIEWS = {
-  OPTIONS: "options",
-  OPTIONS_SECONDARY: "options_secondary",
-  ACCOUNT: "account",
-  PENDING: "pending",
-  LEGAL: "legal",
-};
+// const WALLET_VIEWS = {
+//   OPTIONS: "options",
+//   OPTIONS_SECONDARY: "options_secondary",
+//   ACCOUNT: "account",
+//   PENDING: "pending",
+//   LEGAL: "legal",
+// };
 
 export default function Connect(): ReactElement {
-  const { active, account, connector, activate, error } = useWeb3React();
-  const [walletView, setWalletView] = useState(WALLET_VIEWS.ACCOUNT);
-  const [pendingWallet, setPendingWallet] = useState<
-    AbstractConnector | undefined
-  >();
-  const [pendingError, setPendingError] = useState<boolean>();
+  const { connector, activate, error } = useWeb3React();
+  // const [walletView, setWalletView] = useState(WALLET_VIEWS.ACCOUNT);
+  // const [pendingWallet, setPendingWallet] = useState<
+  //   AbstractConnector | undefined
+  // >();
+  // const [pendingError, setPendingError] = useState<boolean>();
 
   const connectWalletModalOpen = useModalOpen(ApplicationModal.CONNECT_WALLET);
   const toggleConnectWalletModal = useToggleConnectWalletModal();
@@ -48,8 +48,8 @@ export default function Connect(): ReactElement {
       return true;
     });
 
-    setPendingWallet(connector); // set wallet for pending view
-    setWalletView(WALLET_VIEWS.PENDING);
+    // setPendingWallet(connector); // set wallet for pending view
+    // setWalletView(WALLET_VIEWS.PENDING);
     // if the connector is walletconnect and the user has already tried to connect, manually reset the connector
     if (connector instanceof WalletConnectConnector) {
       connector.walletConnectProvider = undefined;
@@ -58,14 +58,12 @@ export default function Connect(): ReactElement {
     connector &&
       activate(connector, undefined, true)
         .then(async () => {
-          const walletAddress = await connector.getAccount();
+          // const walletAddress = await connector.getAccount();
           toggleConnectWalletModal();
         })
         .catch((error) => {
           if (error instanceof UnsupportedChainIdError) {
             activate(connector); // a little janky...can't use setError because the connector isn't set
-          } else {
-            setPendingError(true);
           }
         });
   };

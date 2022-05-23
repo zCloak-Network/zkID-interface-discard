@@ -2,7 +2,7 @@
  * @Description:
  * @Author: lixin
  * @Date: 2021-12-28 17:56:31
- * @LastEditTime: 2022-01-11 10:26:11
+ * @LastEditTime: 2022-05-23 15:15:14
  */
 import React from "react";
 import Modal from "../Modal";
@@ -12,7 +12,6 @@ import { ExternalLink } from "react-feather";
 import Copy from "./Copy";
 import {
   useModalOpen,
-  useToggleConnectWalletModal,
   useToggleAccountDetailsModal,
 } from "../../state/application/hooks";
 import { ApplicationModal } from "../../state/application/reducer";
@@ -22,15 +21,15 @@ import "./indes.scss";
 
 export default function AccountDetails(): JSX.Element {
   const { account, chainId } = useActiveWeb3React();
-  const toggleConnectWalletModal = useToggleConnectWalletModal();
+  // const toggleConnectWalletModal = useToggleConnectWalletModal();
   const toggleAccountDetailsModal = useToggleAccountDetailsModal();
   const accountDetailsModalOpen = useModalOpen(
     ApplicationModal.ACCOUNT_DETAILS
   );
 
-  const handeleOpenConnect = () => {
-    toggleConnectWalletModal();
-  };
+  // const handeleOpenConnect = () => {
+  //   toggleConnectWalletModal();
+  // };
 
   return (
     <Modal
@@ -42,9 +41,9 @@ export default function AccountDetails(): JSX.Element {
     >
       <div className="account-details-header">
         <h2 className="sub-title">Connect with MetaMask</h2>
-        <div className="change-btn" onClick={handeleOpenConnect}>
+        {/* <div className="change-btn" onClick={handeleOpenConnect}>
           Change
-        </div>
+        </div> */}
       </div>
       <span className="account">{account && shortenAddress(account)}</span>
       <div className="account-details-btns">
